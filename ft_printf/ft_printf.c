@@ -1,7 +1,7 @@
 #include "ft_printf.h"
 #include "helpery.c"
 
-// datatypes datatype;
+datatypes datatype;
 
 // Function to check and handle format specifiers
 int check_conditions(const char *format, int i, va_list args) {
@@ -10,7 +10,7 @@ int check_conditions(const char *format, int i, va_list args) {
 
     // Handle string and uppercase string
     if (format[i] == 's' || format[i] == 'S') {
-        char *str = va_arg(args, char *);
+        datatype.string = va_arg(args, char *);
         if (format[i] == 'S') { // Uppercase string
             while (str[j] != '\0') {
                 if (str[j] >= 'a' && str[j] <= 'z')
@@ -42,29 +42,29 @@ int check_conditions(const char *format, int i, va_list args) {
 
     // Handle hexadecimal
     else if (format[i] == 'x' || format[i] == 'X') {
-        unsigned int hex = va_arg(args, unsigned int);
-        print_hex(hex); // You need to implement this function as mentioned earlier
+        datatype.hex = va_arg(args, unsigned int);
+        print_hex(datatype.hex); // You need to implement this function as mentioned earlier
         i++;
     }
 
     // Handle character
     else if (format[i] == 'c') {
-        char ch = (char)va_arg(args, int);
-        write(1, &ch, 1);
+        datatype.ch = (char)va_arg(args, int);
+        write(1, &datatype.ch, 1);
         i++;
     }
 
     // Handle octal
     else if (format[i] == 'o') {
-        unsigned int octal = va_arg(args, unsigned int);
-        print_octal(octal); // You need to implement this function
+        datatype.octal = va_arg(args, unsigned int);
+        print_octal(datatype.octal); // You need to implement this function
         i++;
     }
 
     // Handle unsigned integer
     else if (format[i] == 'u') {
-        unsigned int uns = va_arg(args, unsigned int);
-        ft_putUNSnbrEXT(uns);
+        datatype.uns = va_arg(args, unsigned int);
+        ft_putUNSnbrEXT(datatype.uns);
         i++;
     }
     if (format[i] == '%')
@@ -90,7 +90,6 @@ int ft_printf(const char *format, ...) {
             i++;
         }
     }
-
     va_end(args); // Clean up the va_list
     return 0;
 }
