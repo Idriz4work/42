@@ -11,20 +11,32 @@ int check_conditions(const char *format, int i, va_list args) {
     // Handle string and uppercase string
     if (format[i] == 's' || format[i] == 'S') {
         datatype.string = va_arg(args, char *);
-        if (format[i] == 'S') { // Uppercase string
-            while (str[j] != '\0') {
-                if (str[j] >= 'a' && str[j] <= 'z')
-                    str[j] -= 32;
-                write(1, &str[j], 1);
+        
+        // Uppercase string
+        if (format[i] == 'S')
+        { 
+            while (datatype.string[j] != '\0') {
+                if (datatype.string[j] >= 'a' && datatype.string[j] <= 'z')
+                    datatype.string[j] -= 32;
+                write(1, &datatype.string[j], 1);
                 j++;
             }
-        } else { // Normal string
-            while (str[j] != '\0') {
-                write(1, &str[j], 1);
+        } 
+        else 
+        { // Normal string
+            while (datatype.string[j] != '\0') {
+                write(1, &datatype.string[j], 1);
                 j++;
             }
         }
         i++;
+    }
+
+    // pointer
+    if (format[i] == 'p')
+    {
+        void *current = va_arg(args, void*);
+        putPointer(current);
     }
 
     // Handle integer and decimal
@@ -34,7 +46,7 @@ int check_conditions(const char *format, int i, va_list args) {
         i++;
     }
 
-    // Handle pointer (implement it if needed, currently stubbed)
+    // pointer
     else if (format[i] == 'p') {
         // Handle pointer logic here
         i++;
@@ -43,7 +55,7 @@ int check_conditions(const char *format, int i, va_list args) {
     // Handle hexadecimal
     else if (format[i] == 'x' || format[i] == 'X') {
         datatype.hex = va_arg(args, unsigned int);
-        print_hex(datatype.hex); // You need to implement this function as mentioned earlier
+        print_hex(datatype.hex); 
         i++;
     }
 
@@ -82,10 +94,13 @@ int ft_printf(const char *format, ...) {
     int i = 0;
 
     while (format[i] != '\0') {
-        if (format[i] == '%') {
+        if (format[i] == '%')
+        {
             i++; // Skip the '%' character
             i = check_conditions(format, i, args); // Process the next character after '%'
-        } else {
+        }
+        else
+        {
             write(1, &format[i], 1); // Print regular characters
             i++;
         }

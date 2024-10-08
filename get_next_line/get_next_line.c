@@ -1,57 +1,56 @@
 #include "get_next_line.h"
 
-int	get_next_line(const int fd, char **line)
-{
-	char *curentline;
-	char *holder;
-	int i, j;
-	i = j = 0;
-	curentline = (char *)malloc(sizeof(char) * 9000);
-	if (curentline == NULL)
-		return -1;
-	while(read(fd,curentline,BUFF_SIZE) > 0)
-	{
-		if (curentline[j] != '\n')
-		{
-			line[i][j] = curentline[j]; //= ft_strdup(curentline);
-			j++;
-			printf("%c\n",line[i][j]);
-			continue;
-		}
-		else{
-			printf("%s\n",line[i]);
-			i++;
-			j++;
-		}
-	}
- return 1;
+// save content of fd in curenline in 1 chunk (1024) 
+// continue while indexbuffer is less than the bytes we read (either 1024 or less)
+int get_next_line(const int fd, char **line)
+{	
+    static char *curentline = NULL;
+    char *holder;
+    
+    // Allocate memory
+    curentline = (char *)malloc(sizeof(char) * BUFF_SIZE);
+    holder = (char *)malloc(sizeof(char) * 10000000); // this is a large allocation, adjust as necessary
+    
+    // Handle failed mallocs or file errors
+    if (curentline == NULL || holder == NULL || fd == -1)
+        return -1;
+
+    // Fill the lines
+    char **oldline = line;
+    line = fill_lines(fd, line, curentline, holder);
+    if (line == oldline)
+    {
+        // Free allocated memory
+        free(curentline);
+        free(holder);
+        return 0;
+    }
+    // Free allocated memory
+    free(curentline);
+    free(holder);
+    return 1;
 }
+
 
 int main()
 {
     int fd;
-    char *line;
+    char *line = NULL;
+    int lines_read = 0;
 
-    // Open the file in read-only mode
-    fd = open("get_next_line.h", O_RDONLY); // Replace "test.txt" with the file you want to read
+    fd = open("get_next_line.c", O_RDONLY);
     if (fd == -1)
     {
         perror("Error opening file");
-    }
-
-    // Call your get_next_line function
-    if (get_next_line(fd, &line) == -1)
-    {
-        printf("Error reading line\n");
-        close(fd);
         return 1;
     }
 
-    // Print the line read (assuming the function fills 'line' correctly)
-    printf("Line: %s\n", line);
-
-    // Close the file
+    while (get_next_line(fd, &line) > 0)
+    {
+        printf("Line %d: %s\n", ++lines_read, line);
+        // free(line);
+        // line = NULL;
+    }
     close(fd);
-
     return 0;
 }

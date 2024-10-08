@@ -28,23 +28,31 @@ void ft_putUNSnbrEXT(unsigned int i)
     write(1, &curent, 1);      // Print the last digit
 }
 
-int lenof(int count, ...) {
-    va_list args;
-    va_start(args, count);
+void putPointer(void *ptr)
+{
+    unsigned long address = (unsigned long)ptr;
+    char buffer[20];  // Buffer to hold the string representation of the address
+    char *hex = "0123456789abcdef";
+    int i;
 
-    int i = 0;
-    
-    // Retrieve the first argument as a string (char pointer)
-    char *val = va_arg(args, char *);
-    
-    // Loop to calculate the length of the string
-    while (val[i] != '\0') {
-        i++;
+    buffer[0] = '0';
+    buffer[1] = 'x';
+
+    i = 2; 
+    while(i < 18)
+    {
+        buffer[i] = hex[(address >> ((17 - i) * 4)) & 0xf];
+        i++
     }
+    buffer[18] = '\0';
 
-    va_end(args);
-    
-    return i;  // Return the length of the string
+    // Print the formatted address
+    i = 0; 
+    while (buffer[i] != '\0')
+    {
+        write(1, &buffer[i], 1);
+        i++
+    }
 }
 
 // Function to print a character using write()
@@ -73,8 +81,8 @@ void print_octal_helper(unsigned int octal) {
     if (octal >= 8) {
         print_octal_helper(octal / 8);
     }
-
-    char digit = '0' + (octal % 8);  // Get the octal digit
+    // Get the octal digit
+    char digit = '0' + (octal % 8);  
     print_char(digit);
 }
 
