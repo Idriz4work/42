@@ -11,6 +11,14 @@ char **fill_lines(const int fd, char **line, char *curentline, char *holder)
         {
             if (c == 'Z')
                 return line;
+            if (curentline[indexbuffer] == EOF)
+            {
+                // Free allocated memory
+                free(curentline);
+                free(holder);
+                return 0;
+            }
+            
             if (curentline[indexbuffer+1] == '\n')
             {
                 holder[i] = '\0'; 
