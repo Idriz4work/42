@@ -3,93 +3,150 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-int koy(char **line,char *currentline,int j)
+int condition_check(char **lastvalue, char **temp, char **curentvalue, int fd)
 {
-        // success in reading line
-        return 1;
-    // EOF is reached
-    return 0;
-}
+    static int iteration;
 
-char* save_value(char *currentline, int i)
-{
-    if (currentline[i] == '\n' || currentline[i] == EOF)
-    {
-        currentline[i] = '\0';
-        return ft_strdup(currentline);
-    }
-    return currentline;
-}
-
-// save content of fd in curenline in 1 chunk (1024) 
-// continue while indexbuffer is less than the bytes we read (either 1024 or less)
-int get_next_line(const int fd, char **line)
-{	
-    char *holder;
-    static char* temp;
-    static char *currentline;
-    static char *newholder;
-    int i = 0, bytes;
-
-    // Handle file error
     if (fd == -1)
-    {
-        free(holder);
         return -1;
-    }
-    
-    while (1)
+
+    if (iteration == 0)
     {
-        // Allocate memory
-        holder = (char *)malloc(sizeof(char) * 10000000);
-        // temp = (char *)malloc(sizeof(char) * BUFF_SIZE);
-        currentline = (char *)malloc(sizeof(char) * 10000000);
-        if (currentline == NULL || holder == NULL)
-        {
-            printf("mistake in memory allocation");
+        iteration = 1;
+        *lastvalue = (char *)malloc(BUFF_SIZE);
+        if (*lastvalue == NULL)
             return -1;  // Handle malloc failure
-        }
-        while ((bytes = read(fd,holder,BUFF_SIZE)) > 0)
-        {            
-            // free(holder);
-            // free(currentline);
-            i = 0;
-            printf("in reading...");
-            
-            while (i < bytes)
+        **lastvalue = '\0';  // Initialize to empty string
+    }
+
+    // Allocate memory for temp
+    *temp = (char *)malloc(BUFF_SIZE);
+    if (*temp == NULL)
+    {
+        if (iteration == 1)
+            free(*lastvalue);  // Free lastvalue if temp allocation fails
+        return -1;  // Handle malloc failure
+    }
+
+    // Allocate memory for curentvalue
+    *curentvalue = (char *)malloc(BUFF_SIZE);
+    if (*curentvalue == NULL)
+    {
+        free(*temp);  // Free temp if curentvalue allocation fails
+        if (iteration == 1)
+            free(*lastvalue);  // Free lastvalue if curentvalue allocation fails
+        return -1;  // Handle malloc failure
+    }
+
+    return 1;
+}
+
+char *reset_lastvalue(char **lastvalue)
+{
+    char *temp;
+    // printf("RESET: [%s]\n",*lastvalue);
+    int i = 0, j = 0;
+
+    while ((*lastvalue)[i] != '\n')
+        i++;
+    
+    i++;
+    temp = (char *)malloc(ft_strlen(*lastvalue) - i + 1);
+    if (!temp)
+        return NULL;
+
+    while ((*lastvalue)[i] != '\0')
+    {
+        temp[j] = (*lastvalue)[i];
+        j++;
+        i++;
+    }
+    temp[j] = '\0';
+    free(*lastvalue);
+    *lastvalue = ft_strdup(temp);
+    free(temp);
+    return *lastvalue;
+}
+
+char *newline_slicer(char **line,char **lastvalue,char **temp)
+{
+    char *rightline;
+    int i, len_lastvalue,j;
+
+    *lastvalue = ft_strjoin(*lastvalue,*temp);
+
+    if (lastvalue == NULL || *lastvalue == NULL)
+        return NULL;
+
+    len_lastvalue = ft_strlen(*lastvalue);
+    rightline = (char *)malloc(len_lastvalue + 1);
+    if (!rightline)
+        return NULL;
+
+    i = j = 0;
+    while (((*lastvalue)[i]) != '\n')
+    {
+        rightline[i] = ((*lastvalue)[i]);
+        i++;
+    }
+    rightline[i] = '\0';
+    *line = ft_strdup(rightline);
+    // printf("LAST: [%s]\n",*lastvalue);
+    return (reset_lastvalue(lastvalue));
+}
+
+
+// Updated get_next_line function
+int get_next_line(const int fd, char **line)
+{   
+    static char *lastvalue;
+    char *curentvalue;
+    char *temp = NULL;
+    int result,i,j,bytes, is_ok;
+
+    i = j = 0;
+    // Pass pointers to lastvalue andcurentvalue 
+    is_ok = condition_check(&lastvalue,&temp,&curentvalue, fd);
+    if (is_ok < 0)
+        return -1;
+    if (is_ok)
+    {
+        while (1)
+        {
+            bytes = read(fd, curentvalue, BUFF_SIZE);
+            if (bytes > 0)
             {
-                if (currentline[i] == '\n' || holder[i] == '\n')
+                temp = strchr(curentvalue,'\n');
+                if (temp)
                 {
-                    temp = ft_strchr(holder,'\n');
-                    if (temp != NULL)
-                    {
-                        printf("1");
-                        newholder = ft_strjoin(currentline, temp);
-                        
-                        *line = ft_strdup(temp);  // Point to the new string
-                        return 1;
-                    }
-                    if (temp == 0)
-                    {
-                        newholder = ft_strjoin(currentline, temp);
-                        printf("0");
-                        free(currentline);
-                        *line = ft_strdup(temp);  // Point to the new string
-                        return 0;
-                    }
+                    lastvalue = newline_slicer(line,&lastvalue,&temp);
+                    return 1;
                 }
-            currentline[i] = holder[i];
-            i++;
+                lastvalue = ft_strjoin(lastvalue,curentvalue);
             }
-        free(holder);
-        holder = newholder;
+            else
+            {
+                temp = (char*)malloc(ft_strlen(lastvalue) + 1);
+                while (1)
+                {
+                    while (lastvalue[i] != '\n')
+                    {
+                        temp[j] = lastvalue[i];
+                        i++;
+                        j++;
+                    }
+                    *line = ft_strdup(temp);
+                    if (lastvalue[i] == '\n')
+                        i++;
+                    j = 0;
+                }
+                return 0;
+            }
         }
     }
-    
     // EOF file
     return 0;
 }
-
 
 #include <stdio.h>
 
@@ -121,7 +178,7 @@ int main()
     {
         printf("Line %d: %s\n", ++lines_read, line);
         // free(line);  // Free memory after use
-        if (i == 2)
+        if (i == 10)
             break;
         i++;
         // line = NULL;
