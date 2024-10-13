@@ -3,153 +3,116 @@
 #include <unistd.h>
 #include "get_next_line.h"
 
-int condition_check(char **lastvalue, char **temp, char **curentvalue, int fd)
+void freeall(char *temp, char *valueholder, int indicator)
 {
-    static int iteration;
-
-    if (fd == -1)
-        return -1;
-
-    if (iteration == 0)
+    if (indicator == 0)
+        free(temp);
+    if (indicator == 1)
     {
-        iteration = 1;
-        *lastvalue = (char *)malloc(BUFF_SIZE);
-        if (*lastvalue == NULL)
-            return -1;  // Handle malloc failure
-        **lastvalue = '\0';  // Initialize to empty string
+        free(valueholder);
+        free(temp);
     }
-
-    // Allocate memory for temp
-    *temp = (char *)malloc(BUFF_SIZE);
-    if (*temp == NULL)
-    {
-        if (iteration == 1)
-            free(*lastvalue);  // Free lastvalue if temp allocation fails
-        return -1;  // Handle malloc failure
-    }
-
-    // Allocate memory for curentvalue
-    *curentvalue = (char *)malloc(BUFF_SIZE);
-    if (*curentvalue == NULL)
-    {
-        free(*temp);  // Free temp if curentvalue allocation fails
-        if (iteration == 1)
-            free(*lastvalue);  // Free lastvalue if curentvalue allocation fails
-        return -1;  // Handle malloc failure
-    }
-
-    return 1;
+    printf("\n--------[FREED MEMORY]---------\n");
 }
 
-char *reset_lastvalue(char **lastvalue)
+char *reset_valueholder(char **valueholder)
 {
-    char *temp;
-    // printf("RESET: [%s]\n",*lastvalue);
-    int i = 0, j = 0;
+    char *newline_pos, *remaining;
 
-    while ((*lastvalue)[i] != '\n')
-        i++;
-    
-    i++;
-    temp = (char *)malloc(ft_strlen(*lastvalue) - i + 1);
-    if (!temp)
-        return NULL;
-
-    while ((*lastvalue)[i] != '\0')
+    newline_pos = strchr(*valueholder, '\n');
+    if (newline_pos)
     {
-        temp[j] = (*lastvalue)[i];
-        j++;
-        i++;
+        remaining = ft_strdup(newline_pos + 1);  // Keep everything after '\n'
+        free(*valueholder);  // Free the old buffer
+        *valueholder = remaining;  // Set the remaining part as the new buffer
     }
-    temp[j] = '\0';
-    free(*lastvalue);
-    *lastvalue = ft_strdup(temp);
-    free(temp);
-    return *lastvalue;
+    return *valueholder;
 }
 
-char *newline_slicer(char **line,char **lastvalue,char **temp)
+char *insert_line(char **line, char **valueholder)
 {
-    char *rightline;
-    int i, len_lastvalue,j;
-
-    *lastvalue = ft_strjoin(*lastvalue,*temp);
-
-    if (lastvalue == NULL || *lastvalue == NULL)
-        return NULL;
-
-    len_lastvalue = ft_strlen(*lastvalue);
-    rightline = (char *)malloc(len_lastvalue + 1);
-    if (!rightline)
-        return NULL;
-
-    i = j = 0;
-    while (((*lastvalue)[i]) != '\n')
-    {
-        rightline[i] = ((*lastvalue)[i]);
-        i++;
-    }
-    rightline[i] = '\0';
-    *line = ft_strdup(rightline);
-    // printf("LAST: [%s]\n",*lastvalue);
-    return (reset_lastvalue(lastvalue));
-}
-
-
-// Updated get_next_line function
-int get_next_line(const int fd, char **line)
-{   
-    static char *lastvalue;
-    char *curentvalue;
     char *temp = NULL;
-    int result,i,j,bytes, is_ok;
+    int i, len_lastvalue;
 
-    i = j = 0;
-    // Pass pointers to lastvalue andcurentvalue 
-    is_ok = condition_check(&lastvalue,&temp,&curentvalue, fd);
-    if (is_ok < 0)
-        return -1;
-    if (is_ok)
+    i = 0;
+    temp = ft_strdup(*valueholder);  // Initialize temp here with a copy of valueholder
+    *valueholder = ft_strjoin(*valueholder, temp);
+
+    if (valueholder == NULL || *valueholder == NULL)
+        return NULL;
+
+    len_lastvalue = ft_strlen(*valueholder);
+    *line = (char *)malloc(len_lastvalue + 1);
+
+    while (((*valueholder)[i]) != '\n' && ((*valueholder)[i]) != '\0')
     {
-        while (1)
-        {
-            bytes = read(fd, curentvalue, BUFF_SIZE);
-            if (bytes > 0)
-            {
-                temp = strchr(curentvalue,'\n');
-                if (temp)
-                {
-                    lastvalue = newline_slicer(line,&lastvalue,&temp);
-                    return 1;
-                }
-                lastvalue = ft_strjoin(lastvalue,curentvalue);
-            }
-            else
-            {
-                temp = (char*)malloc(ft_strlen(lastvalue) + 1);
-                while (1)
-                {
-                    while (lastvalue[i] != '\n')
-                    {
-                        temp[j] = lastvalue[i];
-                        i++;
-                        j++;
-                    }
-                    *line = ft_strdup(temp);
-                    if (lastvalue[i] == '\n')
-                        i++;
-                    j = 0;
-                }
-                return 0;
-            }
-        }
+        ((*line)[i]) = ((*valueholder)[i]);
+        i++;
     }
-    // EOF file
+    ((*line)[i]) = '\0';
+
+    free(temp);  // Free temp after use
+    return *valueholder;
+}
+
+int read_file(char **valueholder, char **line, int bytes, int fd)
+{
+    char *temp; 
+
+    bytes = read(fd, *valueholder, BUFF_SIZE);
+    valueholder[bytes + 1] = '\0';
+    if (bytes > 0)
+    {
+        temp = strchr(*valueholder, '\n');
+        if (temp)
+        {
+            *valueholder = insert_line(line, valueholder);
+            *valueholder = reset_valueholder(valueholder);
+            free(temp);  // Free temp after use
+            return 1;
+        }
+        *valueholder = ft_strjoin(*valueholder,temp);
+    }
+    temp = ft_strcpy(temp,*valueholder);
+
+    if (bytes == 0)
+    {
+        free(temp);  // Free temp in case it was used
+        return 0;
+    }
+    free(temp);  
+    return -1;
+}
+
+int get_next_line(const int fd, char **line)
+{
+    static char *valueholder;
+    int result, bytes;
+
+    if (fd == -1 || BUFF_SIZE <= 0)
+        return -1;
+
+    if (!valueholder)
+        valueholder = (char *)malloc(BUFF_SIZE + 1);
+
+    bytes = 0;
+    result = read_file(&valueholder, line, bytes, fd);
+    while (result == -1)
+    {
+        result = read_file(&valueholder, line, bytes, fd);
+        if (result == 1)
+            return 1;
+        if (result == 0)
+            break;
+    }
+
+    insert_line(line, &valueholder);  // Call without temp
+    freeall(NULL, valueholder, 1);  // freeall with temp = NULL (not used here)
     return 0;
 }
 
-#include <stdio.h>
 
+#include <stdio.h>
 int main()
 {
     int fd;
@@ -178,7 +141,7 @@ int main()
     {
         printf("Line %d: %s\n", ++lines_read, line);
         // free(line);  // Free memory after use
-        if (i == 10)
+        if (i == 5)
             break;
         i++;
         // line = NULL;
@@ -194,3 +157,4 @@ int main()
 
     return 0;
 }
+ 
