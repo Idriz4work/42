@@ -13,7 +13,6 @@ char *get_next_line(const int fd)
 
     line = NULL;
     result = 0;
-
     if (fd < 0 || BUFF_SIZE <= 0)
         return NULL;
 
@@ -25,29 +24,17 @@ char *get_next_line(const int fd)
         first_iteration = 1;
     }
 
-    line = (char *)malloc((BUFF_SIZE + 1) * sizeof(char));
-    if (!line)
-    {
-        freeler(&valueholder, NULL, NULL);
-        return NULL;
-    }
-
     while ((result = read_file(&valueholder, 0, fd)) > 0)
         if (result == 1)
             break;
 
     if (result <= 0 && (!valueholder || !*valueholder))
     {
-        freeler(&valueholder, &line, NULL);
+        freeler(&valueholder, NULL, NULL);
         return NULL;  // Indicate EOF or error
     }
 
-    valueholder = insert_line(&line, &valueholder);
-    if (!valueholder)
-    {
-        return line;
-        freeler(&line, &valueholder, NULL);
-    }
+    line = insert_line(&valueholder);
     return line;
 }
 
@@ -62,7 +49,7 @@ char *get_next_line(const int fd)
 //     char *line;
 //     int lines_read = 0;
 //     // Open a file to test with
-//     fd = open("multiple_nlx5", O_RDONLY);
+//     fd = open("gnlTester-master/files/42_with_nl", O_RDONLY);
 //     if (fd == -1)
 //     {
 //         perror("Error opening file");
@@ -72,7 +59,7 @@ char *get_next_line(const int fd)
 //     while ((line = get_next_line(fd)) != NULL)
 //     {
 //         printf("Line %d: %s", lines_read, line);
-//         printf("\n");
+//         // printf("\n");
 //         lines_read++;
 //         free(line); // Free the line returned by get_next_line
 //     }

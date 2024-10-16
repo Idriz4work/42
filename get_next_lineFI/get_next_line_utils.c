@@ -1,49 +1,5 @@
 #include "get_next_line.h"
 
-int condition_check(char **line, char **valueholder, int *first_iteration, int fd)
-{
-    if (fd < 0 || BUFF_SIZE <= 0)
-        return -1;
-    if (!(*first_iteration))
-    {
-        *valueholder = NULL;
-        *valueholder = (char *)calloc(1, sizeof(char));
-        if (!(*valueholder))
-            return -1;
-        *first_iteration = 1;
-    }
-    *line = (char *)malloc((BUFF_SIZE + 1) * sizeof(char));
-    if (!(*line))
-    {
-        freeler(valueholder, NULL, NULL);
-        return -1;
-    }
-    return 1;
-}
-
-
-
-// Helper function to free memory and set pointers to NULL
-int freeler(char **s1, char **s2, char **s3)
-{
-    if (s1 && *s1)
-    {
-        free(*s1);
-        *s1 = NULL;
-    }
-    if (s2 && *s2)
-    {
-        free(*s2);
-        *s2 = NULL;
-    }
-    if (s3 && *s3)
-    {
-        free(*s3);
-        *s3 = NULL;
-    }
-    return 1;
-}
-
 // Custom strlen function
 size_t ft_strlen(const char *s)
 {
@@ -84,6 +40,27 @@ char *ft_strjoin(char const *s1, char const *s2)
     return str;
 }
 
+// Helper function to free memory and set pointers to NULL
+int freeler(char **s1, char **s2, char **s3)
+{
+    if (s1 && *s1)
+    {
+        free(*s1);
+        *s1 = NULL;
+    }
+    if (s2 && *s2)
+    {
+        free(*s2);
+        *s2 = NULL;
+    }
+    if (s3 && *s3)
+    {
+        free(*s3);
+        *s3 = NULL;
+    }
+    return 1;
+}
+
 // Updates the valueholder by removing the line that was read
 void update_holder(char **valueholder)
 {
@@ -110,42 +87,41 @@ void update_holder(char **valueholder)
     (*valueholder)[j] = '\0'; 
 }
 
-
 // Inserts a line into the line buffer
-char *insert_line(char **line, char **valueholder)
+char *insert_line(char **valueholder)
 {
     int i;
     int j;
+    char *line;
     char *indicator;
 
     i = 0;
     j = 0;
-    free(*line);
-    *line = (char *)malloc(ft_strlen(*valueholder) + 1);
-    if (*line == NULL)
+    line = (char *)malloc(ft_strlen(*valueholder) + 1);
+    if (line == NULL)
         return NULL;
     indicator = strchr(*valueholder, '\n');
     if (indicator)
     {
         while ((*valueholder)[i] != '\n' && (*valueholder)[i] != '\0')
-            (*line)[j++] = (*valueholder)[i++];
-        (*line)[j] = '\0';
+            line[j++] = (*valueholder)[i++];
+        line[j++] = (*valueholder)[i++];
+        line[j] = '\0';
     }
     else
     {
         while ((*valueholder)[i] != '\0')
-            (*line)[j++] = (*valueholder)[i++];
-        (*line)[j] = '\0';
-        freeler(valueholder,NULL,NULL);
-        return NULL;
+            line[j++] = (*valueholder)[i++];
+        line[j] = '\0';
+        freeler(valueholder, NULL, NULL);
+        return line;
     }
     update_holder(valueholder);
-    return *valueholder;
+    return line;
 }
 
-
 // Reads from the file and updates valueholder
-int read_file(char **valueholder, int bytes,int fd)
+int read_file(char **valueholder, int bytes, int fd)
 {
     char *temp, *newline;
 
