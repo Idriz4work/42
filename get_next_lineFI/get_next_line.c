@@ -46,7 +46,7 @@ char *get_next_line(const int fd)
     if (!valueholder)
     {
         return line;
-        freeler(&line, NULL, NULL);
+        freeler(&line, &valueholder, NULL);
     }
     return line;
 }

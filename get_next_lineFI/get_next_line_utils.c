@@ -136,6 +136,7 @@ char *insert_line(char **line, char **valueholder)
         while ((*valueholder)[i] != '\0')
             (*line)[j++] = (*valueholder)[i++];
         (*line)[j] = '\0';
+        freeler(valueholder,NULL,NULL);
         return NULL;
     }
     update_holder(valueholder);
