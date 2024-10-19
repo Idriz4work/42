@@ -1,18 +1,22 @@
+#include <stdio.h>
+#include <string.h>
 
-char *ft_strchr(char *s1,char *s2)
+// Function to find the first occurrence of character `c` in the string `s`
+char *ft_strchr(char *s1, char c)
 {
-	int i,j;
-	i = j = 0;
-	while (s1[i] != '\0')
-	{
-		while (s1[i+j] == s2[j] && s2[j] != '\0')
-		{
-			if (s1[i+j] == s2[j] && s2[j+1] == '\0')
-				return s2;
-			j++;
-		}
-		i++;
-	}
-	s1[i+j] = '\0';
-	return s1;
+ int i = 0;
+ while (s1[i] != '\0')
+ {
+  if (s1[i] == c)
+   return &s1[i];
+  i++;
+ }
+ return NULL;
 }
+// int main()
+// {
+//     char s[] = "Dollar dollar dollat is what I need yea yea";
+//     char c = 'd'; // Search for the first occurrence of 'd'
+   
+//     printf("ft: %s\nnorm: %s\n", ft_strchr(s, c), strchr(s,c));
+// }
