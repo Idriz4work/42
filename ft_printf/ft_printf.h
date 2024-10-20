@@ -1,10 +1,12 @@
+#ifndef FT_PRINTF_H
+#define FT_PRINTF_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 
-typedef struct
-{
+typedef struct {
     int inte;             // For 'd', 'i' (signed integer)
     long lon;             // For 'l' (long integer)
     char *string;         // For 's', 'S' (string)
@@ -14,3 +16,5 @@ typedef struct
     unsigned int hex;     // For 'x', 'X' (hexadecimal)
     void *pointer;        // For 'p' (pointer address)
 } datatypes;
+
+#endif

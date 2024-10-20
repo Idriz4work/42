@@ -9,7 +9,7 @@ void       *ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (pointer[i] == c)
-			return (void *)pointer + i; // this is how to return address of a pointer
+			return (void *)pointer + i;
 		i++;
 	}
 	return NULL;

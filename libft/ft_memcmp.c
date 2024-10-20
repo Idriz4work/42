@@ -10,7 +10,8 @@ void       *ft_memcmp(void *s1, const void *s2, size_t n)
 	ptrs2 = s2;
 	while (n > 0)
 	{
-		if (ptrs1[i] < ptrs2[i] || ptrs1[i] > ptrs2[i] || ptrs1[i] == ptrs2[i])
+		if ((ptrs1[i] < ptrs2[i] || ptrs1[i] > ptrs2[i]) 
+		|| (ptrs1[i] == ptrs2[i]))
 			return 0;
 		i++;
 		n--;
