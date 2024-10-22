@@ -1,4 +1,3 @@
-
 #include "libft.h"
 
 char* allocatespace(char **str,int len1, int len2)
@@ -8,6 +7,7 @@ char* allocatespace(char **str,int len1, int len2)
 			return (NULL);
 		return *str;
 }
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;

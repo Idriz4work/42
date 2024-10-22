@@ -17,7 +17,7 @@ int check_conditionpt2(const char *format, int i,va_list args)
     }
     else if (format[i] == 'o') {
         datatype.octal = va_arg(args, unsigned int);
-        print_octal(datatype.octal); // You need to implement this function
+        print_octal(datatype.octal); 
         i++;
     }
     else if (format[i] == 'u') {
@@ -57,8 +57,9 @@ int check_conditions(const char *format, int i, va_list args) {
 int ft_printf(const char *format, ...) {
     va_list args;
     va_start(args, format);
-    int i = 0;
+    int i;
 
+    i = 0;
     while (format[i] != '\0') {
         if (format[i] == '%')
             i = check_conditions(format, i, args);

@@ -2,11 +2,12 @@
 
 int ft_strlcat(char *s1, const char *s2, int n)
 {
- int i = 0;
- int j = 0;
- int s1_len = 0;
- int s2_len = 0;
- 
+ int i;
+ int j;
+ int s1_len;
+ int s2_len;
+
+ i = j = s1_len = s2_len = 0;
 	// Calculate the length of s1 (destination string)
  while (s1[s1_len] != '\0')
   s1_len++;
@@ -23,7 +24,6 @@ int ft_strlcat(char *s1, const char *s2, int n)
   i++;
   j++;
  }
- // Null-terminate the string after concatenation
  s1[i] = '\0';
  return s1_len + s2_len;
 }

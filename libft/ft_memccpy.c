@@ -1,19 +1,44 @@
-#include <stddef.h>    // For size_t
+// #include <stdio.h>
+// #include <stddef.h>    // For size_t
+// #include <string.h>    // For memccpy
 
-void       *ft_memccpy(void *dst, const void *src, int c, size_t n)
+void       *ft_memccpy(void *dst, const void *src, size_t c, size_t n)
 {
 	size_t i;
  unsigned char *dst_char;
  const unsigned char *src_char;
 
-	dst_char = (unsigned char *)dst;   // Cast to unsigned char*
-	src_char = (const unsigned char *)src;  // Cast to const unsigned char*
-	while (i < n)
-	{
-		if (src_char[i] == (unsigned char)c)
-			return dst_char + i + 1;
-		dst_char[i] = src_char[i];
-		i++;
+	dst_char = (unsigned char *)dst;
+	src_char = (const unsigned char *)src;
+	i = 0;
+ while (i < n)
+ {
+  dst_char[i] = src_char[i];
+  if (src_char[i] == (unsigned char)c)
+  	return (void *)(dst_char + i + 1);
+  i++;
 	}
 	return NULL;
 }
+
+// int main()
+// {
+//   // Initialize destination and source arrays
+//   char dst1[50] = {0};  // Enough space for the copied content
+//   char dst2[50] = {0};  // Another destination array for comparison
+//   char src[] = "zo my name is";
+//   int c = 'a';
+//   int n = 8;
+//   // Test the original memccpy function
+//   void *result_original = memccpy(dst1, src, c, n);
+//   // Test your custom ft_memccpy function
+//   void *result_custom = ft_memccpy(dst2, src, c, n);
+//   // Print the results
+//   printf("Original memccpy:\n");
+//   printf("Result pointer: %p\n", result_original);
+//   printf("Destination string: %s\n", dst1);
+//   printf("\nCustom ft_memccpy:\n");
+//   printf("Result pointer: %p\n", result_custom);
+//   printf("Destination string: %s\n", dst2);
+//   return 0;
+// }

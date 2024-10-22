@@ -3,8 +3,9 @@
 void       *ft_memset(void *s, int c, int len)
 {
 	int i;
+	unsigned char *ptrs;
+
 	i = 0;
-	char *ptrs;
 	ptrs = s;
 	while (i != len)
 	{

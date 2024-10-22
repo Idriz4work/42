@@ -3,8 +3,8 @@
 int ft_strlcpy(char *s1,char *s2, size_t size)
 {
 	int i;
-	i = 0;
 	int retsize;
+	i = 0;
 	retsize = 0;
 	while (s2[retsize] != '\0')
 		retsize++;
