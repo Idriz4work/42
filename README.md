@@ -29,8 +29,8 @@ Welcome to my 42 School projects repository! This README provides an overview of
 
 | Project Name | Description | Goals | Type | Status | Grade | Start Date | End Date |
 |--------------|-------------|-------|------|--------|-------|------------|----------|
-| FdF | Represent the mesh in "wire of a field" in 3D | Simple graphic library, segment layout, events, 3D to 2D projection | Group | ✅ | 125 | 19-01-17 | 19-02-14 |
-| Fract'ol | Discover the psychedelic world of fractals | 2D programming, optimization | Solo | ✅ | 117 | 19-02-14 | 19-03-04 |
+| FdF | Represent the mesh in "wire of a field" in 3D | Simple graphic library, segment layout, events, 3D to 2D projection | Group | ✅ | ? | 19-01-17 | 19-02-14 |
+| Fract'ol | Discover the psychedelic world of fractals | 2D programming, optimization | Solo | ✅ | ? | 19-02-14 | 19-03-04 |
 
 ### 🔐 Systems Administration Branch
 
