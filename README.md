@@ -36,7 +36,7 @@ Welcome to my 42 School projects repository! This README provides an overview of
 
 | Project Name | Description | Goals | Type | Status | Grade | Start Date | End Date |
 |--------------|-------------|-------|------|--------|-------|------------|----------|
-| Init | Introduction to systems administration and networks | Unix, systems administration | Solo | ✅ | 100 | 18-12-13 | 18-12-22 |
+| Init | Introduction to systems administration and networks | Unix, systems administration | Solo | ✅ | ? | 18-12-13 | 18-12-22 |
 | Roger-Skyline-1 🌟 | Systems administration and networks basics | Unix, systems administration | Solo | ✅ | 60 | 19-08-01 | 19-08-08 |
 | Docker-1 | Think with containers! | Micro services, docker, unix, containers, DevOps | Solo | ⌛ | - | - | - |
 
