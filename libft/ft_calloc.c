@@ -6,13 +6,14 @@
 void       *ft_calloc(size_t count, size_t size)
 {
 	char *memoryplace;
-	size_t total = size * count;
-	memoryplace = (char *)malloc(total);
-	size_t i;
+	size_t i,total;
+
 	i = 0;
-	// if request fails return NULL
+	total = size * count;
+	memoryplace = (char *)malloc(total);
 	if (memoryplace == 0)
 		return NULL;
+
 	while (i < total)
 	{
 		memoryplace[i] = 0;
