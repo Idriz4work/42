@@ -1,4 +1,4 @@
-#include <unistd.h>
+#include "libft.h"
 
 void printi_minti(char array[], int i, int fd)
 {
@@ -13,23 +13,20 @@ void printi_minti(char array[], int i, int fd)
 
 void ft_putnbr_fd(int n, int fd)
 {
-	int i, sign;
+	int i;
 	char array[18];
 
 	i = 0;
-	sign = n;
 	if (n == 2147483648)
 	{
 		write(fd, "-2147483648", 12);
 		return;
 	}
-
 	if (n < 0)
 	{
 		write(fd, "-", 1);
 		n = -n;
 	}
-
 	while (n > 9)
 	{
 		array[i] = n % 10;

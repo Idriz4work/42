@@ -1,5 +1,4 @@
 #include "libft.h"
-#include <stdio.h>
 
 int wordCount(char const *s, char c)
 {

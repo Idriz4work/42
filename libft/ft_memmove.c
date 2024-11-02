@@ -1,7 +1,4 @@
-#include <stddef.h>    // For size_t
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
 void *ft_memmove(void *dst, const void *src, size_t len)
 {
