@@ -90,13 +90,10 @@ void update_holder(char **valueholder)
 // Inserts a line into the line buffer
 char *insert_line(char **valueholder)
 {
-    int i;
-    int j;
-    char *line;
-    char *indicator;
+    int i, j;
+    char *line,*indicator;
 
-    i = 0;
-    j = 0;
+    j = i = 0;
     line = (char *)malloc(ft_strlen(*valueholder) + 1);
     if (line == NULL)
         return NULL;
@@ -107,16 +104,13 @@ char *insert_line(char **valueholder)
             line[j++] = (*valueholder)[i++];
         line[j++] = (*valueholder)[i++];
         line[j] = '\0';
-    }
-    else
-    {
-        while ((*valueholder)[i] != '\0')
-            line[j++] = (*valueholder)[i++];
-        line[j] = '\0';
-        freeler(valueholder, NULL, NULL);
+        update_holder(valueholder);
         return line;
     }
-    update_holder(valueholder);
+    while ((*valueholder)[i] != '\0')
+        line[j++] = (*valueholder)[i++];
+    line[j] = '\0';
+    freeler(valueholder, NULL, NULL);
     return line;
 }
 
@@ -137,8 +131,6 @@ int read_file(char **valueholder, int bytes, int fd)
         free(temp);
         free(*valueholder);
         *valueholder = newline;
-        if (*valueholder == NULL)
-            return -1;
         if (strchr(*valueholder, '\n'))
             return 1;
     }

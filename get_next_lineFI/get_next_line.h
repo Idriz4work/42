@@ -1,8 +1,11 @@
 #include "libft/libft.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 
 #define BUFF_SIZE 42
 
-char *get_next_line(const int fd);
 char *insert_line(char **valueholder);
 void update_holder(char **valueholder);
 int freeler(char **s1, char **s2, char **s3);
