@@ -1,43 +1,86 @@
 #include "get_next_line.h"
 
+void       *ft_calloc(size_t count, size_t size)
+{
+	char *memoryplace;
+	size_t i,total;
+
+	i = 0;
+	total = size * count;
+	memoryplace = (char *)malloc(total);
+	if (memoryplace == 0)
+		return NULL;
+
+	while (i < total)
+	{
+		memoryplace[i] = 0;
+		i++;
+	}
+	return memoryplace;
+}
+
 // Custom strlen function
 size_t ft_strlen(const char *s)
 {
-    int i = 0;
+    int i;
+
+    i = 0;
     while (s[i] != '\0')
         i++;
     return i;
 }
 
+char *ft_strchr(char *s1, char c)
+{
+ int i;
+
+ i = 0;
+ while (s1[i] != '\0')
+ {
+  if (s1[i] == c)
+   return &s1[i];
+  i++;
+ }
+ return NULL;
+}
+
 // Safely joins two strings
 char *ft_strjoin(char const *s1, char const *s2)
 {
-    if (!s1 || !s2)
+    char *str;
+    int len1,len2,i,j;
+
+    len1 = ft_strlen(s1);
+    len2 = ft_strlen(s2);
+    str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+    if (!str || !s1 || !s2)
         return NULL;
 
-    int len1 = ft_strlen(s1);
-    int len2 = ft_strlen(s2);
-    char *str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-
-    if (str == NULL)
-        return NULL;
-
-    int i = 0;
+    i = j = 0;
     while (i < len1)
     {
         str[i] = s1[i];
         i++;
     }
-
-    int j = 0;
     while (j < len2)
     {
         str[i + j] = s2[j];
         j++;
     }
-
     str[i + j] = '\0';
     return str;
+}
+
+int allocateOnce(int first_iteration,char **valueholder)
+{
+    if (!first_iteration)
+    {
+        *valueholder = (char *)ft_calloc(1, sizeof(char));
+        if (!valueholder || !*valueholder)
+            return 0;
+        first_iteration = 1;
+    }
+    return first_iteration;
 }
 
 // Helper function to free memory and set pointers to NULL
@@ -64,8 +107,7 @@ int freeler(char **s1, char **s2, char **s3)
 // Updates the valueholder by removing the line that was read
 void update_holder(char **valueholder)
 {
-    int j;
-    int newline_pos;
+    int j, newline_pos;
     char *newline;
     
     if (!valueholder || !*valueholder)
@@ -90,13 +132,10 @@ void update_holder(char **valueholder)
 // Inserts a line into the line buffer
 char *insert_line(char **valueholder)
 {
-    int i;
-    int j;
-    char *line;
-    char *indicator;
+    int i, j;
+    char *line,*indicator;
 
-    i = 0;
-    j = 0;
+    j = i = 0;
     line = (char *)malloc(ft_strlen(*valueholder) + 1);
     if (line == NULL)
         return NULL;
@@ -107,16 +146,13 @@ char *insert_line(char **valueholder)
             line[j++] = (*valueholder)[i++];
         line[j++] = (*valueholder)[i++];
         line[j] = '\0';
-    }
-    else
-    {
-        while ((*valueholder)[i] != '\0')
-            line[j++] = (*valueholder)[i++];
-        line[j] = '\0';
-        freeler(valueholder, NULL, NULL);
+        update_holder(valueholder);
         return line;
     }
-    update_holder(valueholder);
+    while ((*valueholder)[i] != '\0')
+        line[j++] = (*valueholder)[i++];
+    line[j] = '\0';
+    freeler(valueholder, NULL, NULL);
     return line;
 }
 
@@ -125,11 +161,11 @@ int read_file(char **valueholder, int bytes, int fd)
 {
     char *temp, *newline;
 
-    temp = (char *)malloc(BUFF_SIZE + 1);
+    temp = (char *)malloc(BUFFER_SIZE + 1);
     if (temp == NULL)
         return -1;
 
-    bytes = read(fd, temp, BUFF_SIZE);
+    bytes = read(fd, temp, BUFFER_SIZE);
     if (bytes > 0)
     {
         temp[bytes] = '\0';
@@ -137,9 +173,7 @@ int read_file(char **valueholder, int bytes, int fd)
         free(temp);
         free(*valueholder);
         *valueholder = newline;
-        if (*valueholder == NULL)
-            return -1;
-        if (strchr(*valueholder, '\n'))
+        if (ft_strchr(*valueholder, '\n'))
             return 1;
     }
     if (bytes <= 0)

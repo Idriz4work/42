@@ -47,27 +47,35 @@ char **memAlocator(char const *s, char c)
 // 	return array;
 // }
 
+int spliter(char ***array, int j, char c, int i,char const *s)
+{
+	int counterA;
+	
+	counterA = 0;
+	*array[j] = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+ if (!array[j])
+		return -1;
+	while (s[i] && s[i] != c)
+		*array[j][counterA++] = s[i++];
+	*array[j++][counterA] = '\0';
+	return i;
+}
+
 char **ft_split(char const *s, char c)
 {
-	int i,j,counterA;
+	int i,j;
 	char **array;
 
-	i = counterA = j = 0;
+	i = j = 0;
 	array = memAlocator(s,c);
 	if (!array)
 		return NULL;
 	while (s[i] != '\0')
 	{
 		if (s[i] != c)
-		{
-			counterA = 0;
-			array[j] = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
- 		if (!array[j])
+			i = spliter(&array,j,c,i,s);
+			if (i == -1)
 				return NULL;
-			while (s[i] && s[i] != c)
-				array[j][counterA++] = s[i++];
-			array[j++][counterA] = '\0';
-		}
 		else
 			i++;
 	}
