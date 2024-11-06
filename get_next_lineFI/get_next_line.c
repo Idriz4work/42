@@ -2,9 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
+/*                                                    +:+ +:+
+	+:+     */
 /*   By: iatilla- <iatilla-@student.42.fr>        +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
+/*                                                +#+#+#+#+#+
+	+#+           */
 /*   Created: 2024/11/06 17:00:17 by iatilla-         #+#    #+#             */
 /*   Updated: 2024/11/06 17:00:17 by iatilla-        ###   ########.fr       */
 /*                                                                            */
@@ -24,7 +26,6 @@ int	allocateonce(int first_iteration, char **valueholder)
 	return (first_iteration);
 }
 
-// Helper function to free memory and set pointers to NULL
 int	freeler(char **s1, char **s2, char **s3)
 {
 	if (s1 && *s1)
@@ -45,12 +46,11 @@ int	freeler(char **s1, char **s2, char **s3)
 	return (1);
 }
 
-// Updates the valueholder by removing the line that was read
 void	update_holder(char **valueholder)
 {
-	char                                *newline;
-	int     newline_pos;
-	int     j;
+	int j;
+	char *newline;
+	int newline_pos;
 
 	if (!valueholder || !*valueholder)
 		return ;
@@ -70,12 +70,11 @@ void	update_holder(char **valueholder)
 	(*valueholder)[j] = '\0';
 }
 
-// Inserts a line into the line buffer
 char	*insert_line(char **valueholder)
 {
-	char *line;
 	int i;
 	int j;
+	char *line;
 
 	j = 0;
 	i = 0;
@@ -98,11 +97,10 @@ char	*insert_line(char **valueholder)
 	return (line);
 }
 
-// Reads from the file and updates valueholder
 int	read_file(char **valueholder, int bytes, int fd)
 {
-	char    *temp;
-	char    *newline;
+	char *temp;
+	char *newline;
 
 	temp = (char *)malloc(BUFFER_SIZE + 1);
 	if (temp == NULL)
@@ -128,10 +126,10 @@ int	read_file(char **valueholder, int bytes, int fd)
 
 char	*get_next_line(const int fd)
 {
+	static int first_iteration;
 	static char *valueholder;
-	char        *line;
-	static int  first_iteration;
-	int         result;
+	int result;
+	char *line;
 
 	line = NULL;
 	result = 0;
@@ -152,9 +150,6 @@ char	*get_next_line(const int fd)
 }
 
 ///////////////////// TESTING ///////////////////
-// #include <stdio.h>
-// #include <fcntl.h> // For open()
-// #include <unistd.h> // For close()
 // int	main(void)
 // {
 // 	int fd;
