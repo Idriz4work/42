@@ -63,8 +63,8 @@ int spliter(char ***array, int j, char c, int i,char const *s)
 
 char **ft_split(char const *s, char c)
 {
-	int i,j;
 	char **array;
+	int i,j,counterA;
 
 	i = j = 0;
 	array = memAlocator(s,c);
@@ -72,12 +72,18 @@ char **ft_split(char const *s, char c)
 		return NULL;
 	while (s[i] != '\0')
 	{
+		counterA = 0;
 		if (s[i] != c)
-			i = spliter(&array,j,c,i,s);
-			if (i == -1)
+		{
+			array[j] = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+			if (!array[j])
 				return NULL;
-		else
-			i++;
+			while (s[i] && s[i] != c)
+				array[j][counterA++] = s[i++];
+			array[j++][counterA] = '\0';
+			continue;
+		}
+		i++;
 	}
 	array[j] = NULL;
 	return array;

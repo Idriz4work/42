@@ -1,9 +1,10 @@
-#include <stddef.h>    // For size_t
+#include <stddef.h> // For size_t
 
-int ft_strlcpy(char *s1,char *s2, size_t size)
+int	ft_strlcpy(char *s1, char *s2, size_t size)
 {
-	int i;
-	int retsize;
+	int	i;
+	int	retsize;
+
 	i = 0;
 	retsize = 0;
 	while (s2[retsize] != '\0')
@@ -15,5 +16,5 @@ int ft_strlcpy(char *s1,char *s2, size_t size)
 		size--;
 	}
 	s1[i] = '\0';
-	return retsize;
+	return (retsize);
 }
