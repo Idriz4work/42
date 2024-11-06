@@ -1,7 +1,13 @@
 #include "ft_printf.h"
-#include "helpery.c"
 
 datatypes datatype;
+
+int is_digit(char ce)
+{
+	if (!(ce >= '0' && ce <= '9'))
+		return 0;
+	return 1;
+}
 
 int check_conditionpt2(const char *format, int i,va_list args)
 {
@@ -28,52 +34,37 @@ int check_conditionpt2(const char *format, int i,va_list args)
     return i;
 }
 
-// Helper function for string conversion
-int ft_atoi(const char *str)
-{
-    int result = 0;
-    int i = 0;
-    
-    while (str[i] >= '0' && str[i] <= '9')
-    {
-        result = result * 10 + (str[i] - '0');
-        i++;
-    }
-    return result;
-}
-
-
 int checkforSpace(const char *format, int i)
 {
-    char buffer[20] = {0}; // Initialize buffer with zeros
-    int in = 0;
-    int spaces;
-    
+    int spaces,in;
+    char buffer[20];
+
+    in = 0;
+    while (in < 0) 
+        buffer[in] = 0;    
     i++;
-    
     if (!(format[i] >= '0' && format[i] <= '9'))
         return i - 1;
     
     while (format[i] >= '0' && format[i] <= '9')
         buffer[in++] = format[i++];
-    buffer[in] = '\0';
-    
+    buffer[in] = '\0';    
     spaces = ft_atoi(buffer);
-    while (spaces-- > 1)
-        write(1, " ", 1);
-    
+    while (spaces-- >= 1)
+        write(1, " ", 1);   
     return i - 1;
 }
 
 int check_conditions(const char *format, int i, va_list args) {
-    if ((format[i] == '%' && (!(format[i+1]) >= 'a' && format[i+1] >= 'Z') ||
-    (format[i+1] >= 'A' && format[i+1] <= 'Z')))
+    void *current;
+ 
+    i = checkforSpace(format,i);
+    i++;
+    if ((format[i] == '%') && (!is_alpha(format[i] && !is_digit(format[i]))))
     {
         write(1,"%",1);
         return i + 1;
-    }
-    
-    i++;
+    }   
     if (format[i] == 's' || format[i] == 'S') {
         datatype.string = va_arg(args, char *);
         handle_strings(datatype.string,i);
@@ -81,7 +72,7 @@ int check_conditions(const char *format, int i, va_list args) {
     }
     else if (format[i] == 'p')
     {
-        void *current = va_arg(args, void*);
+        current = va_arg(args, void*);
         putPointer(current);
         i++;
     }
@@ -102,12 +93,10 @@ int ft_printf(const char *format, ...) {
     int i;
 
     i = 0;
-    while (format[i] != '\0') {
+    while (format[i] != '\0')
+    {
         if (format[i] == '%')
-        {
-            i = checkforSpace(format, i);
             i = check_conditions(format, i, args);
-        }
         else
         {
             write(1, &format[i], 1);
@@ -120,5 +109,8 @@ int ft_printf(const char *format, ...) {
 
 int main()
 {
-    ft_printf("Aviye is back %4i\n%\n%\n%s\n",274655,"slnoide");
+    ft_printf("Aviye is back %3i\n%%\n%s\n---\n",274655,"slnoide");
+    printf("Aviye is back %3i\n%%\n%s\n",274655,"slnoide");
+    ft_printf("\n--------------\n%%\n%%\n");
+    printf("%%\n%%\n");
 }

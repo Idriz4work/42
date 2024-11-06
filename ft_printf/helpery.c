@@ -1,5 +1,27 @@
 #include "ft_printf.h"
 
+int is_alpha(char ce)
+{
+	if (!(ce >= 'a' && ce <= 'z')
+	|| (ce >= 'A' && ce <= 'Z'))
+		return 0;
+	return 1;
+}
+
+// Helper function for string conversion
+int ft_atoi(const char *str)
+{
+    int result, i;
+
+    i = result = 0;    
+    while (str[i] >= '0' && str[i] <= '9')
+    {
+        result = result * 10 + (str[i] - '0');
+        i++;
+    }
+    return result;
+}
+
 void handle_strings(char *format,int i)
 {
     int j;
@@ -94,7 +116,7 @@ void print_hex_helper(unsigned int hex) {
 
 // Function to print hexadecimal number
 void print_hex(unsigned int hex) {
-    write(1, "0x", 2);  // Print "0x" prefix
+    write(1, "0x", 2);
     print_hex_helper(hex);
 }
 
@@ -112,12 +134,4 @@ void print_octal_helper(unsigned int octal) {
 void print_octal(unsigned int octal) {
     write(1, "0", 1);  // Print "0" prefix
     print_octal_helper(octal);
-}
-
-int is_alpha(char ce)
-{
-	if (!(ce >= 'a' && ce <= 'z')
-	|| (ce >= 'A' && ce <= 'Z'))
-		return 1;
-	return 0;
 }
