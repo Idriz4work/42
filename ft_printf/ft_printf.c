@@ -36,22 +36,20 @@ int check_conditionpt2(const char *format, int i,va_list args)
 
 int checkforSpace(const char *format, int i)
 {
-    int spaces,in;
+    int spaces;
+    int in;
     char buffer[20];
 
-    in = 0;
-    while (in < 0) 
-        buffer[in] = 0;    
+    in = 0;   
     i++;
     if (!(format[i] >= '0' && format[i] <= '9'))
         return i - 1;
-    
     while (format[i] >= '0' && format[i] <= '9')
         buffer[in++] = format[i++];
     buffer[in] = '\0';    
     spaces = ft_atoi(buffer);
-    while (spaces-- >= 1)
-        write(1, " ", 1);   
+    // while (spaces-- >= 1)
+    //     write(1, " ", 1);   
     return i - 1;
 }
 
@@ -109,8 +107,8 @@ int ft_printf(const char *format, ...) {
 
 int main()
 {
-    ft_printf("Aviye is back %3i\n%%\n%s\n---\n",274655,"slnoide");
-    printf("Aviye is back %3i\n%%\n%s\n",274655,"slnoide");
+    ft_printf("%i\n%3s\n---\n",274655,"slnoide");
+    printf("%i\n%10s\n",274655,"slnoide");
     ft_printf("\n--------------\n%%\n%%\n");
     printf("%%\n%%\n");
 }
