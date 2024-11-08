@@ -26,31 +26,11 @@ int	allocateonce(int first_iteration, char **valueholder)
 	return (first_iteration);
 }
 
-int	freeler(char **s1, char **s2, char **s3)
-{
-	if (s1 && *s1)
-	{
-		free(*s1);
-		*s1 = NULL;
-	}
-	if (s2 && *s2)
-	{
-		free(*s2);
-		*s2 = NULL;
-	}
-	if (s3 && *s3)
-	{
-		free(*s3);
-		*s3 = NULL;
-	}
-	return (1);
-}
-
 void	update_holder(char **valueholder)
 {
-	int j;
-	char *newline;
-	int newline_pos;
+	char	*newline;
+	int		j;
+	int		newline_pos;
 
 	if (!valueholder || !*valueholder)
 		return ;
@@ -72,9 +52,9 @@ void	update_holder(char **valueholder)
 
 char	*insert_line(char **valueholder)
 {
-	int i;
-	int j;
-	char *line;
+	char	*line;
+	int		i;
+	int		j;
 
 	j = 0;
 	i = 0;
@@ -93,14 +73,14 @@ char	*insert_line(char **valueholder)
 	while ((*valueholder)[i] != '\0')
 		line[j++] = (*valueholder)[i++];
 	line[j] = '\0';
-	freeler(valueholder, NULL, NULL);
+	free(valueholder);
 	return (line);
 }
 
 int	read_file(char **valueholder, int bytes, int fd)
 {
-	char *temp;
-	char *newline;
+	char	*temp;
+	char	*newline;
 
 	temp = (char *)malloc(BUFFER_SIZE + 1);
 	if (temp == NULL)
@@ -126,10 +106,10 @@ int	read_file(char **valueholder, int bytes, int fd)
 
 char	*get_next_line(const int fd)
 {
-	static int first_iteration;
-	static char *valueholder;
-	int result;
-	char *line;
+	static char	*			valueholder;
+	static int					first_iteration;
+	char	*										line;
+	int												result;
 
 	line = NULL;
 	result = 0;
@@ -142,7 +122,7 @@ char	*get_next_line(const int fd)
 			break ;
 	if (result <= 0 && (!valueholder || !*valueholder))
 	{
-		freeler(&valueholder, NULL, NULL);
+		free(valueholder);
 		return (NULL);
 	}
 	line = insert_line(&valueholder);
