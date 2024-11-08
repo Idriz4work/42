@@ -1,10 +1,12 @@
 #include "libft.h"
 
-int wordCount(char const *s, char c)
+int word_count(char const *s, char c)
 {
-	int i,j;
+	int i;
+	int j;
 
-	i = j = 0;
+	i = 0;
+	j = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == c)
@@ -14,38 +16,23 @@ int wordCount(char const *s, char c)
 	return j;
 }
 
-char **memAlocator(char const *s, char c)
+char **mem_allocate(char const *s, char c)
 {
  int counterofC;
  char **array;
 
- counterofC = wordCount(s,c);
+ counterofC = word_count(s,c);
  array = (char **)malloc(sizeof(char *) * (counterofC + 1));
  if (!array)
   return NULL;
-
  array[0] = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
  if (!array[0])
  {
   free(array);
   return NULL;
  }
-
  return array;
 }
-
-// char **copy(char **array,int j, char const *s, char c, int i)
-// {
-// 	int counterA;
-// 	counterA = 0;
-// 	array[j] = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
-//  if (!array[j])
-// 		return NULL;
-// 	while (s[i] && s[i] != c)
-// 		array[j][counterA++] = s[i++];
-// 	array[j++][counterA] = '\0';
-// 	return array;
-// }
 
 int spliter(char ***array, int j, char c, int i,char const *s)
 {
@@ -61,15 +48,14 @@ int spliter(char ***array, int j, char c, int i,char const *s)
 	return i;
 }
 
-char **ft_split(char const *s, char c)
+int copyarray(char **array,char c, char const *s)
 {
-	char **array;
-	int i,j,counterA;
+	int i;
+	int j;
+	int counterA;
 
-	i = j = 0;
-	array = memAlocator(s,c);
-	if (!array)
-		return NULL;
+	j = 0;
+	i = 0;
 	while (s[i] != '\0')
 	{
 		counterA = 0;
@@ -77,49 +63,55 @@ char **ft_split(char const *s, char c)
 		{
 			array[j] = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
 			if (!array[j])
-				return NULL;
+				return -1;
 			while (s[i] && s[i] != c)
 				array[j][counterA++] = s[i++];
 			array[j++][counterA] = '\0';
-			continue;
 		}
-		i++;
+		else
+			i++;
 	}
 	array[j] = NULL;
+	return 0;
+}
+
+char **ft_split(char const *s, char c)
+{
+	char **array;
+	int result;
+
+	array = mem_allocate(s,c);
+	if (!array)
+		return NULL;
+	result = copyarray(array,c,s);
+	if (result == -1)
+		return NULL;
 	return array;
 }
 
-int main()
-{
-    char s[] = "Hello , my name is Ati, Nice to see you !";
-    char c = ',';
-    char **result;
-    int j = 0;
-
-    // Call ft_split
-    result = ft_split(s, c);
-    
-    // Check if split was successful
-    if (result == NULL) {
-        printf("Memory allocation failed\n");
-        return 1;
-    }
-
-    // Print each word
-    while (result[j] != NULL)
-    {
-        printf("%s || ", result[j]);
-        j++;
-    }
-
-    // Free allocated memory
-    j = 0;
-    while (result[j] != NULL)
-    {
-        free(result[j]);
-        j++;
-    }
-    free(result);
-
-    return 0;
-}
+// int main()
+// {
+//  char s[] = "Hello , my name is Ati, Nice to see you !";
+//  char c = ',';
+//  char **result;
+//  int j = 0;
+ 
+// 	result = ft_split(s, c); 
+//  if (result == NULL) {
+//      printf("Memory allocation failed\n");
+//      return 1;
+//  }
+//  while (result[j] != NULL)
+//  {
+//      printf("%s\n$", result[j]);
+//      j++;
+//  }
+//  j = 0;
+//  while (result[j] != NULL)
+//  {
+//      free(result[j]);
+//      j++;
+//  }
+//  free(result);
+//  return 0;
+// }
