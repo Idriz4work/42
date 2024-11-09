@@ -12,20 +12,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdio.h>
-#include <string.h>
-
-
-int	ft_strlen(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return (i);
-}
+#include "libft.h" 
 
 char	*ft_strnstr(char *s1, char *s2, size_t n)
 {

@@ -1,6 +1,5 @@
-// #include <stdio.h>
-// #include <stddef.h>    // For size_t
-// #include <string.h>    // For memccpy
+
+#include "libft.h"
 
 void       *ft_memccpy(void *dst, const void *src, size_t c, size_t n)
 {

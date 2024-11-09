@@ -1,5 +1,5 @@
-#include "libft.h"
 
+#include "libft.h"
 
 char	*allocatespace(char **str, int len1, int len2)
 {

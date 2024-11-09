@@ -1,6 +1,4 @@
-
-
-#include <stddef.h> // For size_t
+#include "libft.h" For size_t
 
 int	ft_strncmp(char *s1, char *s2, size_t n)
 {

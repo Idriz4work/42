@@ -2,6 +2,7 @@
 int		ft_isdigit(char *ce)
 {
 	int i;
+
 	i = 0;
 	while (ce[i] != '\0')
 	{

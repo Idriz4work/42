@@ -12,8 +12,10 @@ int ft_lstlen(t_list **lst)
 
 void ft_lstadd_front(t_list **lst, t_list *new)
 {
-	int i,half_size;
-	t_list *tmp, *last;
+	int i;
+	int half_size;
+	t_list *tmp;
+	t_list *last;
 
 	half_size = ft_lstlen(lst);
 	i = 0;
