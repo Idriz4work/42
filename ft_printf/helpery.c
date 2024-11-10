@@ -27,6 +27,11 @@ void handle_strings(char *format,int i)
     int j;
 
     j = 0;
+    if (format == NULL)
+    {
+        write(1, "(null)", 6);
+        return;
+    }
     if (format[i] == 'S')
         {
             while (format[j] != '\0') {
@@ -48,6 +53,11 @@ void handle_strings(char *format,int i)
 void ft_putnbrEXT(int i)
 {
     char curent;
+    if (i == -2147483648)
+    {
+        write(1, "-2147483648", 11);
+        return;
+    }
 
     if (i < 0) {
         write(1, "-", 1);
