@@ -1,9 +1,12 @@
 
 int ft_atoi(char *s)
 {
-	int i, endresult, is_op;
+	int i;
+	int endresult;
+	int is_op;
 
-	i = endresult = 0;
+	i = 0;
+	endresult = 0;
 	is_op = 1;
 	while (s[i] == 32)
 		i++;

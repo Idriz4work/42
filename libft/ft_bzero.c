@@ -3,9 +3,9 @@
 void       ft_bzero(void *s,  size_t n)
 {
 	size_t i;
+	char *pointer;
 
 	i = 0;
-	char *pointer;
 	pointer = s;
 	while (i < n)
 	{

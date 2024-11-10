@@ -1,6 +1,5 @@
 #include "libft.h"
 
-// Function to find the first occurrence of character `c` in the string `s`
 char *ft_strchr(char *s1, char c)
 {
  int i = 0;

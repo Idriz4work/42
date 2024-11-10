@@ -4,11 +4,14 @@
 
 char *ft_strdup(const char *src)
 {
-	int i,j;
-	i = j = 0;
+	char *copy;
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
 	while (src[j] != '\0')
 		j++;
-	char *copy;
 	copy = (char *)malloc(j) + 1;
 	if (copy == NULL) // Check if malloc failed
   return NULL;

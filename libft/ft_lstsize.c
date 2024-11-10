@@ -17,17 +17,6 @@ int ft_lstsize(t_list *lst)
 	return i;
 }
 
-#include <stdio.h>
-t_list *ft_lstnew(void *content)
-{
-    t_list *node = (t_list *)malloc(sizeof(t_list));
-    if (!node)
-        return NULL;
-    node->content = content;
-    node->next = NULL;
-    return node;
-}
-
 // Example of main to test ft_lstsize
 int main()
 {

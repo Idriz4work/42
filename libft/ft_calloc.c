@@ -1,19 +1,16 @@
-#include <stdlib.h>  // For malloc
-// #include <stddef.h>  // For size_t
-// #include <stdio.h>   // For printf
-// #include <stdint.h>
+#include "libft.h"
 
 void       *ft_calloc(size_t count, size_t size)
 {
 	char *memoryplace;
-	size_t i,total;
+	size_t i;
+	int total;
 
 	i = 0;
 	total = size * count;
 	memoryplace = (char *)malloc(total);
 	if (memoryplace == 0)
 		return NULL;
-
 	while (i < total)
 	{
 		memoryplace[i] = 0;

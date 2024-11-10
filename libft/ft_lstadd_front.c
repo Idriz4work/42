@@ -1,40 +1,12 @@
+
 #include "libft.h"
 
-int ft_lstlen(t_list **lst)
-{
-	int i;
-
-	i = 0;
-	while (lst[i] != NULL)
-		i++;
-	return i;
-}
-
-void ft_lstadd_front(t_list **lst, t_list *new)
-{
-	int i;
-	int half_size;
-	t_list *tmp;
-	t_list *last;
-
-	half_size = ft_lstlen(lst);
-	i = 0;
-	tmp = lst[i];
-	lst[0] = new;
-	lst[1] = tmp;
-	last = lst[-1];
-	i += 2;
-	while (i < half_size / 2)
-	{
-		if (lst[i+1] != NULL)
-		{
-			tmp = lst[i+1];
-			lst[i] = tmp;
-		}	
-		last = lst[i];
-		i++;
-	}
-	lst[i] = last;
+// Function to add a new node to the front of the list
+void ft_lstadd_front(t_list **lst, t_list *new) {
+ if (!lst || !new)
+  return;
+ new->next = *lst;  
+ *lst = new;        
 }
 
 int main()

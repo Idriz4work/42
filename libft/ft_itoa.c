@@ -1,16 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-int ft_strlen(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i] != '\0')
-		i++;
-	return i;
-}
+#include "libft.h" 
 
 int condition_check(char **s, int index, int n)
 {
@@ -31,9 +20,12 @@ int condition_check(char **s, int index, int n)
 
 char *reversy(char *s)
 {
-	int c, i, j;
+	int c;
+	int i;
+	int j;
 
-	i = c = 0;
+	i = 0;
+	c = 0;
 	j	= ft_strlen(s) - 1;
 	if (s[0] == '-')
 		i++;
@@ -69,7 +61,6 @@ char *ft_itoa(int n)
 		s[i++] = n % 10 + '0';
 		n /= 10;
 	}
-
 	s[i] = '\0';
 	s = reversy(s);
 	return s;
