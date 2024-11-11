@@ -3,6 +3,7 @@
 int		ft_isalnum(char *ce)
 {
 	int i;
+
 	i = 0;
 	while (ce[i] != '\0')
 	{

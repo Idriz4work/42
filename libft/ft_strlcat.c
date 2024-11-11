@@ -12,7 +12,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include <stddef.h>    // For size_t
+#include "libft.h"
+
 char	*copy(char *s1, const char *s2, int n, int s1_len)
 {
 	int j;

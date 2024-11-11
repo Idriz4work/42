@@ -1,4 +1,4 @@
-#include <stddef.h>    // For size_t
+#include <stddef.h>
 
 void       ft_bzero(void *s,  size_t n)
 {

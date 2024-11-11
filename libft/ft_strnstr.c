@@ -14,38 +14,33 @@
 
 #include "libft.h" 
 
-char	*ft_strnstr(char *s1, char *s2, size_t n)
+char	*ft_strnstr(char *s1,const char *s2, size_t n)
 {
-	size_t i;
-	size_t len;
-	char c;
+ size_t i;
+	size_t j;
 
-	c = *s2;
-	if (c == '\0')
-		return (0);
-	len = ft_strlen(s2);
-	while (len <= n)
-	{
-		if (*s1 == c)
-		{
-			while (i == 1)
-			{
-				if (i == len)
-					return ((char *)s1);
-				if (s1[i] != s2[i])
-					break ;
-				i++;
-			}
-		}
-		n--;
-		s1++;
+ i = 0;
+	j = 0;
+ if (*s2 == '\0')  
+  return (s1);  
+ while (*s1 && j < n)
+ {
+  i = 0;
+  while (s1[i] == s2[i])
+  {
+   if (s2[i + 1] == '\0' || i + 1 == n)
+    return (s1);
+   i++;
+  }
+		j++;
+  s1++;
 	}
-	return (0);
+ return (0); 
 }
-
+#include <string.h>
 int	main(void)
 {
 	char s[] = "hello I'm back";
 	char s1[] = "hello I'm gone";
-	printf("ft: %s\n%s\n", ft_strnstr(s, s1, 8), strnstr(s, s1, 8));
+	printf("ft: %s\n%s\n", ft_strnstr(s, s1, 10),strnstr(s, s1, 10));
 }

@@ -50,12 +50,12 @@ char *ft_itoa(int n)
 	i = condition_check(&s, i, n);
 	if (i == -1)
 		return NULL;
+	
 	if (i == 0)
 		return s;
 
 	if (n < 0)
 		n = -n;
-
 	while (n > 0)
 	{
 		s[i++] = n % 10 + '0';

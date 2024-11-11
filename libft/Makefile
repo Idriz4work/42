@@ -1,3 +1,5 @@
+NAME = libft.a
+
 # Variables
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror

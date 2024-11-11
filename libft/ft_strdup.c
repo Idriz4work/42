@@ -13,7 +13,7 @@ char *ft_strdup(const char *src)
 	while (src[j] != '\0')
 		j++;
 	copy = (char *)malloc(j) + 1;
-	if (copy == NULL) // Check if malloc failed
+	if (copy == NULL)
   return NULL;
 	while (src[i] != '\0')
 	{

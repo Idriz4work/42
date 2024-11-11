@@ -18,23 +18,23 @@ int ft_lstsize(t_list *lst)
 }
 
 // Example of main to test ft_lstsize
-int main()
-{
-    // Creating a simple linked list with 3 nodes
-    t_list *head = ft_lstnew("First node");
-    head->next = ft_lstnew("Second node");
-    head->next->next = ft_lstnew("Third node");
+// int main()
+// {
+//     // Creating a simple linked list with 3 nodes
+//     t_list *head = ft_lstnew("First node");
+//     head->next = ft_lstnew("Second node");
+//     head->next->next = ft_lstnew("Third node");
 
-    // Test ft_lstsize
-    printf("Size of linked list: %i\n", ft_lstsize(head)); // Should output 3
+//     // Test ft_lstsize
+//     printf("Size of linked list: %i\n", ft_lstsize(head)); // Should output 3
 
-    // Free allocated memory for the linked list
-    t_list *temp;
-    while (head) {
-        temp = head;
-        head = head->next;
-        free(temp);
-    }
+//     // Free allocated memory for the linked list
+//     t_list *temp;
+//     while (head) {
+//         temp = head;
+//         head = head->next;
+//         free(temp);
+//     }
 
-    return 0;
-}
+//     return 0;
+// }

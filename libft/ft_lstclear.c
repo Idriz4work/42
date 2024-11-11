@@ -24,8 +24,8 @@ void ft_lstclear(t_list **lst, void (*del)(void*))
     free(copy);
 }
 
-void del(void *content)
-{free(content);}
+// void del(void *content)
+// {free(content);}
 
 // int main()
 // {
