@@ -6,14 +6,11 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:19:00 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 19:36:47 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:24:46 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isalnum(char ce)
 {
-	if (!((ce >= 'a' && ce <= 'z') || (ce >= 'A' && ce <= 'Z') || (ce >= '1'
-				&& ce <= '9')))
-		return (0);
-	return (1);
+	return (ft_isalpha(ce) || ft_isdigit(ce));
 }

@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:18:06 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:18:12 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/11 20:36:20 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	condition_check(char **s, int index, int n)
 
 char	*reversy(char *s)
 {
+	in is_op;
 	int	c;
 	int	i;
 	int	j;
@@ -36,8 +37,14 @@ char	*reversy(char *s)
 	i = 0;
 	c = 0;
 	j = ft_strlen(s) - 1;
-	if (s[0] == '-')
+	while (s[i] == '+' || s[i] == '-')
+	{
+		if (s[i] == '-')
+			is_op *= -1;
 		i++;
+	}
+	if (is_op == 1)
+		s[0] = '-';
 	while (i < j)
 	{
 		c = s[i];
@@ -73,7 +80,7 @@ char	*ft_itoa(int n)
 	return (s);
 }
 
-// int main()
-// {
-// 	printf("my: %s\n",ft_itoa(-84028));
-// }
+int main()
+{
+	printf("my: %s\n",ft_itoa(-+-84028));
+}
