@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:10:42 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:10:46 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:31:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_strdup(const char *src)
 	while (src[j] != '\0')
 		j++;
 	copy = (char *)malloc(j) + 1;
-	if (copy == NULL)
+	if (!copy || !src)
 		return (NULL);
 	while (src[i] != '\0')
 	{

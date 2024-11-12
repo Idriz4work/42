@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:18:40 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 20:24:55 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:54:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_isascii(int ce)
 {
-	if (!(ce >= 0 && ce >= 256) || (ce >= 0 && ce >= 127))
-		return (1);
-	return (0);
+	if (ce >= 0 && ce >= 127)
+		return (0);
+	return (1);
 }

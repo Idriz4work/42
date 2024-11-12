@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:08:20 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:08:25 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:27:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	size_t	i;
 
 	i = 0;
+	if (n < 0)
+		return -1;
 	while ((s1[i] != '\0' || s2[i] != '\0') && n > i)
 	{
 		if (s1[i] != s2[i])
@@ -28,7 +30,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 // #include <string.h>
 // int	main(void)
 // {
-// 	char s[] = "hellKo I'm back";
-// 	char s1[] = "helKlo I'm gone";
-// 	printf("ft: %d\n%d\n", ft_strncmp(s, s1, 12),strncmp(s, s1, 12));
+// 	char s[] = "\0";
+// 	char s1[] = "\0";
+// 	printf("ft: %d\n%d\n", ft_strncmp(s, s1, -1),strncmp(s, s1, -1));
 // }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:14:31 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:14:35 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:21:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 void	ft_putchar_fd(char c, int fd)
 {
-	if (fd != 1)
-		write(fd, &c, 1);
+	write(fd, &c, 1);
 }
+// int main()
+// {
+// 	int fd = open("ft_te", O_RDWR);
+// 	ft_putchar_fd('G',fd);
+// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:14:08 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:56:05 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:21:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ void	ft_putnbr_fd(int n, int fd)
 	}
 	while (n > 9)
 	{
-		array[i] = n % 10;
+		array[i++] = n % 10;
 		n /= 10;
-		i++;
 	}
 	array[i] = n;
 	printi_minti(array, i, fd);
@@ -53,9 +52,9 @@ void	ft_putnbr_fd(int n, int fd)
 // int main()
 // {
 // 	int fd;
-// 	fd = 1; // Standard output for testing
+// 	fd = open("ft_te",O_RDWR);
 // 	ft_putnbr_fd(12345, fd);
-// 	write(fd, "\n", 1); // Newline for clarity
+// 	write(fd, "\n", 1);
 // 	ft_putnbr_fd(-6789, fd);
 // 	write(fd, "\n", 1);
 // 	ft_putnbr_fd(0, fd);

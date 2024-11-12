@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:22:28 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 19:31:55 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 09:58:04 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 int					ft_atoi(const char *s);
 char				*ft_itoa(int n);
 void				*ft_calloc(size_t count, size_t size);
-void				*ft_memset(void *s, size_t c, size_t len);
+void				*ft_memset(void *s, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
 void				*ft_memcpy(void *dst, const void *src, size_t n);
 void				*ft_memccpy(void *dst, const void *src, size_t c, size_t n);
