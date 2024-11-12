@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:19:33 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/12 09:50:07 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/12 14:13:37 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_atoi(const char *s)
 	i = 0;
 	endresult = 0;
 	is_op = 1;
-	while (s[i] == ' ')
+	while ((s[i] == ' ') || (s[i] >= '\0' && s[i] <= '\r'))
 		i++;
-	if (s[i] == '+' || s[i] == '-')
+	if (s[i] == '+' || s[i] == '-' || s[i] == ' ')
 	{
 		if (s[i] == '-')
 			is_op *= -1;
@@ -38,6 +38,6 @@ int	ft_atoi(const char *s)
 // #include <stdlib.h>
 // int main()
 // {
-// 	char s[] = "    +19046";
-// 	printf("%i\n%i\n",ft_atoi(s),atoi(s));
+// 	char s[] = "+0";
+// 	printf("%i\n%i",ft_atoi(s),atoi(s));
 // }

@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:14:50 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:54:11 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 19:04:53 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	const unsigned char	*ptrsrc;
-	unsigned char		*ptrdst;
+	const char	*ptrsrc;
+	char		*ptrdst;
 	size_t				i;
 
-	ptrsrc = (const unsigned char *)src;
-	ptrdst = (unsigned char *)dst;
+	ptrsrc = (const char *)src;
+	ptrdst = (char *)dst;
 	if (ptrdst > ptrsrc && ptrdst < ptrsrc + len)
 	{
 		i = len;
 		while (i > 0)
 		{
-			i--;
 			ptrdst[i] = ptrsrc[i];
+			i--;
 		}
 	}
 	i = 0;
@@ -39,9 +39,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 }
 // int main()
 // {
-//     char src[] = "Hello, World!";
+//     char src[] = "_bnds_";
 //     char dst[50] = {0};  
-	// Ensure the destination is initialized with null characters
 
 //     // Test ft_memmove
 //     printf("Original source: %s\n", src);
@@ -51,9 +50,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 //     printf("After ft_memmove: %s\n", dst);
 
 //     // Compare with standard memmove
-//     char src2[] = "Hello, World!";
+//     char src2[] = "_bnds_";
 //     char dst2[50] = {0};  
-	// Ensure the destination is initialized with null characters
 
 //     memmove(dst2, src2, 3);  // Using standard memmove for comparison
 //     dst2[3] = '\0';  // Null-terminate for proper string display

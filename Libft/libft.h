@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:22:28 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/12 09:58:04 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/12 18:20:47 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# include <ctype.h>
 # include <fcntl.h>
+# include <limits.h>
 # include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -54,10 +56,9 @@ char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strcat(char *s1, const char *s2);
 char				*ft_strncat(char *s1, const char *s2, size_t n);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
-size_t				ft_strlcpy(char *s1, char *s2, size_t size);
-char				*ft_strchr(char *s, int c);
+size_t				ft_strlcpy(char *s1, const char *s2, size_t size);
+char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
-char				*ft_strstr(const char *big, const char *little);
 char				*ft_strnstr(const char *big, const char *little,
 						size_t len);
 int					ft_strcmp(const char *s1, const char *s2);

@@ -6,32 +6,24 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:10:06 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:10:11 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:49:07 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*allocatespace(char **str, int len1, int len2)
-{
-	*str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-	if (*str == NULL)
-		return (NULL);
-	return (*str);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	int		i;
 	int		len1;
-	int		len2;
 	char	*str;
 
-	if (s1 && s2)
+	if (s1)
 	{
 		len1 = ft_strlen(s1);
-		len2 = ft_strlen(s2);
-		str = allocatespace(&str, len1, len2);
+		str = (char *)malloc(sizeof(char) * (len1 + ft_strlen(s2) + 1));
+		if (str == NULL)
+			return (NULL);
 		i = -1;
 		while (s1[++i])
 			str[i] = s1[i];
@@ -46,3 +38,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	return (NULL);
 }
+
+// int main()
+// {
+	
+// }

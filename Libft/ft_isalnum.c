@@ -6,11 +6,13 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:19:00 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 20:24:46 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 11:22:06 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(char ce)
+#include "libft.h"
+
+int	ft_isalnum(int ce)
 {
 	return (ft_isalpha(ce) || ft_isdigit(ce));
 }

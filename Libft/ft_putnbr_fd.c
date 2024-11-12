@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:14:08 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/12 10:21:34 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:32:33 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ void	ft_putnbr_fd(int n, int fd)
 	char	array[18];
 
 	i = 0;
+	if (fd == -1)
+		return ;
 	if (n == -2147483648)
 	{
-		write(fd, "-2147483648", 12);
+		write(fd, "-2147483648", 11);
 		return ;
 	}
 	if (n < 0)
@@ -49,13 +51,14 @@ void	ft_putnbr_fd(int n, int fd)
 	printi_minti(array, i, fd);
 }
 
-// int main()
+// int	main(void)
 // {
-// 	int fd;
-// 	fd = open("ft_te",O_RDWR);
-// 	ft_putnbr_fd(12345, fd);
+// 	int	fd;
+
+// 	fd = open("ft_te.txt", O_RDWR);
+// 	ft_putnbr_fd(-2147483648, fd);
 // 	write(fd, "\n", 1);
-// 	ft_putnbr_fd(-6789, fd);
+// 	ft_putnbr_fd(2147483647, fd);
 // 	write(fd, "\n", 1);
 // 	ft_putnbr_fd(0, fd);
 // 	write(fd, "\n", 1);

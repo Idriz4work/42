@@ -6,29 +6,35 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:11:56 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:58:09 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/12 19:07:07 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(char *s1, int c)
+char	*ft_strchr(const char *s1, int c)
 {
 	int	i;
 
 	i = 0;
+	if (!s1 || s1 == NULL)
+		return (NULL);
 	while (s1[i] != '\0')
 	{
 		if (s1[i] == c)
-			return (&s1[i]);
+			return ((char *)&s1[i]);
 		i++;
 	}
+	if (s1[i] == '\0' && c == '\0')
+		return ((char *)&s1[i]);
+	i++;
 	return (NULL);
 }
-// int main()
+// int	main(void)
 // {
-//     char s[] = "Dollar dollar dollat is what I need yea yea";
-//     char c = 'd'; // Search for the first occurrence of 'd'
+// 	char	s[] = "sdggs\r\t\r\t\0";
+// 	char	c;
 
-//     printf("ft: %s\nnorm: %s\n", ft_strchr(s, c), strchr(s,c));
+// 	c = 's';
+// 	printf("ft: %s\nnorm: %s\n", ft_strchr(s, c), strchr(s, c));
 // }

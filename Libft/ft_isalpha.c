@@ -3,14 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:18:50 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/12 09:51:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/12 11:21:59 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(char ce)
+int	ft_isalpha(int ce)
 {
-	return (ft_isupper(ce) || ft_islower(ce));
+	if (ce >= 'a' && ce <= 'z')
+		return (1);
+	if (ce >= 'A' && ce <= 'Z')
+		return (1);
+	return (0);
 }

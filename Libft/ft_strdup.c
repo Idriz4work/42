@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:10:42 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/12 10:31:26 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/12 18:05:32 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 char	*ft_strdup(const char *src)
 {
 	char	*copy;
-	int		i;
-	int		j;
+	size_t	i;
 
 	i = 0;
-	j = 0;
-	while (src[j] != '\0')
-		j++;
-	copy = (char *)malloc(j) + 1;
+	copy = (char *)malloc(sizeof(char) * ft_strlen(src) + 1);
 	if (!copy || !src)
 		return (NULL);
-	while (src[i] != '\0')
+	while (i < ft_strlen(src))
 	{
 		copy[i] = src[i];
 		i++;
@@ -37,11 +33,12 @@ char	*ft_strdup(const char *src)
 // #include <string.h>
 // int main()
 // {
-//  char src[] = "y what uppp";
+//  char src[] = "y what uppp\n";
 //  // Call your custom strdup and standard library strdup
 //  char *my_copy = ft_strdup(src);
 //  char *std_copy = strdup(src);
 //  // Print both results to compare
-//  printf("MY: %s\n", my_copy);
-//  printf("OR: %s\n", std_copy);
+//  int fd = open("test.txt",O_RDWR);
+//  ft_putstr_fd(my_copy,fd);
+//  ft_putstr_fd(std_copy,fd);
 // }
