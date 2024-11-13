@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 17:18:01 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/13 16:21:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 		return ;
 	while (lst[i] != NULL)
 		i++;
+	i++;
 	new->next = NULL;
-	lst[i] = new;
+	lst[i]->content = new;
+	lst[i]->next = new->next;
 }
 
 // int main()

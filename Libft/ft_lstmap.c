@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:16:38 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 19:53:00 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/13 12:13:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int	ft_strlen_lst(t_list *s)
-{
-	int	i;
-
-	i = 0;
-	while (s != NULL)
-		i++;
-	return (i);
-}
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
@@ -28,14 +18,12 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list			*copy;
 
 	i = 0;
-	copy = (t_list)malloc(sizeof(t_list) * ft_strlen_lst(lst) + 1);
+	copy = NULL;
 	if (!lst || !copy)
 		return (NULL);
 	while (!lst)
 	{
-		printf("%p\n", lst[i].content);
-		(*f)(i, lst[i]);
-		(*f)(i, copy[i]);
+		(f)(copy[i].content);
 		(del)(lst[i].content);
 		free(lst[i].content);
 		i++;
@@ -46,6 +34,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 // int	main(void)
 // {
 // 	int		i;
+		// printf("%p\n", lst[i].content);
 // 	t_list	*lst;
 
 // 	i = 0;
