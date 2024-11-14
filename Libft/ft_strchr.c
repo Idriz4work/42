@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:11:56 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/13 16:17:02 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 16:34:16 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ char	*ft_strchr(const char *s1, int c)
 	int	i;
 
 	i = 0;
-	if (s1 == NULL)
-		return NULL;
 	while (s1[i] != '\0')
 	{
 		if (s1[i] == c)
@@ -27,13 +25,13 @@ char	*ft_strchr(const char *s1, int c)
 	}
 	if (c == '\0')
 		return ((char *)&s1[i]);
-	return (NULL);
+	return ((char *)&s1[i]);
 }
 // int	main(void)
 // {
-// 	char	s[] = "nuie\0dsf\n";
+// 	char	*s = NULL;
 // 	char	c;
 
-// 	c = '\n';
-// 	printf("ft: %s\nnorm: %s\n", ft_strchr(NULL, c), strchr(NULL, c));
+// 	c = 's';
+// 	printf("ft: %s\n", ft_strchr(((void*)0), '\0'));
 // }

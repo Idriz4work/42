@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/14 10:20:22 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 13:50:46 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,36 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
-	int j;
-	t_list **tmp;
+	t_list	*current;
 
-	if (!lst || !new)
-		return ;
-	j = 0;	
-	tmp = lst;
-	while (tmp[i]->next != NULL)
+	if (*lst == NULL)
 	{
-		i = ft_lstsize(*lst);
-		tmp[j] = tmp[j]->next;
-		j++;
+		*lst = new;
+		return ;
 	}
-	lst[j] = ft_lstnew(new);
+	current = *lst;
+	while (current->next != NULL)
+		current = current->next;
+	current->next = new;
+    current->next->next = NULL;
 }
 
-// int main()
+// new->next = NULL;
+// int	main(void)
 // {
-//  int i = 0;
+// 	int i = 0;
 // 	t_list *newy;
 // 	newy = ft_lstnew("0 new node: THIS IS THE NEW ONE");
 // 	newy->next = NULL;
-//  t_list *lst[8] = {0};
-//  lst[0] = ft_lstnew("1 node");
-//  lst[0]->next = ft_lstnew("next node of first");
-//  lst[1] = ft_lstnew("2 node");
-//  lst[1]->next = ft_lstnew("next node of second");
-// 	lst[2] = ft_lstnew("3 node");
-//  lst[2]->next = ft_lstnew("next node of first");
-//  lst[3] = ft_lstnew("4 node");
-//  lst[3]->next = ft_lstnew("next node of second");
-// 	lst[4] = ft_lstnew("5 node");
-//  lst[4]->next = ft_lstnew("next node of first");
-//  lst[5] = ft_lstnew("6 node");
-//  lst[5]->next = ft_lstnew("next node of second");
-//  lst[5]->next->next = NULL;
-// 	ft_lstadd_back(lst,newy);
-//  while (lst[i] != NULL)
-//  {
-//      printf("%s\n", (char *)lst[i]->content);
-// 					if (lst[i]->next)
-//       printf("Next node: %s\n", (char *)lst[i]->next->content);
-//      i++;
-//  }
+// 	t_list *lst[8] = {0};
+// 	lst[0] = ft_lstnew("1 node");
+// 	lst[0]->next = NULL;
+// 	ft_lstadd_back(lst, newy);
+// 	while (lst[i] != NULL)
+// 	{
+// 		printf("%s\n", (char *)lst[i]->content);
+// 		if (lst[i]->next)
+// 			printf("Next node: %s\n", (char *)lst[i]->next->content);
+// 		i++;
+// 	}
 // }

@@ -3,34 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:09:26 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/13 13:25:20 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 11:14:18 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t ft_strlcpy(char *dst, const char *src, size_t size)
+size_t	ft_strlcpy(char *s1, const char *s2, size_t size)
 {
-    size_t i;
-				
-	i = 0;
-    if (size > 0)
-    {
-        while (src[i] != '\0' && i < size - 1)
-        {
-            dst[i] = src[i];
-            i++;
-        }
-        dst[i] = '\0';
-    }
-    return ft_strlen(src);  
-}
+	size_t	i;
 
-    // ft_memcpy(dst, src, src_len + 1);
-        // ft_memcpy(dst, src, size - 1);
+	i = 0;
+	if (i < size)
+	{
+		while (s2[i] != '\0' && i < size - 1)
+		{
+			s1[i] = s2[i];
+			i++;
+		}
+		s1[i] = '\0';
+	}
+	return (ft_strlen(s2));
+}
 
 // int	main(void)
 // {

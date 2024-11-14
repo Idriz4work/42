@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:07:50 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/13 13:36:14 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 11:06:43 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	j = 0;
 	if (little[0] == '\0' || big == little)
 		return ((char *)big);
-	while (big[j] != '\0' && j < len)
+	while (j < len && big[j] != '\0')
 	{
 		i = 0;
-		while (big[j+i] != '\0' && big[j + i] == little[i] && j + i < len)
+		while (big[j + i] == little[i] && j + i < len && big[j + i] != '\0')
 		{
 			if (little[i + 1] == '\0')
 				return ((char *)&big[j]);
@@ -37,7 +37,8 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 // int	main(void)
 // {
-// 	char	s[] = "abcdefgh";
-// 	char	big[] = "def";
-// 	printf("ft: %s\n", ft_strnstr(s, big, 31));
+// 	char	s[] = "hello I'm back";
+// 	char	big[] = "hel";
+
+// 	printf("ft: %s\n", ft_strnstr(s, big, 3));
 // }

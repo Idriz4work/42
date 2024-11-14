@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:29 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/14 10:25:32 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 17:45:14 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,74 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	int		i;
+	t_list	*tmp;
 
-	i = 0;
-	while (lst != NULL)
+	tmp = *lst;
+	while ()
 	{
-		while (lst[i].next != NULL)
+		while (tmp->next != NULL)
 		{
-			del(lst[i]->content);
-			free(lst[i].next);
-			i++;
+			del(*tmp);
+			tmp = tmp->next;
 		}
-		free(lst[i]);
+		
 	}
-	lst = NULL;
 }
 
-// void del(void *content)
-// {free(content);}
-
-// int main()
+// void	ft_lstclear(t_list **lst, void (*del)(void *))
 // {
-//     int i;
+// 	t_list	*tmp;
 
-//     i = 0;
-//     t_list *lst[4] = {0};
-//     lst[0] = ft_lstnew("first node");
-//     lst[0]->next = ft_lstnew("next node of first");
-//     lst[1] = ft_lstnew("second node");
-//     lst[1]->next = ft_lstnew("next node of second");
-//     lst[1]->next->next = NULL;
-//     // while (lst[i] != NULL)
-//     // {
-//     //     printf("%s\n", (char *)lst[i]->content);
-// 	// 	if (lst[i]->next)
-//     //         printf("Next node: %s\n", (char *)lst[i]->next->content);
-//     //     i++;
-//     // }
-//     ft_lstclear(lst,&del);
-//     if (lst[i])
-//     {
-//         while (lst[i] != NULL)
-//         {
-//             printf("%s\n", (char *)lst[i]->content);
-//                                     if (lst[i]->next)
-//             printf("Next node: %s\n", (char *)lst[i]->next->content);
-//             i++;
-//         }
-//     }
-//     else
-//         printf("CLear was right\n");
+// 	if (*lst == NULL)
+// 	{
+// 		del(lst);
+// 		return ;
+// 	}
+// 	while (*lst != NULL)
+// 	{
+// 		tmp = (*lst)->next;
+// 		del(lst);
+// 		free(*lst);
+// 		*lst = tmp;
+// 	}
+// 	del(*lst);
+// 	free(lst);
 // }
+
+void	del(void *content)
+{
+	printf("\n");
+}
+
+int	main(void)
+{
+	int i;
+
+	i = 0;
+	t_list *lst[4] = {0};
+	lst[0] = ft_lstnew(strdup("nyancat"));
+
+	lst[0]->next = ft_lstnew(strdup("#TEST#"));
+	while (lst[i] != NULL)
+	{
+		printf("%s\n", (char *)lst[i]->content);
+		if (lst[i]->next)
+			printf("Next node: %s\n", (char *)lst[i]->next->content);
+		i++;
+	}
+
+	ft_lstclear(lst, &del);
+
+	if (lst[i])
+	{
+		while (lst[i] != NULL)
+		{
+			printf("%s\n", (char *)lst[i]->content);
+			i++;
+		}
+	}
+	else
+		printf("CLear was right\n");
+	if (*lst == NULL)
+		printf("NULL\n");
+}

@@ -14,27 +14,36 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list *current_node;
-
-	current_node = lst;
 	if (!lst)
 		return (NULL);
-	while (current_node->next != NULL)
-		current_node = current_node->next;
-	return (current_node);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
 
 // int	main(void)
 // {
-// 	int		i;
-// 	t_list	*lst;
+// 	t_list *lst;
 // 	t_list *tmp;
 
-// 	i = 0;
+// 	// Initialize the list and add some nodes
+// 	lst = ft_lstnew("first node");
 // 	lst->next = ft_lstnew("next node of first");
 // 	lst->next->next = ft_lstnew("merhaba");
 
+// 	// Test ft_lstlast
 // 	tmp = ft_lstlast(lst);
-// 	printf("%p",	tmp->next);
 
+// 	// Print content of the last node to verify it's correct
+// 	if (tmp != NULL)
+// 	{
+// 		printf("Last node content: %s\n", (char *)tmp->content);
+// 		printf("Next pointer of the last node: %p\n", tmp->next);
+// 		// Should be NULL
+// 	}
+// 	if (tmp == NULL)
+// 	{
+// 		printf("Last node content: %s\n", (char *)tmp);
+// 		// printf("Next pointer of the last node: %p\n", tmp->next);
+// 	}
 // }

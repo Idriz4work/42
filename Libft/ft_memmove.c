@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:14:50 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/13 12:02:45 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 11:04:25 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 {
 	const char	*ptrsrc;
 	char		*ptrdst;
-	size_t				i;
+	size_t		i;
 
 	i = 0;
 	ptrsrc = (const char *)src;
 	ptrdst = (char *)dst;
 	if (!dst && !src)
-  return (NULL);
+		return (NULL);
 	if (ptrdst > ptrsrc && ptrdst < len + ptrsrc)
 	{
 		while (len-- > 0)
@@ -39,7 +39,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 // int main()
 // {
 //     char src[] = "_bnds_";
-//     char dst[50] = {0};  
+//     char dst[50] = {0};
 
 //     // Test ft_memmove
 //     printf("Original source: %s\n", src);
@@ -50,7 +50,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 //     // Compare with standard memmove
 //     char src2[] = "_bnds_";
-//     char dst2[50] = {0};  
+//     char dst2[50] = {0};
 
 //     memmove(dst2, src2, 3);  // Using standard memmove for comparison
 //     dst2[3] = '\0';  // Null-terminate for proper string display
