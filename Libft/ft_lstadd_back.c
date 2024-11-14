@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/13 16:21:36 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/14 10:20:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,20 @@
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	int	i;
+	int j;
+	t_list **tmp;
 
-	i = 0;
 	if (!lst || !new)
 		return ;
-	while (lst[i] != NULL)
-		i++;
-	i++;
-	new->next = NULL;
-	lst[i]->content = new;
-	lst[i]->next = new->next;
+	j = 0;	
+	tmp = lst;
+	while (tmp[i]->next != NULL)
+	{
+		i = ft_lstsize(*lst);
+		tmp[j] = tmp[j]->next;
+		j++;
+	}
+	lst[j] = ft_lstnew(new);
 }
 
 // int main()

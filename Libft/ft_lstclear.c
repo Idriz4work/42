@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:29 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 19:51:32 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/14 10:25:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,19 @@
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	int		i;
-	t_list	*next;
-	t_list	*copy;
 
 	i = 0;
-	while (copy != NULL)
+	while (lst != NULL)
 	{
-		next = lst[i]->next;
-		del(lst[i]->content);
+		while (lst[i].next != NULL)
+		{
+			del(lst[i]->content);
+			free(lst[i].next);
+			i++;
+		}
 		free(lst[i]);
-		copy = lst[i];
-		free(next);
-		i++;
 	}
 	lst = NULL;
-	free(copy);
 }
 
 // void del(void *content)
