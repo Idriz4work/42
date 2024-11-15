@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:11:56 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/14 16:34:16 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/15 17:52:44 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,10 @@
 
 char	*ft_strchr(const char *s1, int c)
 {
-	int	i;
-
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		if (s1[i] == c)
-			return ((char *)&s1[i]);
-		i++;
-	}
-	if (c == '\0')
-		return ((char *)&s1[i]);
-	return ((char *)&s1[i]);
+	while (*s1 != (char)c)
+		if (!*s1++)
+			return (NULL);
+	return ((char *)s1);
 }
 // int	main(void)
 // {

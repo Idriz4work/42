@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:14:58 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/14 12:51:25 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:19:26 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,18 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	unsigned char		*dst_char;
 	const unsigned char	*src_char;
 
+	i = 0;
 	dst_char = (unsigned char *)dst;
 	src_char = (const unsigned char *)src;
-	i = 0;
+	if (n == 0)
+		return (dst);
+	if (dst == NULL && src == NULL) 
+		return dst;	
+	if (dst == NULL || src == NULL)
+	{
+		dst_char[i] = src_char[i];
+		return (dst_char);
+	}
 	while (i < n)
 	{
 		dst_char[i] = src_char[i];
@@ -46,28 +55,28 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 // 	// Test 2: Full copy
 // 	char full_src[] = "A complete sentence";
 // 	char full_dst[20];
-// 	ft_memcpy(full_dst, full_src, strlen(full_src) + 1);
+// 	ft_memcpy(((void*)0), ((void*)0), 3);
 
 // 	char full_src1[] = "A complete sentence";
 // 	char full_dst1[20];
-// 	memcpy(full_dst1, full_src1, strlen(full_src1) + 1);
+// 	memcpy(((void*)0), ((void*)0), 3);
 // 	printf("ORI Full Copy: %s\n", full_dst1);
 
-// 	// Test 3: n = 0, should not copy anything
-// 	char zero_src[] = "unchanged";
-// 	char zero_dst[] = "destination";
-// 	ft_memcpy(zero_dst, zero_src, 0);
-// 	printf("FT No Copy (n=0): %s\n", zero_dst);
+// // 	// Test 3: n = 0, should not copy anything
+// // 	char zero_src[] = "unchanged";
+// // 	char zero_dst[] = "destination";
+// // 	ft_memcpy(zero_dst, zero_src, 0);
+// // 	printf("FT No Copy (n=0): %s\n", zero_dst);
 
-// 	memcpy(zero_dst, zero_src, 0);
-// 	printf("ORI No Copy (n=0): %s\n", zero_dst);
+// // 	memcpy(zero_dst, zero_src, 0);
+// // 	printf("ORI No Copy (n=0): %s\n", zero_dst);
 
-// 	// Test 4: NULL source or destination
-// 	char *null_dst = NULL;
-// 	char null_src[] = "source";
-// 	printf("FT NULL Source: %s\n", ft_memcpy(null_dst, null_src, 4));
+// // 	// Test 4: NULL source or destination
+// // 	char *null_dst = NULL;
+// // 	char null_src[] = "source";
+// // 	printf("FT NULL Source: %s\n", ft_memcpy(null_dst, null_src, 4));
 
-// 	char *null_src_ptr = NULL;
-// 	char null_dst_arr[] = "destination";
-// 	printf("FT NULL Dest: %p\n", ft_memcpy(null_dst_arr, null_src_ptr, 4));
+// // 	char *null_src_ptr = NULL;
+// // 	char null_dst_arr[] = "destination";
+// // 	printf("FT NULL Dest: %p\n", ft_memcpy(null_dst_arr, null_src_ptr, 4));
 // }

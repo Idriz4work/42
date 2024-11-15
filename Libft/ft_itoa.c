@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:18:06 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/12 14:00:41 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/15 18:34:36 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,26 @@ int	check_negative(char **s, int index, int n)
 	return (is_op);
 }
 
+int	get_size(int n)
+{
+	int	i;
+
+	i = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+	{
+		i++;
+		n = -n;
+	}
+	while (n > 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
 char	*ft_itoa(int n)
 {
 	int		is_op;
@@ -72,7 +92,7 @@ char	*ft_itoa(int n)
 	char	*s;
 
 	i = 0;
-	s = (char *)malloc(14 * sizeof(char));
+	s = (char *)malloc(get_size(n) + 1 * sizeof(char));
 	if (!s)
 		return (NULL);
 	is_op = check_negative(&s, i, n);

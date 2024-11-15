@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:29 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/14 17:45:14 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:02:25 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,72 +16,53 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
-	tmp = *lst;
-	while ()
+	if (*lst == NULL)
 	{
-		while (tmp->next != NULL)
-		{
-			del(*tmp);
-			tmp = tmp->next;
-		}
-		
+		del(lst);
+		return ;
+	}
+	while (*lst != NULL && lst != NULL)
+	{
+		tmp = (*lst)->next;
+		del(*lst);
+		*lst = tmp;
 	}
 }
 
-// void	ft_lstclear(t_list **lst, void (*del)(void *))
+// void	del(void *content)
 // {
-// 	t_list	*tmp;
-
-// 	if (*lst == NULL)
-// 	{
-// 		del(lst);
-// 		return ;
-// 	}
-// 	while (*lst != NULL)
-// 	{
-// 		tmp = (*lst)->next;
-// 		del(lst);
-// 		free(*lst);
-// 		*lst = tmp;
-// 	}
-// 	del(*lst);
-// 	free(lst);
+// 	printf("del called\n");
 // }
 
-void	del(void *content)
-{
-	printf("\n");
-}
+// int	main(void)
+// {
+// 	int i;
 
-int	main(void)
-{
-	int i;
+// 	i = 0;
+// 	t_list *lst[4] = {0};
+// 	lst[0] = ft_lstnew(strdup("nyancat"));
 
-	i = 0;
-	t_list *lst[4] = {0};
-	lst[0] = ft_lstnew(strdup("nyancat"));
+// 	lst[0]->next = ft_lstnew(strdup("#TEST#"));
+// 	while (lst[i] != NULL)
+// 	{
+// 		printf("%s\n", (char *)lst[i]->content);
+// 		if (lst[i]->next)
+// 			printf("Next node: %s\n", (char *)lst[i]->next->content);
+// 		i++;
+// 	}
 
-	lst[0]->next = ft_lstnew(strdup("#TEST#"));
-	while (lst[i] != NULL)
-	{
-		printf("%s\n", (char *)lst[i]->content);
-		if (lst[i]->next)
-			printf("Next node: %s\n", (char *)lst[i]->next->content);
-		i++;
-	}
+// 	ft_lstclear(lst, &del);
 
-	ft_lstclear(lst, &del);
-
-	if (lst[i])
-	{
-		while (lst[i] != NULL)
-		{
-			printf("%s\n", (char *)lst[i]->content);
-			i++;
-		}
-	}
-	else
-		printf("CLear was right\n");
-	if (*lst == NULL)
-		printf("NULL\n");
-}
+// 	if (lst[i])
+// 	{
+// 		while (lst[i] != NULL)
+// 		{
+// 			printf("%s\n", (char *)lst[i]->content);
+// 			i++;
+// 		}
+// 	}
+// 	else
+// 		printf("CLear was right\n");
+// 	if (*lst == NULL)
+// 		printf("NULL\n");
+// }	
