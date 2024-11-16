@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:18:06 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/15 18:34:36 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/16 16:38:47 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*reversy(char *s)
 	return (s);
 }
 
-int	condition_check(char **s, int index, int n, int is_op)
+int	condition_check(char **s, int index, long n, int is_op)
 {
 	if (n == 0)
 	{
@@ -42,17 +42,12 @@ int	condition_check(char **s, int index, int n, int is_op)
 		(*s)[index] = '\0';
 		return (2);
 	}
-	if (n == -2147483648)
-	{
-		(*s) = ft_strdup("-2147483648");
-		return (2);
-	}
 	if (is_op == 1)
 		index++;
 	return (index);
 }
 
-int	check_negative(char **s, int index, int n)
+int	check_negative(char **s, int index, long n)
 {
 	int	is_op;
 
@@ -65,7 +60,7 @@ int	check_negative(char **s, int index, int n)
 	return (is_op);
 }
 
-int	get_size(int n)
+int	get_size(long n)
 {
 	int	i;
 
@@ -90,21 +85,23 @@ char	*ft_itoa(int n)
 	int		is_op;
 	int		i;
 	char	*s;
+	long	num;
 
+	num = n;
 	i = 0;
-	s = (char *)malloc(get_size(n) + 1 * sizeof(char));
+	s = (char *)malloc(get_size(num) + 1 * sizeof(char));
 	if (!s)
 		return (NULL);
-	is_op = check_negative(&s, i, n);
-	i = condition_check(&s, i, n, is_op);
+	is_op = check_negative(&s, i, num);
+	i = condition_check(&s, i, num, is_op);
 	if (i == 2)
 		return (s);
-	if (n < 0)
-		n = -n;
-	while (n > 0)
+	if (num < 0)
+		num = -num;
+	while (num > 0)
 	{
-		s[i++] = n % 10 + '0';
-		n /= 10;
+		s[i++] = num % 10 + '0';
+		num /= 10;
 	}
 	s[i] = '\0';
 	s = reversy(s);

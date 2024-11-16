@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:07:25 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 19:14:39 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/16 14:06:57 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strrchr(const char *s1, int c)
 	n = ft_strlen(s1);
 	while (n >= 0)
 	{
-		if (s1[n] == c)
+		if (s1[n] == (char)c)
 			return ((char *)&s1[n]);
 		n--;
 	}

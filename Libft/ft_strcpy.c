@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 17:05:46 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/16 14:05:04 by iatilla-         ###   ########.fr       */
+/*   Created: 2024/11/11 17:11:31 by iatilla-          #+#    #+#             */
+/*   Updated: 2024/11/11 17:11:33 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolower(int ce)
+char	*ft_strcpy(char *s1, char *s2)
 {
-	if (ce >= 'A' && ce <= 'Z')
-		ce += 32;
-	return (ce);
+	int	i;
+
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		s1[i] = s2[i];
+		i++;
+	}
+	s1[i] = '\0';
+	return (s1);
 }
-// #include <unistd.h>
-
-// int	main(void)
-// {
-// 	int	i;
-
-// 	i = ft_tolower(65);
-// 	write(1, &i, 1);
-// 	return (0);
-// }

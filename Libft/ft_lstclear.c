@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:29 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/15 11:02:25 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/16 20:12:29 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
+	tmp = *lst;
 	if (*lst == NULL)
-	{
-		del(lst);
 		return ;
-	}
 	while (*lst != NULL && lst != NULL)
 	{
 		tmp = (*lst)->next;
-		del(*lst);
+		ft_lstdelone(*lst, del);
 		*lst = tmp;
 	}
 }
@@ -63,6 +61,4 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 // 	}
 // 	else
 // 		printf("CLear was right\n");
-// 	if (*lst == NULL)
-// 		printf("NULL\n");
-// }	
+// }

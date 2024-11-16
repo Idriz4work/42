@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:05:26 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/16 08:37:37 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/11 18:06:51 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,3 @@ int	ft_toupper(int ce)
 		ce -= 32;
 	return (ce);
 }
-// #include <unistd.h>
-
-// int	main(void)
-// {
-// 	int	i;
-
-// 	i = ft_toupper(65);
-// 	write(1, &i, 1);
-// 	return (0);
-// }

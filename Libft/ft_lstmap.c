@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:16:38 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/16 08:37:25 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/16 14:04:27 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		if (placeholder == NULL)
 		{
 			del(current);
-			ft_lstclear(&copy,del);
+			ft_lstclear(&copy, del);
 			return (copy);
 		}
 		current->content = placeholder;
@@ -114,4 +114,3 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 // lst->next->next = ft_lstnew(strdup("-_-"));
 // res = ft_lstmap(lst, printi, del);
 // printf("%s\n", (char *)res);f (pouet[i] == 'o')
-

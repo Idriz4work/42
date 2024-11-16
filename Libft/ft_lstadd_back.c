@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/15 14:20:36 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/16 15:09:14 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	while (current->next != NULL)
 		current = current->next;
 	current->next = new;
-    current->next->next = NULL;
 }
-
 // new->next = NULL;
 // int	main(void)
 // {
