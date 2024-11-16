@@ -1,185 +1,108 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/16 22:47:17 by iatilla-          #+#    #+#             */
+/*   Updated: 2024/11/16 22:58:12 by iatilla-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-void       *ft_calloc(size_t count, size_t size)
+void	*ft_calloc(size_t count, size_t size)
 {
-	char *memoryplace;
-	size_t i,total;
+	char	*memoryplace;
+	size_t	i;
+	size_t	total;
 
 	i = 0;
 	total = size * count;
 	memoryplace = (char *)malloc(total);
 	if (memoryplace == 0)
-		return NULL;
-
+		return (NULL);
 	while (i < total)
 	{
 		memoryplace[i] = 0;
 		i++;
 	}
-	return memoryplace;
+	return (memoryplace);
 }
 
 // Custom strlen function
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (s[i] != '\0')
-        i++;
-    return i;
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }
 
-char *ft_strchr(char *s1, char c)
+char	*ft_strchr(char *s1, char c)
 {
- int i;
+	int	i;
 
- i = 0;
- while (s1[i] != '\0')
- {
-  if (s1[i] == c)
-   return &s1[i];
-  i++;
- }
- return NULL;
+	i = 0;
+	while (s1[i] != '\0')
+	{
+		if (s1[i] == c)
+			return (&s1[i]);
+		i++;
+	}
+	return (NULL);
 }
 
 // Safely joins two strings
-char *ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-    char *str;
-    int len1,len2,i,j;
+	char	*str;
+	int		len1;
+	int		len2;
+	int		i;
+	int		j;
 
-    len1 = ft_strlen(s1);
-    len2 = ft_strlen(s2);
-    str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
-    if (!str || !s1 || !s2)
-        return NULL;
-
-    i = j = 0;
-    while (i < len1)
-    {
-        str[i] = s1[i];
-        i++;
-    }
-    while (j < len2)
-    {
-        str[i + j] = s2[j];
-        j++;
-    }
-    str[i + j] = '\0';
-    return str;
-}
-
-int allocateOnce(int first_iteration,char **valueholder)
-{
-    if (!first_iteration)
-    {
-        *valueholder = (char *)ft_calloc(1, sizeof(char));
-        if (!valueholder || !*valueholder)
-            return 0;
-        first_iteration = 1;
-    }
-    return first_iteration;
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	i = 0;
+	j = 0;
+	str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!str || !s1 || !s2)
+		return (NULL);
+	while (i < len1)
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	while (j < len2)
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }
 
 // Helper function to free memory and set pointers to NULL
-int freeler(char **s1, char **s2, char **s3)
+int	freeler(char **s1, char **s2, char **s3)
 {
-    if (s1 && *s1)
-    {
-        free(*s1);
-        *s1 = NULL;
-    }
-    if (s2 && *s2)
-    {
-        free(*s2);
-        *s2 = NULL;
-    }
-    if (s3 && *s3)
-    {
-        free(*s3);
-        *s3 = NULL;
-    }
-    return 1;
-}
-
-// Updates the valueholder by removing the line that was read
-void update_holder(char **valueholder)
-{
-    int j, newline_pos;
-    char *newline;
-    
-    if (!valueholder || !*valueholder)
-        return;
-    newline = strchr(*valueholder, '\n');
-    if (newline == NULL)
-    {
-        (*valueholder)[0] = '\0';
-        return;
-    }
-
-    newline_pos = (newline - *valueholder) + 1; 
-    j = 0;
-    while ((*valueholder)[newline_pos + j] != '\0')
-    {
-        (*valueholder)[j] = (*valueholder)[newline_pos + j];
-        j++;
-    }
-    (*valueholder)[j] = '\0'; 
-}
-
-// Inserts a line into the line buffer
-char *insert_line(char **valueholder)
-{
-    int i, j;
-    char *line,*indicator;
-
-    j = i = 0;
-    line = (char *)malloc(ft_strlen(*valueholder) + 1);
-    if (line == NULL)
-        return NULL;
-    indicator = strchr(*valueholder, '\n');
-    if (indicator)
-    {
-        while ((*valueholder)[i] != '\n' && (*valueholder)[i] != '\0')
-            line[j++] = (*valueholder)[i++];
-        line[j++] = (*valueholder)[i++];
-        line[j] = '\0';
-        update_holder(valueholder);
-        return line;
-    }
-    while ((*valueholder)[i] != '\0')
-        line[j++] = (*valueholder)[i++];
-    line[j] = '\0';
-    freeler(valueholder, NULL, NULL);
-    return line;
-}
-
-// Reads from the file and updates valueholder
-int read_file(char **valueholder, int bytes, int fd)
-{
-    char *temp, *newline;
-
-    temp = (char *)malloc(BUFFER_SIZE + 1);
-    if (temp == NULL)
-        return -1;
-
-    bytes = read(fd, temp, BUFFER_SIZE);
-    if (bytes > 0)
-    {
-        temp[bytes] = '\0';
-        newline = ft_strjoin(*valueholder, temp);
-        free(temp);
-        free(*valueholder);
-        *valueholder = newline;
-        if (ft_strchr(*valueholder, '\n'))
-            return 1;
-    }
-    if (bytes <= 0)
-    {
-        free(temp);
-        return bytes;
-    }
-    return 2;
+	if (s1 && *s1)
+	{
+		free(*s1);
+		*s1 = NULL;
+	}
+	if (s2 && *s2)
+	{
+		free(*s2);
+		*s2 = NULL;
+	}
+	if (s3 && *s3)
+	{
+		free(*s3);
+		*s3 = NULL;
+	}
+	return (1);
 }
