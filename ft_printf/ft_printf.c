@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 23:26:58 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/18 10:28:46 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/18 20:16:36 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
 
 datatypes datatype;
 
@@ -18,7 +19,7 @@ int check_conditionpt2(const char *format, int i,va_list args)
 {
     if (format[i] == 'i' || format[i] == 'd')
     {
-        datatype.inte = va_arg(args, int);
+        datatype.inte = va_arg(args,int);
         ft_putnbrEXT(datatype.inte);
         i++;
     }
@@ -26,12 +27,6 @@ int check_conditionpt2(const char *format, int i,va_list args)
     {
         datatype.ch = va_arg(args, int);
         write(1, &datatype.ch, 1);
-        i++;
-    }
-    else if (format[i] == 'o')
-    {
-        datatype.octal = va_arg(args, unsigned int);
-        print_octal(datatype.octal,1); 
         i++;
     }
     else if (format[i] == 'u')
@@ -87,7 +82,13 @@ int ft_printf(const char *format, ...)
     while (format[i] != '\0')
     {
         if (format[i] == '%')
-            i = check_conditions(format, i, args);
+		{
+			i++;
+			if (format[i] == '-' || format[i] == '+' || format[i] == ' ' || 
+			format[i] == '#' || format[i] == '0' || format[i] == '.')
+				number = handle_flags(format,i,args);
+       	    i = check_conditions(format, i, args,number);
+		}
         else
         {
             write(1, &format[i], 1);
@@ -98,19 +99,9 @@ int ft_printf(const char *format, ...)
     return 0;
 }
 
-// int main()
-// {
-    // ft_printf("%x\n%s\n---\n",274655,"slnoide");
-    // printf("%x\n%s\n",274655,"slnoide");
-    // ft_printf("\n--------------\n%%\n%%\n");
-    // printf("%%\n%%\n");
-//     ft_printf(" %c",'0');
-//     printf(" %c",'0');
-//     ft_printf(" %c\n", '0' - 256);
-//     ft_printf("%c \n", '0' + 256);
-//     ft_printf("test1 %c %c %c \n", '0', 65, '1');
-//     ft_printf("test2 %c %c %c \n", ' ', ' ', ' ');
-//     ft_printf("test3 %c %c %c \n", '1', '2', '3');
-//     ft_printf("test4 %c %c %c \n", '2', '1', 65);
-//     ft_printf("test5 %c %c %c \n", 0, '1', '2');
-// }
+int main()
+{
+	ft_printf("ft: %010i \n",42360);
+	printf("or: %010i \n",42360);
+}
+ 
