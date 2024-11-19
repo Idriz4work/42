@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:32:14 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/18 20:16:58 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:11:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,6 @@ int	fieldminwidth(const char *format, int i);
 int	zero_padder(const char *format, int i, int number);
 int	left_justificator(const char *format, int i);
 int	precisionstk(const char *format, int i);
-int	handle_flags(const char *format, int *i, va_list args);
+int	handle_flags(const char *format, int i, va_list args,datatypes datatype);
+
 #endif

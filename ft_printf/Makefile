@@ -7,25 +7,34 @@ OBJ = $(SRC:.c=.o)
 BON_OBJ = $(BONUS_SRC=.c=.0)
 
 # The directory where libft is located
-LIBFT_DIR = libft
+LIBFT_DIR = Libft
 
 # Include the libft header files (optional but recommended for convenience)
 INCLUDES = -I$(LIBFT_DIR)
 
 # Compile the libft static library
-LIBFT = libft/libft.a
+LIBFT = Libft/libft.a
 
-# The final executable depends on libft and the main program
-$(NAME): $(LIBFT) $(OBJ)
-    $(CC) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
-
-# Rule to compile the object files
-$(OBJ): $(SRC)
-    $(CC) $(CFLAGS) $(INCLUDES) -c $(SRC)
-
-# Rule to create the libft.a library
 $(LIBFT):
     $(MAKE) -C $(LIBFT_DIR)
+
+all: $(NAME)
+
+$(NAME): $(OBJ) 
+	ar rcs $(NAME) $(INCLUDES) $(OBJ) 
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# # The final executable depends on libft and the main program
+# $(NAME): $(LIBFT) $(OBJ)
+#     $(CC) $(OBJ) -L$(LIBFT_DIR) -lft -o $(NAME)
+
+# Rule to compile the object files
+# $(OBJ): $(SRC)
+#     $(CC) $(CFLAGS) $(INCLUDES) -c $(SRC)
+
+# Rule to create the libft.a library
 
 # Clean object files
 clean:
@@ -41,3 +50,4 @@ bonus: $(NAME): $(OBJ) $(BONUS_SRC)
 	ar rcs $(NAME) $(INCLUDES) $(OBJ) $(BONUS_SRC)
 
 re: fclean $(NAME)
+

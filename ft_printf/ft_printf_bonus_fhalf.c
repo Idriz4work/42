@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus_fhalf.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:09:39 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/18 19:37:59 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:52:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_printf_bonus.h"
+
+datatypes datatype;
 
 int	zero_padder(const char *format, int i, int number)
 {
@@ -38,7 +40,7 @@ int	zero_padder(const char *format, int i, int number)
 	}
 	while (spaces-- > in)
 		write(1, "0", 1);
-	return (i - 1);
+	return (i);
 }
 
 int	left_justificator(const char *format, int i)

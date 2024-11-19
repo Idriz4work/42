@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 23:26:58 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/18 20:16:36 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:26:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include "ft_printf_bonus.h"
 
 datatypes datatype;
 
-int check_conditionpt2(const char *format, int i,va_list args)
+int check_conditionpt2(const char *format, int i,va_list args,datatypes datatype)
 {
     if (format[i] == 'i' || format[i] == 'd')
     {
@@ -23,12 +23,8 @@ int check_conditionpt2(const char *format, int i,va_list args)
         ft_putnbrEXT(datatype.inte);
         i++;
     }
-    else if (format[i] == 'c')
-    {
-        datatype.ch = va_arg(args, int);
-        write(1, &datatype.ch, 1);
-        i++;
-    }
+    else if (format[i++] == 'c')
+        write(1, &format[i], 1);
     else if (format[i] == 'u')
     {
         datatype.uns = va_arg(args, unsigned int);
@@ -38,7 +34,7 @@ int check_conditionpt2(const char *format, int i,va_list args)
     return i;
 }
 
-int check_conditions(const char *format, int i, va_list args)
+int check_conditions(const char *format, int i, va_list args,datatypes datatype)
 {
     void *current;
  
@@ -50,7 +46,7 @@ int check_conditions(const char *format, int i, va_list args)
         return i + 1;
     }   
     if (format[i] == 's' || format[i] == 'S')
-    {
+     {
         datatype.string = va_arg(args, char *);
         handle_strings(datatype.string,i);
         i++;
@@ -68,7 +64,7 @@ int check_conditions(const char *format, int i, va_list args)
         i++;
     }
     else
-        i = check_conditionpt2(format,i,args);
+        i = check_conditionpt2(format,i,args,datatype);
     return i;
 }
 
@@ -86,8 +82,8 @@ int ft_printf(const char *format, ...)
 			i++;
 			if (format[i] == '-' || format[i] == '+' || format[i] == ' ' || 
 			format[i] == '#' || format[i] == '0' || format[i] == '.')
-				number = handle_flags(format,i,args);
-       	    i = check_conditions(format, i, args,number);
+				handle_flags(format,i,args,datatype);
+       	    check_conditions(format, i, args,datatype);
 		}
         else
         {
@@ -99,9 +95,9 @@ int ft_printf(const char *format, ...)
     return 0;
 }
 
-int main()
-{
-	ft_printf("ft: %010i \n",42360);
-	printf("or: %010i \n",42360);
-}
+// int main()
+// {
+// 	ft_printf("ft: %010i \n",42360);
+// 	printf("or: %010i \n",42360);
+// }
  
