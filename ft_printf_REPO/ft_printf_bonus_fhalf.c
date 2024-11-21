@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:09:39 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/19 19:03:29 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/21 13:41:28 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int	zero_padder(const char *format, int i, int number)
 	if (number == 0)
 		spaces--;
 	while (format[in++] >= '0' && format[in] <= '9')
-		if (!(format[in + 1] >= 'i') && (!(format[in] >= '0'&& format[in] <= '9')))
-			return (i-1);
+		if (!(format[in + 1] >= 'i') && (!(format[in] >= '0'
+					&& format[in] <= '9')))
+			return (i - 1);
 	in = 0;
 	if (number < 0)
 	{
@@ -56,7 +57,6 @@ int	zero_padder(const char *format, int i, int number)
 	ft_putnbr_zero(number);
 	return (i);
 }
-
 
 // int	left_justificator(const char *format, int i,int width)
 // {

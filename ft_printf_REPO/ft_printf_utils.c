@@ -6,13 +6,13 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:38 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/19 19:53:20 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:11:14 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	handle_strings(char *format, int i)
+void	handle_strings(char *format)
 {
 	int	j;
 
@@ -57,7 +57,7 @@ void	ft_putnbr_uns(unsigned int i)
 	char	curent;
 
 	if (i >= 10)
-		ft_putnbr_ext(i / 10);
+		ft_putnbr_uns(i / 10);
 	curent = (i % 10) + '0';
 	write(1, &curent, 1);
 }

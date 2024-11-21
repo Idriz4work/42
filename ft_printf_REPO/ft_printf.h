@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/19 19:53:05 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:30:32 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include "Libft/libft.h"
+#include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -38,7 +39,7 @@ int					check_conditionpt2(const char *format, int i, va_list args,
 
 void				put_pointer(void *ptr);
 int					ft_atoi(const char *s);
-void				handle_strings(char *format, int i);
+void				handle_strings(char *format);
 void				print_hex(unsigned int hex, int signal);
 void				ft_putnbr_ext(int i);
 void				ft_putnbr_uns(unsigned int i);

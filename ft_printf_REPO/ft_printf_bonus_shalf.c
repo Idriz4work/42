@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:14:04 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/19 18:37:57 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:26:39 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@
 // 	return (i);
 // }
 
-int	handle_flags(const char *format, int i, va_list args)
+int	handle_flags(const char *format, int i, va_list copy)
 {
-	va_list	copy;
-
-	va_copy(copy, args);
 	// if (format[i+1] == '-')
 	// 	i = left_justificator(format, i,va_arg(copy,int));
 	// if (format[i+1] == '+')
@@ -41,7 +38,7 @@ int	handle_flags(const char *format, int i, va_list args)
 	// 	i = fieldminwidth(format, i,va_arg(copy,int));
 	// if (format[i+1] == '#')
 	// 	i = alternativeForma(format, i,va_arg(copy,long));
-	if (format[i+1] == '0')
+	if (format[i + 1] == '0')
 	{
 		i++;
 		i = zero_padder(format, i, va_arg(copy, int));
