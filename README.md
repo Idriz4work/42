@@ -11,7 +11,7 @@ Welcome to my 42 School projects repository! This README provides an overview of
 | Project Name | Description | Goals | Type | Status | Grade | Start Date | End Date |
 |--------------|-------------|-------|------|--------|-------|------------|----------|
 | 42 Commandements | Welcome, young cadet! | Code of conduct | Solo | ✅ | ? | 18-11-05 | 18-11-05 |
-| Libft | Recode a number of standard C library functions | Basics of C, static libraries | Solo | ✅ | 125 | 18-11-06 | 18-11-19 |
+| Libft | Recode a number of standard C library functions | Basics of C, static libraries | Solo | ✅ | 124 | 18-11-06 | 18-11-19 |
 | Get_Next_Line | You'll always need to read content line by line | File descriptors, basic parsing, bufferisation | Solo | ✅ | ? | 18-11-19 | 18-11-21 |
 | Fillit | What's the smallest square for these tetriminos? | Basic algorithm, input/output | Group | ✅ | ? | 18-11-22 | 18-11-29 |
 
@@ -38,15 +38,6 @@ Welcome to my 42 School projects repository! This README provides an overview of
 | Init | Introduction to systems administration and networks | Unix, systems administration | Solo | ✅ | ? | 18-12-13 | 18-12-22 |
 | Roger-Skyline-1 🌟 | Systems administration and networks basics | Unix, systems administration | Solo | ✅ | ? | 19-08-01 | 19-08-08 |
 | Docker-1 | Think with containers! | Micro services, docker, unix, containers, DevOps | Solo | ⌛ | - | - | - |
-
-### 🌐 Web Branch
-
-| Project Name | Description | Goals | Type | Status | Grade | Start Date | End Date |
-|--------------|-------------|-------|------|--------|-------|------------|----------|
-| Piscine PHP | Introduction to basic web technologies | HTML, procedural PHP, Web server, SQL, object oriented PHP | Solo | ✅ | 104 | 05-20-2019 | 06-02-2019 |
-| Camagru | Create an instagram-like website | User management, permissions, mailing, security/data validation | Solo | ⌛ | - | - | - |
-| Matcha | Create a dating website | Micro-framework, advanced user management, real-time web, geolocation, security/data validation | Group | ⌛ | - | - | - |
-| Hypertube | Create a video streaming website | MVC framework, Omniauth, Background jobs, Internationalisation | Group | ⌛ | - | - | - |
 
 ## 📊 Skills Acquired
 
