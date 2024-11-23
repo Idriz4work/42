@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/21 14:30:32 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/23 08:08:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct
 }					datatypes;
 
 int					ft_printf(const char *format, ...);
+int calculate_bytes(int i, const char *format);
 int					check_conditions(const char *format, int i, va_list args,
 						datatypes datatype);
 int					check_conditionpt2(const char *format, int i, va_list args,
