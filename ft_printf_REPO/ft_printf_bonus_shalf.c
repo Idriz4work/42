@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus_shalf.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:14:04 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/21 16:26:39 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:28:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 // 	return (i);
 // }
 
-int	handle_flags(const char *format, int i, va_list copy)
+int	handle_flags(const char *format, int i, va_list copy, int *bytes)
 {
 	// if (format[i+1] == '-')
 	// 	i = left_justificator(format, i,va_arg(copy,int));
@@ -41,7 +41,7 @@ int	handle_flags(const char *format, int i, va_list copy)
 	if (format[i + 1] == '0')
 	{
 		i++;
-		i = zero_padder(format, i, va_arg(copy, int));
+		i = zero_padder(format, i, va_arg(copy, int), bytes);
 	}
 	// if (format[i+1] == '.')
 	// 	i = precisionstk(format, i,va_arg(copy,double));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:38 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/23 19:44:09 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:21:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_putnbr_uns(unsigned int i, int *bytes)
 	*bytes += written;
 }
 
-void	pointer_helper(char buffer[20], int j, int *bytes)
+void	pointer_helper(char buffer[18], int j, int *bytes)
 {
 	int	written;
 
@@ -104,6 +104,7 @@ void	put_pointer(void *ptr, int *bytes)
 		return ;
 	}
 	write(1, "0x", 2);
+	*bytes += 2;
 	if (ptr == 0 || memory_address == 0)
 	{
 		write(1, "0", 1);

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus_fhalf.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:09:39 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/21 13:41:28 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/23 23:40:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_printf_bonus.h"
 
-int	zero_padder(const char *format, int i, int number)
+int	zero_padder(const char *format, int i, int number, int *bytes)
 {
 	int		in;
 	char	buffer[20];
@@ -25,8 +25,8 @@ int	zero_padder(const char *format, int i, int number)
 	if (number == 0)
 		spaces--;
 	while (format[in++] >= '0' && format[in] <= '9')
-		if (!(format[in + 1] >= 'i') && (!(format[in] >= '0'
-					&& format[in] <= '9')))
+		if (!(format[in + 1] >= 'i') && (!(format[in + 1] >= '0'
+					&& format[in + 1] <= '9')))
 			return (i - 1);
 	in = 0;
 	if (number < 0)
@@ -34,6 +34,7 @@ int	zero_padder(const char *format, int i, int number)
 		if (number == -2147483648)
 			spaces -= 10;
 		write(1, "-", 1);
+		*bytes += 1;
 		number *= -1;
 		spaces--;
 	}
@@ -53,8 +54,11 @@ int	zero_padder(const char *format, int i, int number)
 		in++;
 	}
 	while (spaces-- > in)
+	{
 		write(1, "0", 1);
-	ft_putnbr_zero(number);
+		*bytes += 1;
+	}
+	ft_putnbr_zero(number, bytes);
 	return (i);
 }
 
