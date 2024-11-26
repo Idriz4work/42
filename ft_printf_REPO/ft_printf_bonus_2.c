@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus_shalf.c                            :+:      :+:    :+:   */
+/*   ft_printf_bonus_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:14:04 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/23 23:28:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/26 15:48:57 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	handle_flags(const char *format, int i, va_list copy, int *bytes)
 	if (format[i + 1] == '0')
 	{
 		i++;
-		i = zero_padder(format, i, va_arg(copy, int), bytes);
+		i = zero_padder(format, i, copy, bytes);
 	}
 	// if (format[i+1] == '.')
 	// 	i = precisionstk(format, i,va_arg(copy,double));

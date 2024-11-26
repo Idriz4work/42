@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 23:26:58 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/26 11:59:29 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:51:59 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	check_conditionpt2(const char *format, int i, va_list args, int *bytes)
 {
-	t_datatypes	datatype;
+	t_datatype	datatype;
 	int			written;
 
 	if (format[i] == 'i' || format[i] == 'd')
@@ -42,7 +42,7 @@ int	check_conditionpt2(const char *format, int i, va_list args, int *bytes)
 
 int	check_conditions(const char *format, int i, va_list args, int *bytes)
 {
-	t_datatypes	datatype;
+	t_datatype	datatype;
 
 	i++;
 	if (format[i] == 's')
@@ -113,7 +113,7 @@ int	ft_printf(const char *format, ...)
 			j = handle_percent(format, &i, &bytes);
 			if (j == -1)
 				continue ;
-			i = handle_flags(format, i, args, &bytes);
+			// i = handle_flags(format, i, args, &bytes);
 			i = check_conditions(format, i, args, &bytes);
 			continue ;
 		}
@@ -139,3 +139,6 @@ int	ft_printf(const char *format, ...)
 // ft_printf("%s\n\\r","yo whaqt up");
 // printf("%s\n\\r","yo whaqt up");
 // }
+
+if __init__:
+	soemthing = args.save(,-h="aviye weong data")

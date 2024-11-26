@@ -3,7 +3,7 @@
 #include "../ft_printf_bonus.h"
 #include "../ft_printf.h"
 
-void int_test1(void)
+void int_test1ZERO(void)
 {
 	int i = 0;
 	int j = 0;
@@ -19,7 +19,7 @@ void int_test1(void)
 	printf("\nft: %i\nori: %i\n",i,j);
 }
 
-void int_test2(void)
+void int_test2ZERO(void)
 {
 	int i = 0;
 	int j = 0;
@@ -50,7 +50,7 @@ void int_test2(void)
 	printf("\nft: %i\nori: %i\n",i,j);
 }
 
-void uns_test1()
+void uns_test1ZERO()
 {
 	int i = 0;
 	int j = 0;
@@ -71,14 +71,14 @@ void uns_test1()
 	printf("\nft: %i\nori: %i\n",i,j);
 }
 
-void uns_test2()
+void uns_test2ZERO()
 {
 	int i = 0;
 	int j = 0;
 	printf("----------- TEST 2 014(MAX VALUE [4294967295])-------------\n");
 	i = ft_printf("%014u",4294967295);
 	printf("\n");
-	j = printf("%014u",4294967295);
+	j = printf("%014ld",4294967295);
 	printf("\nft: %i\nori: %i\n",i,j);
 	printf("\n----------- TEST 2.2 05[43]-------------\n");
 	i = ft_printf("%05u",43);
@@ -102,12 +102,48 @@ void uns_test2()
 	printf("\nft: %i\nori: %i\n",i,j);
 }
 
-int main(void) {
-    // int_test1();     
-    // int_test2();  
-    uns_test1();  
-    uns_test2();  
-    // test5();  
-    // test6();  
+void str_test1ZERO()
+{
+
 }
+
+void str_test2ZERO()
+{
+	
+}
+
+void ptr_test1ZERO()
+{
+
+}
+
+void ptr_test2ZERO()
+{
+	
+}
+
+void hex_test1ZERO()
+{
+
+}
+
+void hex_test2ZERO()
+{
+
+}
+
+void per_test1ZERO()
+{
+
+}
+
+
+// int main(void) {
+//     // int_test1ZERO();     
+//     // int_test2ZERO();  
+//     uns_test1ZERO();  
+//     uns_test2ZERO();  
+//     // test5ZERO();  
+//     // test6ZERO();  
+// }
 

@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/26 11:59:05 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:31:37 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ typedef struct datatypes
 	char			*string;
 	int				ch;
 	unsigned int	uns;
-	unsigned int	hex;
 	void			*pointer;
+	unsigned int hex;
 	size_t			number;
-}					t_datatypes;
+}					t_datatype;
 
 int					ft_printf(const char *format, ...);
 int					handle_percent(const char *format, int *i, int *bytes);
