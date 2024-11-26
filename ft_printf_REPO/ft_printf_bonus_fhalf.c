@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:09:39 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/23 23:40:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/26 10:39:45 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ int	zero_padder(const char *format, int i, int number, int *bytes)
 	in = 0;
 	if (number < 0)
 	{
-		if (number == -2147483648)
-			spaces -= 10;
-		write(1, "-", 1);
-		*bytes += 1;
 		number *= -1;
-		spaces--;
+		if (!number > INT_MAX)
+		{
+			if (number == -2147483648)
+				spaces -= 10;
+			write(1, "-", 1);
+			*bytes += 1;
+			spaces--;
+		}
 	}
 	placeholder = number;
 	if (!(format[i] >= '0' && format[i] <= '9'))
@@ -58,7 +61,10 @@ int	zero_padder(const char *format, int i, int number, int *bytes)
 		write(1, "0", 1);
 		*bytes += 1;
 	}
-	ft_putnbr_zero(number, bytes);
+	if (number > INT_MAX)
+		ft_putnbr_zero_uns(number,bytes);
+	else
+		ft_putnbr_zero(number, bytes);
 	return (i);
 }
 

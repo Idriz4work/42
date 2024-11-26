@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:32:14 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/23 23:38:57 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/26 10:31:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int		zero_padder(const char *format, int i, int number, int *bytes);
 // int	precisionstk(const char *format, int i, double digits);
 
 // UTILITIES FOR BONUS
+void	ft_putnbr_zero_uns(unsigned int i, int *bytes);
 void	ft_putnbr_zero(int i, int *bytes);
 
 #endif

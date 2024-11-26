@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/23 15:12:20 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/26 10:31:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,6 @@ typedef struct
 	void			*pointer;
 	size_t			number;
 }					datatypes;
-
-# define is_written(bytes)        \
-	do                           \
-	{                            \
-		if (written > 0)         \
-		{                        \
-			*(bytes) += written; \
-		}                        \
-	} while (0)
 
 int					ft_printf(const char *format, ...);
 int					handle_percent(const char *format, int *i, int *bytes);
