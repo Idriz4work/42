@@ -2,7 +2,7 @@
 #include <limits.h>
 #include "../ft_printf_bonus.h"
 #include "../ft_printf.h"
-
+// cc main.c alter_forma.c  left_justificator.c  minfield_width.c  precission.c  signplus.c  zero.c ../ft_printf.c ../ft_printf_utils.c ../ft_printf_bonus_1.c ../ft_printf_bonus_2.c ../ft_printf_utils2.c ../ft_printf_bonus_utils.c ../Libft/ft_atoi.c ../handlers.c -g
 void int_test1ZERO(void)
 {
 	int i = 0;
