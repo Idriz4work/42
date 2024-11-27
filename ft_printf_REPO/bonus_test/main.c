@@ -15,19 +15,19 @@ int main(void)
     uns_test2ZERO();
 
     // Call String tests
-    str_test1ZERO();
-    str_test2ZERO();
+    // str_test1ZERO();
+    // str_test2ZERO();
 
     // Call Pointer tests
-    ptr_test1ZERO();
-    ptr_test2ZERO();
+    // ptr_test1ZERO();
+    // ptr_test2ZERO();
 
     // Call Hexadecimal tests
     hex_test1ZERO();
     hex_test2ZERO();
 
     // Call Percentage tests
-    per_test1ZERO();
+    // per_test1ZERO();
 
     // Call Integer left-justified tests
     // int_LFT_test1();

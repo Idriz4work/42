@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_bonus_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:09:39 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/26 18:43:42 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/27 12:34:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,8 @@ int	zero_padder(const char *format, int i, va_list args, int *bytes)
 		i = int_handler(format, i, va_arg(args, int), bytes);
 	if (format[i] == 'u' || format[i] == 'U')
 		i = uns_handler(format, i, va_arg(args, unsigned int), bytes);
-	if (format[i] == 's' || format[i] == 'S')
-		i = str_handler(format, i, va_arg(args, char *), bytes);
 	if (format[i] == 'x' || format[i] == 'X')
 		i = hex_handler(format, i, va_arg(args, int), bytes);
-	if (format[i] == 'p')
-		i = ptr_handler(format, i, va_arg(args, void *), bytes);
 	return (i);
 }
 

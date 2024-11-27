@@ -10,7 +10,9 @@ SRCS = ft_printf.c \
 	   ft_printf_utils2.c \
        ft_printf_bonus_1.c \
        ft_printf_bonus_2.c \
-       ft_printf_bonus_utils.c
+       ft_printf_bonus_utils.c \
+	   mindfield_width.c plus_sign.c alter_forma.c \
+	   precission.c zero_padder.c left_justificator.c
 
 # Object files
 OBJS = $(SRCS:.c=.o)
