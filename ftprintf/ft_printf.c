@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 23:26:58 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/27 12:34:31 by marvin           ###   ########.fr       */
+/*   Updated: 2024/11/30 20:47:36 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	handle_percent(const char *format, int *i, int *bytes)
 	return (j);
 }
 
+
 int	ft_printf(const char *format, ...)
 {
 	int		i;
@@ -106,9 +107,9 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	i = 0;
 	bytes = 0;
-	while (format[i] != '\0')
+	while (format[i] != '\0' && !(i > (int)ft_strlen(format) + 1))
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && format[i+1] )
 		{
 			j = handle_percent(format, &i, &bytes);
 			if (j == -1)

@@ -8,10 +8,10 @@ int main(void)
 {
     // Call Integer tests
     // int_test1ZERO();
-    int_test2ZERO();
+    // int_test2ZERO();
 
     // Call Unsigned Integer tests
-    // uns_test1ZERO();
+    uns_test1ZERO();
     // uns_test2ZERO();
 
     // Call String tests

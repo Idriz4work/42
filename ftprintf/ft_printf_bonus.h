@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 20:30:29 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/27 21:23:51 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/30 18:21:38 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,11 @@ int		handle_flags(const char *format, int i, va_list args, int *bytes);
 
 int		zero_padder(const char *format, int i, va_list args, int *bytes);
 int		int_handler(const char *format, int i, int value, int *bytes);
-// int		uns_handler(const char *format, int i, unsigned int value, int *bytes);
-// int		hex_handler(const char *format, int i, unsigned int value, int *bytes);
+int		uns_handler(const char *format, int i, unsigned int value, int *bytes);
+int		upperhex_handler(const char *format, int i, int value,
+			int *bytes);
+int		lowerhex_handler(const char *format, int i, int value,
+			int *bytes);
 
 // int	fieldminwidth(const char *format, int i, int spaces);
 
@@ -35,5 +38,4 @@ int		int_handler(const char *format, int i, int value, int *bytes);
 // UTILITIES FOR BONUS
 void	ft_putnbr_zero_uns(unsigned int i, int *bytes);
 void	ft_putnbr_zero(int i, int *bytes);
-
 #endif
