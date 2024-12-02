@@ -11,7 +11,7 @@ int main(void)
     // int_test2ZERO();
 
     // Call Unsigned Integer tests
-    uns_test1ZERO();
+    // uns_test1ZERO();
     // uns_test2ZERO();
 
     // Call String tests
@@ -24,8 +24,8 @@ int main(void)
 
     // Call Hexadecimal tests
     // hex_test1ZERO();
-    // hex_test2ZERO();
-
+    hex_test2ZERO();
+	// hex_test3ZERO();
     // Call Percentage tests
     // per_test1ZERO();
 

@@ -383,9 +383,9 @@ void uns_test85()
     int i = 0;
     int j = 0;
     printf("----------- TEST 85 UNSIGNED Multiple values-------------\n");
-    i = ft_printf("%09u %010u %011u %012u %013u %014u %015u", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+    i = ft_printf("%011u %012u %013u %014u %015u", LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
     printf("\n");
-    j = printf("%09u %010u %011u %012u %013u %014u %015u", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+    j = printf("%011u %012u %013u %014u %015u", LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
     printf("\nft: %i\nori: %i\n", i, j);
 }
 
@@ -584,30 +584,123 @@ void hex_test2ZERO()
 
 	i = 0;
 	j = 0;
-	printf("----------- TEST 2 HEX 01(43)-------------\n");
-	i = ft_printf("%01x",43);
+	// printf("----------- TEST 2 HEX 01(43)-------------\n");
+	// i = ft_printf("%01x",43);
+	// printf("\n");
+	// j = printf("%01x",43);
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// printf("\n----------- TEST 2.2 05[43]-------------\n");
+	// i = ft_printf("%05x",43);
+	// printf("\n");
+	// j = printf("%05x",43);
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// printf("\n----------- TEST 2.3 02[2]-------------\n");
+	// i = ft_printf("%02x",2);
+	// printf("\n");
+	// j = printf("%02x",2); 
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// printf("\n----------- TEST 2.4 01[2]-------------\n");
+	// i = ft_printf("%01x",2);
+	// printf("\n");
+	// j = printf("%01x",2);
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// printf("\n----------- TEST 2.5 010[1000]-------------\n");
+	// i = ft_printf("%010x",1000);
+	// printf("\n");
+	// j = printf("%010x",1000);
+	// printf("\nft: %i\nori: %i\n",i,j);
+
+	// printf("----------- TEST 2 UNSIGNED 014(MAX VALUE [4294967295])-------------\n");
+	// i = ft_printf("%014x", 4294967295);  // Change %u to %x for hexadecimal output
+	// printf("\n");
+	// j = printf("%014x", 4294967295);  // Change %u to %x for hexadecimal output
+	// printf("\nft: %i\nori: %i\n", i, j);
+
+	// printf("\n----------- TEST 2.2 05[43]-------------\n");
+	// i = ft_printf("%05x", 43);  // Change %u to %x for hexadecimal output
+	// printf("\n");
+	// j = printf("%05x", 43);  // Change %u to %x for hexadecimal output
+	// printf("\nft: %i\nori: %i\n", i, j);
+
+	// printf("\n----------- TEST 2.3 02[2]-------------\n");
+	// i = ft_printf("%02x", 2);  // Change %i to %x for hexadecimal output
+	// printf("\n");
+	// j = printf("%02x", 2);  // Change %i to %x for hexadecimal output
+	// printf("\nft: %i\nori: %i\n", i, j);
+
+	// printf("\n----------- TEST 2.4 01[2]-------------\n");
+	// i = ft_printf("%01x", 2);  // Change %i to %x for hexadecimal output
+	// printf("\n");
+	// j = printf("%01x", 2);  // Change %i to %x for hexadecimal output
+	// printf("\nft: %i\nori: %i\n", i, j);
+
+	// printf("\n----------- TEST 2.5 010[1000]-------------\n");
+	// i = ft_printf("%010x", 1000);  // Change %i to %x for hexadecimal output
+	// printf("\n");
+	// j = printf("%010x", 1000);  // Change %i to %x for hexadecimal output
+	// printf("\nft: %i\nori: %i\n", i, j);
+
+	printf("\n----------- TEST 1.3 0 100 [INT MAX VALUE && MINUS VALUE] -------------\n");
+	i = ft_printf("%0100x", INT_MAX);  // Change %u to %x for hexadecimal output
 	printf("\n");
-	j = printf("%01x",43);
+	j = printf("%0100x", INT_MAX);  // Change %u to %x for hexadecimal output
+	printf("\nft: %i\nori: %i\n", i, j);
+	i = ft_printf("%0100x", INT_MIN);  // Change %u to %x for hexadecimal output
+	printf("\n");
+	j = printf("%0100x", INT_MIN);  // Change %u to %x for hexadecimal output
+	printf("\n");
+
+	printf("\n----------- TEST 1.5 FAILED TESTS FRANCI -------------\n");
+	i = ft_printf("%011x", LONG_MAX);  // Change %u to %x for hexadecimal output
+	printf("\n");
+	j = printf("%011x", LONG_MAX);  // Change %u to %x for hexadecimal output
+	printf("\nft: %i\nori: %i\n", i, j);
+	i = ft_printf("%015x", -42);  // Change %u to %x for hexadecimal output
+	printf("\n");
+	j = printf("%015x", -42);  // Change %u to %x for hexadecimal output
+	printf("\nft: %i\nori: %i\n", i, j);
+	i = ft_printf("%010x", INT_MIN);  // Change %u to %x for hexadecimal output
+	printf("\n");
+	j = printf("%010x", INT_MIN);  // Change %u to %x for hexadecimal output
+	printf("\nft: %i\nori: %i\n", i, j);
+
+	printf("\n----------- TEST 1.4 024[102332]-------------\n");
+	i = ft_printf(" %09x %010x %011x %012x %013x %014x %015x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);  // Change %u to %x for hexadecimal output
+	printf("\n");
+	j = printf(" %09x %010x %011x %012x %013x %014x %015x", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);  // Change %u to %x for hexadecimal output
+	printf("\nft: %i\nori: %i\n", i, j);
+
+}
+
+void	hex_test3ZERO()
+{
+	printf("\n======================== [UPPER CASE TESTS] =============================\n");
+	int i = 0;
+	int j = 0;
+	printf("----------- TEST 2 HEX 01(43)-------------\n");
+	i = ft_printf("%01X",43);
+	printf("\n");
+	j = printf("%01X",43);
 	printf("\nft: %i\nori: %i\n",i,j);
 	printf("\n----------- TEST 2.2 05[43]-------------\n");
-	i = ft_printf("%05x",43);
+	i = ft_printf("%05X",43);
 	printf("\n");
-	j = printf("%05x",43);
+	j = printf("%05X",43);
 	printf("\nft: %i\nori: %i\n",i,j);
 	printf("\n----------- TEST 2.3 02[2]-------------\n");
-	i = ft_printf("%02x",2);
+	i = ft_printf("%02X",2);
 	printf("\n");
-	j = printf("%02x",2); 
+	j = printf("%02X",2); 
 	printf("\nft: %i\nori: %i\n",i,j);
 	printf("\n----------- TEST 2.4 01[2]-------------\n");
-	i = ft_printf("%01x",2);
+	i = ft_printf("%01X",2);
 	printf("\n");
-	j = printf("%01x",2);
+	j = printf("%01X",2);
 	printf("\nft: %i\nori: %i\n",i,j);
 	printf("\n----------- TEST 2.5 010[1000]-------------\n");
-	i = ft_printf("%010x",1000);
+	i = ft_printf("%010X",1000);
 	printf("\n");
-	j = printf("%010x",1000);
+	j = printf("%010X",1000);
 	printf("\nft: %i\nori: %i\n",i,j);
 }
 

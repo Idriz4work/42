@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 23:26:58 by marvin            #+#    #+#             */
-/*   Updated: 2024/11/30 20:47:36 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:03:26 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	handle_percent(const char *format, int *i, int *bytes)
 		*bytes += written;
 		j = -1;
 	}
-	else if ((!(format[*i + 1] >= 'a' && format[*i + 1] <= 'z'))
-		&& (!(format[*i + 1] >= 'A' && format[*i + 1] <= 'Z')))
+	else if ((!(format[*i + 1] >= 'a' && format[*i + 1] <= 'z')) && (!(format[*i
+				+ 1] >= 'A' && format[*i + 1] <= 'Z')))
 	{
 		if (!(format[*i + 1] >= '0' && format[*i + 1] <= '9'))
 		{
@@ -96,7 +96,6 @@ int	handle_percent(const char *format, int *i, int *bytes)
 	return (j);
 }
 
-
 int	ft_printf(const char *format, ...)
 {
 	int		i;
@@ -107,21 +106,28 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	i = 0;
 	bytes = 0;
-	while (format[i] != '\0' && !(i > (int)ft_strlen(format) + 1))
+	while (format[i] != '\0' && i < (int)ft_strlen(format))
 	{
-		if (format[i] == '%' && format[i+1] )
+		if (format[i] == '%')
 		{
-			j = handle_percent(format, &i, &bytes);
-			if (j == -1)
+			if (format[i + 1] == '0' || format[i + 1] == '#' || 
+			format[i + 1] == ' ' || format[i + 1] == '-' || format[i + 1] == '.')
+				i = handle_flags(format, i, args, &bytes);
+			else
+			{
+				j = handle_percent(format, &i, &bytes);
+				if (j == -1)
+					continue ;
+				i = check_conditions(format, i, args, &bytes);
 				continue ;
-			i = handle_flags(format, i, args, &bytes);
-			i = check_conditions(format, i, args, &bytes);
-			continue ;
+			}
 		}
 		write(1, &format[i], 1);
 		bytes += 1;
 		i++;
 	}
+	if (i > (int)ft_strlen(format))
+		bytes -= i - (int)ft_strlen(format);
 	va_end(args);
 	return (bytes);
 }
@@ -140,5 +146,3 @@ int	ft_printf(const char *format, ...)
 // ft_printf("%s\n\\r","yo whaqt up");
 // printf("%s\n\\r","yo whaqt up");
 // }
-
-
