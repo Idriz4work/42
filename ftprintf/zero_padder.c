@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:17:17 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/02 21:01:20 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/03 03:28:05 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ int	uns_handler(const char *format, int i, unsigned int value, int *bytes)
 	placeholder = value;
 	if (value == 0)
 		spaces--;
-	while (format[i-- + 1] <= '%')
-		;
+	while (format[i - 1] != '%')
+		i--;
 	in = 0;
 	while (format[i] >= '0' && format[i] <= '9')
 		buffer[in++] = format[i++];
@@ -124,28 +124,28 @@ int	uns_handler(const char *format, int i, unsigned int value, int *bytes)
 
 int	lowerhex_handler(const char *format, int i, int value, int *bytes)
 {
-	int				in;
-	char			buffer[20];
-	unsigned long	placeholder;
-	int				spaces;
+	int			in;
+	char		buffer[20];
+	long long	placeholder;
+	int			spaces;
 
 	spaces = 0;
-	placeholder = value;
 	if (value == 0)
 		spaces--;
-	while (format[i-- + 1] <= '%')
-		;
+	else if (value == -2147483648 || value < 0)
+		spaces -= 8;
+	placeholder = value;
+	while (format[i - 1] != '%')
+		i--;
 	in = 0;
 	while (format[i] >= '0' && format[i] <= '9')
 		buffer[in++] = format[i++];
 	buffer[in] = '\0';
 	spaces += ft_atoi(buffer);
 	in = 0;
-	if (value >= 10 && value <= 16)
-		spaces--;
 	while (placeholder > 0)
 	{
-		placeholder /= 10;
+		placeholder /= 16;
 		in++;
 	}
 	placeholder = value;
@@ -160,28 +160,28 @@ int	lowerhex_handler(const char *format, int i, int value, int *bytes)
 
 int	upperhex_handler(const char *format, int i, int value, int *bytes)
 {
-	int				in;
-	char			buffer[20];
-	unsigned long	placeholder;
-	int				spaces;
+	int			in;
+	char		buffer[20];
+	long long	placeholder;
+	int			spaces;
 
 	spaces = 0;
-	placeholder = value;
 	if (value == 0)
 		spaces--;
-	while (format[i-- + 1] <= '%')
-		;
+	else if (value == -2147483648 || value < 0)
+		spaces -= 8;
+	placeholder = value;
+	while (format[i - 1] != '%')
+		i--;
 	in = 0;
 	while (format[i] >= '0' && format[i] <= '9')
 		buffer[in++] = format[i++];
 	buffer[in] = '\0';
 	spaces += ft_atoi(buffer);
-	if (value >= 10 && value <= 16)
-		spaces--;
 	in = 0;
 	while (placeholder > 0)
 	{
-		placeholder /= 10;
+		placeholder /= 16;
 		in++;
 	}
 	placeholder = value;

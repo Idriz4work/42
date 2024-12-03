@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 23:26:58 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/02 19:03:26 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/03 04:27:28 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,8 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == '0' || format[i + 1] == '#' || 
-			format[i + 1] == ' ' || format[i + 1] == '-' || format[i + 1] == '.')
+			if ((format[i + 1] == '0' || format[i + 1] == '#') || ( format[i + 1] == ' ' || format[i + 1] == '-')
+			 || (format[i + 1] == '.'))
 				i = handle_flags(format, i, args, &bytes);
 			else
 			{

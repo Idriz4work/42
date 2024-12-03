@@ -641,14 +641,15 @@ void hex_test2ZERO()
 	// printf("\nft: %i\nori: %i\n", i, j);
 
 	printf("\n----------- TEST 1.3 0 100 [INT MAX VALUE && MINUS VALUE] -------------\n");
-	i = ft_printf("%0100x", INT_MAX);  // Change %u to %x for hexadecimal output
-	printf("\n");
-	j = printf("%0100x", INT_MAX);  // Change %u to %x for hexadecimal output
-	printf("\nft: %i\nori: %i\n", i, j);
-	i = ft_printf("%0100x", INT_MIN);  // Change %u to %x for hexadecimal output
-	printf("\n");
-	j = printf("%0100x", INT_MIN);  // Change %u to %x for hexadecimal output
-	printf("\n");
+	// i = ft_printf("%010x", INT_MAX);  // Change %u to %x for hexadecimal output
+	// printf("\n");
+	// j = printf("%010x", INT_MAX);  // Change %u to %x for hexadecimal output
+	// printf("\nft: %i\nori: %i\n", i, j);
+	// i = ft_printf("%0100x", INT_MIN);  // Change %u to %x for hexadecimal output
+	// printf("\n");
+	// j = printf("%0100x", INT_MIN);  // Change %u to %x for hexadecimal output
+	// printf("\n");
+	// printf("\nft: %i\nori: %i\n", i, j);
 
 	printf("\n----------- TEST 1.5 FAILED TESTS FRANCI -------------\n");
 	i = ft_printf("%011x", LONG_MAX);  // Change %u to %x for hexadecimal output

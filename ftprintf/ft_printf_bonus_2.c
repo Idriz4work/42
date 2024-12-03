@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 18:14:04 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/27 21:17:59 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/03 04:18:25 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,24 @@
 // 	return (i);
 // }
 
-// int	signplus(const char *format, int i,int sign)
-// {
-// 	return (i);
-// }
-
 int	handle_flags(const char *format, int i, va_list copy, int *bytes)
 {
+	i++;
 	// if (format[i+1] == '-')
 	// 	i = left_justificator(format, i,va_arg(copy,int));
-	// if (format[i+1] == '+')
-	// 	i = signplus(format, i,va_arg(copy,int));
-	// if (format[i+1] == ' ')
-	// 	i = fieldminwidth(format, i,va_arg(copy,int));
-	// if (format[i+1] == '#')
-	// 	i = alternativeForma(format, i,va_arg(copy,long));
-	if (format[i + 1] == '0')
+	if (format[i] == '+')
 	{
-		i++;
-		i = zero_padder(format, i, copy, bytes);
+		while (!(format[i] >= 'A' && format[i] <= 'z'))
+			i++;
+		i = int_handlerplus(format, i, va_arg(copy, int), bytes);
 	}
-	// if (format[i+1] == '.')
+	// if (format[i] == ' ')
+	// 	i = fieldminwidth(format, i,va_arg(copy,int));
+	// if (format[i] == '#')
+	// 	i = alternativeForma(format, i,va_arg(copy,long));
+	if (format[i] == '0')
+		i = zero_padder(format, i, copy, bytes);
+	// if (format[i] == '.')
 	// 	i = precisionstk(format, i,va_arg(copy,double));
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:38 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/26 11:34:33 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/02 20:55:03 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	print_hex_two(unsigned int hex, int *bytes)
 	int		i;
 
 	i = 0;
-	while (hex != 0)
+	while (hex > 0)
 	{
 		hex_digits[i++] = "0123456789abcdef"[hex % 16];
 		hex /= 16;
@@ -104,7 +104,7 @@ void	print_hex(unsigned int hex, int signal, int *bytes)
 		print_hex_two(hex, bytes);
 		return ;
 	}
-	while (hex != 0)
+	while (hex > 0)
 	{
 		hex_digits[i++] = "0123456789ABCDEF"[hex % 16];
 		hex /= 16;

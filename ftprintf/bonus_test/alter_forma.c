@@ -1,55 +1,29 @@
 
-void int_ALT_test1(void)
+
+void	test_lowerhexALT(void)
 {
-
-}
-void int_ALT_test2(void)
-{
-
-}
-
-// Unsigned Integer alternative form tests
-void uns_ALT_test1(void)
-{
-
-}
-void uns_ALT_test2(void)
-{
-
+	int i = printf("================TEST 1 [#0:0]=======================\n\n");
+	i = ft_printf("%#0x",0);
+	printf("\n");
+	int j = printf("%#0x",0);
+	printf("\n");
+	printf("RESULT: ft: %i \t or: %i\n",i,j);
 }
 
-// String alternative form tests
-void str_ALT_test1(void)
+void	test_lowerhexALT2(void)
 {
-
-}
-void str_ALT_test2(void)
-{
-
-}
-
-// Pointer alternative form tests
-void ptr_ALT_test1(void)
-{
-
-}
-void ptr_ALT_test2(void)
-{
-
+	int i = printf("\n================TEST 1 [#30:432]=======================\n\n");
+	i = ft_printf("%#30x",432);
+	printf("\n");
+	int j = printf("%#30x",432);
+	printf("\n");
+	printf("RESULT: ft: %i \t or: %i\n",i,j);
 }
 
-// Hexadecimal alternative form tests
-void hex_ALT_test1(void)
+void	test_lowerhexALT3(void)
 {
-
-}
-void hex_ALT_test2(void)
-{
-
 }
 
-// Percentage alternative form tests
-void per_ALT_test1(void)
+void	test_lowerhexALT4(void)
 {
-
 }

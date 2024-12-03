@@ -24,7 +24,7 @@ int main(void)
 
     // Call Hexadecimal tests
     // hex_test1ZERO();
-    hex_test2ZERO();
+    // hex_test2ZERO();
 	// hex_test3ZERO();
     // Call Percentage tests
     // per_test1ZERO();
@@ -99,50 +99,14 @@ int main(void)
     // per_PCS_test1();
 
     // // Call Integer sign tests
-    // int_SIGN_test1();
-    // int_SIGN_test2();
-
-    // // Call Unsigned Integer sign tests
-    // uns_SIGN_test1();
-    // uns_SIGN_test2();
-
-    // // Call String sign tests
-    // str_SIGN_test1();
-    // str_SIGN_test2();
-
-    // // Call Pointer sign tests
-    // ptr_SIGN_test1();
-    // ptr_SIGN_test2();
-
-    // // Call Hexadecimal sign tests
-    // hex_SIGN_test1();
-    // hex_SIGN_test2();
-
-    // // Call Percentage sign tests
-    // per_SIGN_test1();
-
-    // // Call Integer alternative form tests
-    // int_ALT_test1();
-    // int_ALT_test2();
+    int_SIGN_test1();
+    int_SIGN_test2();
 
     // // Call Unsigned Integer alternative form tests
-    // uns_ALT_test1();
-    // uns_ALT_test2();
-
-    // // Call String alternative form tests
-    // str_ALT_test1();
-    // str_ALT_test2();
-
-    // // Call Pointer alternative form tests
-    // ptr_ALT_test1();
-    // ptr_ALT_test2();
-
-    // // Call Hexadecimal alternative form tests
-    // hex_ALT_test1();
-    // hex_ALT_test2();
-
-    // // Call Percentage alternative form tests
-    // per_ALT_test1();
+	// test_lowerhexALT();
+	// test_lowerhexALT2();
+	// test_lowerhexALT3();
+	// test_lowerhexALT4();
 
     return 0;
 }
