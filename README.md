@@ -56,12 +56,6 @@ Throughout these projects, I've gained experience in:
 - Explored multiple branches: Algo, Graphics, Systems Administration, and Web
 - Achieved perfect scores (125) in several challenging projects
 
-## 🔜 Next Steps
-
-I'm currently working on:
-- Completing the Docker-1 project in the Systems Administration branch
-- Advancing through the Web branch projects (Camagru, Matcha, Hypertube)
-
 ## 📬 Contact
 
 Feel free to reach out if you have any questions about my projects or 42 School experience!
