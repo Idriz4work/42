@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   precission.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/06 01:52:57 by iatilla-          #+#    #+#             */
+/*   Updated: 2024/12/06 02:07:30 by iatilla-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_printf_bonus.h"
@@ -16,3 +27,5 @@ int	precission_stk(const char *format, int i, va_list args, int *bytes)
 		i = upperhex_handler(format, i, va_arg(args, int), bytes);
 	return (i);
 }
+
+

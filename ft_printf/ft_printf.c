@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/16 23:26:58 by marvin            #+#    #+#             */
-/*   Updated: 2024/12/03 04:27:28 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/06 01:18:01 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ int	handle_percent(const char *format, int *i, int *bytes)
 		*bytes += written;
 		j = -1;
 	}
-	else if ((!(format[*i + 1] >= 'a' && format[*i + 1] <= 'z')) && (!(format[*i
-				+ 1] >= 'A' && format[*i + 1] <= 'Z')))
+	else if ((!(format[*i + 1] >= 'a' && format[*i + 1] <= 'z'))
+	&& (!(format[*i + 1] >= 'A' && format[*i + 1] <= 'Z')))
 	{
 		if (!(format[*i + 1] >= '0' && format[*i + 1] <= '9'))
 		{
@@ -96,53 +96,45 @@ int	handle_percent(const char *format, int *i, int *bytes)
 	return (j);
 }
 
+int	handle_format(const char *format, int i, va_list args, int *bytes)
+{
+	int	j;
+
+	if (((format[i + 1] == '0' || format[i + 1] == '#') 
+	|| (format[i + 1] == ' ' || format[i + 1] == '-'))
+ 	|| (format[i + 1] == '.' || format[i + 1] == '+'))
+		return (handle_flags(format, i, args, bytes));
+	else
+	{
+		j = handle_percent(format, &i, bytes);
+		if (j == -1)
+			return (i);
+		return (check_conditions(format, i, args, bytes));
+	}
+}
+
 int	ft_printf(const char *format, ...)
 {
 	int		i;
 	int		bytes;
 	va_list	args;
-	int		j;
 
-	va_start(args, format);
 	i = 0;
 	bytes = 0;
+	va_start(args, format);
 	while (format[i] != '\0' && i < (int)ft_strlen(format))
 	{
 		if (format[i] == '%')
+			i = handle_format(format, i, args, &bytes);
+		else
 		{
-			if ((format[i + 1] == '0' || format[i + 1] == '#') || ( format[i + 1] == ' ' || format[i + 1] == '-')
-			 || (format[i + 1] == '.'))
-				i = handle_flags(format, i, args, &bytes);
-			else
-			{
-				j = handle_percent(format, &i, &bytes);
-				if (j == -1)
-					continue ;
-				i = check_conditions(format, i, args, &bytes);
-				continue ;
-			}
+			write(1, &format[i], 1);
+			bytes++;
+			i++;
 		}
-		write(1, &format[i], 1);
-		bytes += 1;
-		i++;
 	}
 	if (i > (int)ft_strlen(format))
 		bytes -= i - (int)ft_strlen(format);
 	va_end(args);
 	return (bytes);
 }
-
-// int main(void)
-// {
-// 	ft_printf("%d\n",032);
-// 	printf("%d\n",032);
-
-// ft_printf("%s\n","yo whaqt up dbe");
-// printf("%s\n","yo whaqt up");
-
-// ft_printf("%s\n\\r","yo whaqt up");
-// printf("%s\n\\r","yo whaqt up");
-
-// ft_printf("%s\n\\r","yo whaqt up");
-// printf("%s\n\\r","yo whaqt up");
-// }

@@ -3,195 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   zero_padder.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 14:17:17 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/04 19:08:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/06 00:38:43 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "ft_printf_bonus.h"
 
-// int check_value(int value, int *bytes, long *placeholder, int spaces)
-// {
-// 	if (value < 0)
-// 	{
-// 		if (placeholder == -2147483648)
-// 		{
-// 			spaces -= 10;
-// 			write(1, "-2", 2);
-// 			*bytes+=2;
-// 			placeholder = 147483648;
-// 		}
-// 		else
-// 		{
-// 			write(1,"-",1);
-// 			*bytes+=1;
-// 			placeholder *= -1;
-// 			spaces -= 2;
-// 		}
-// 	}
-// 	return (spaces);
-// }
-
 int	int_handlerzero(const char *format, int i, int value, int *bytes)
 {
-	int		in;
-	char	buffer[20];
 	long	placeholder;
 	int		spaces;
+	int		digits;
 
-	spaces = 0;
 	placeholder = value;
-	if (value == 0)
-		spaces--;
-	if (placeholder == -2147483648)
+	digits = 1;
+	spaces = extract_spaces(format, &i);
+	handle_negative(&placeholder, &spaces, bytes);
+	digits = count_value_length(placeholder, 10);
+	write_zeros(spaces, digits, bytes);
+	if (value == -2147483648)
 	{
-		spaces -= 10;
-		write(1, "-2", 2);
-		*bytes += 2;
-		placeholder = 147483648;
-	}
-	else if (value < 0)
-	{
-		write(1, "-", 1);
-		*bytes += 1;
-		placeholder *= -1;
-		value *= -1;
-		spaces -= 1;
-	}
-	while (format[i-- + 1] <= '%')
-		;
-	in = 0;
-	while (format[i] >= '0' && format[i] <= '9')
-		buffer[in++] = format[i++];
-	buffer[in] = '\0';
-	spaces += ft_atoi(buffer);
-	in = 0;
-	while (value > 0)
-	{
-		value /= 10;
-		in++;
-	}
-	while (spaces-- > in)
-	{
-		write(1, "0", 1);
-		*bytes += 1;
+		write(1, "2147483648", 10);
+		*bytes += 10;
+		return (i);
 	}
 	ft_putnbr_ext(placeholder, bytes);
-	return (i + 1);
+	return (i);
 }
 
 int	uns_handlerzero(const char *format, int i, unsigned int value, int *bytes)
 {
-	int				in;
-	char			buffer[20];
 	unsigned int	placeholder;
 	int				spaces;
+	int				digits;
 
-	spaces = 0;
 	placeholder = value;
-	if (value == 0)
-		spaces--;
-	while (format[i - 1] != '%')
-		i--;
-	in = 0;
-	while (format[i] >= '0' && format[i] <= '9')
-		buffer[in++] = format[i++];
-	buffer[in] = '\0';
-	spaces += ft_atoi(buffer);
-	in = 0;
-	while (value > 0)
-	{
-		value /= 10;
-		in++;
-	}
-	while (spaces-- > in)
-	{
-		write(1, "0", 1);
-		*bytes += 1;
-	}
-	if (placeholder == 0)
-	{
-		write(1, "0", 1);
-		*bytes += 1;
-		return (i + 1);
-	}
+	spaces = extract_spaces(format, &i);
+	digits = count_value_length(placeholder, 10);
+	write_zeros(spaces, digits, bytes);
 	ft_putnbr_uns(placeholder, bytes);
-	return (i + 1);
+	return (i);
 }
 
 int	lowerhex_handlerzero(const char *format, int i, int value, int *bytes)
 {
-	int			in;
-	char		buffer[20];
 	long long	placeholder;
 	int			spaces;
+	int			digits;
 
-	spaces = 0;
-	if (value == 0)
-		spaces--;
-	else if (value == -2147483648 || value < 0)
+	placeholder = value;
+	spaces = extract_spaces(format, &i);
+	if (value == -2147483648 || value < 0)
 		spaces -= 8;
-	placeholder = value;
-	while (format[i - 1] != '%')
-		i--;
-	in = 0;
-	while (format[i] >= '0' && format[i] <= '9')
-		buffer[in++] = format[i++];
-	buffer[in] = '\0';
-	spaces += ft_atoi(buffer);
-	in = 0;
-	while (placeholder > 0)
-	{
-		placeholder /= 16;
-		in++;
-	}
-	placeholder = value;
-	while (spaces-- > in)
-	{
-		write(1, "0", 1);
-		*bytes += 1;
-	}
+	digits = count_value_length(placeholder, 16);
+	write_zeros(spaces, digits, bytes);
 	print_hex(placeholder, 1, bytes);
-	return (i + 1);
+	return (i);
 }
 
 int	upperhex_handlerzero(const char *format, int i, int value, int *bytes)
 {
-	int			in;
-	char		buffer[20];
 	long long	placeholder;
 	int			spaces;
+	int			digits;
 
-	spaces = 0;
-	if (value == 0)
-		spaces--;
-	else if (value == -2147483648 || value < 0)
+	placeholder = value;
+	spaces = extract_spaces(format, &i);
+	if (value == -2147483648 || value < 0)
 		spaces -= 8;
-	placeholder = value;
-	while (format[i - 1] != '%')
-		i--;
-	in = 0;
-	while (format[i] >= '0' && format[i] <= '9')
-		buffer[in++] = format[i++];
-	buffer[in] = '\0';
-	spaces += ft_atoi(buffer);
-	in = 0;
-	while (placeholder > 0)
-	{
-		placeholder /= 16;
-		in++;
-	}
-	placeholder = value;
-	while (spaces-- > in)
-	{
-		write(1, "0", 1);
-		*bytes += 1;
-	}
+	digits = count_value_length(placeholder, 16);
+	write_zeros(spaces, digits, bytes);
 	print_hex(placeholder, 0, bytes);
-	return (i + 1);
+	return (i);
 }
 
 int	zero_padder(const char *format, int i, va_list args, int *bytes)
@@ -206,7 +93,156 @@ int	zero_padder(const char *format, int i, va_list args, int *bytes)
 		i = lowerhex_handlerzero(format, i, va_arg(args, int), bytes);
 	if (format[i] == 'X')
 		i = upperhex_handlerzero(format, i, va_arg(args, int), bytes);
+	while (!(format[i] >= 'A' && format[i] <= 'z'))
+		i++;
 	return (i);
 }
 
+// --------------------- FUNCTIONAL CODE --------------------
 
+// int_handlerzero(const char *format, int i, int value, int *bytes)
+// {
+// int in;
+// char buffer[20];
+// long placeholder;
+// int spaces;
+//  spaces = 0;
+//  placeholder = value;
+// if (value == 0)
+//  spaces--;
+// if (value < 0)
+//  {
+// write(1, "-", 1);
+// *bytes += 1;
+//  placeholder *= -1;
+//  value *= -1;
+//  spaces -= 1;
+//  }
+// while (format[i - 1] != '%')
+//  i--;
+//  in = 0;
+// while (format[i] >= '0' && format[i] <= '9')
+// buffer[in++] = format[i++];
+// buffer[in] = '\0';
+//  spaces += ft_atoi(buffer);
+//  in = 0;
+// while (placeholder > 0)
+//  {
+//  placeholder /= 10;
+//  in++;
+//  }
+//  placeholder = value;
+// while (spaces-- > in)
+//  {
+// write(1, "0", 1);
+// *bytes += 1;
+//  }
+// if (value == -2147483648)
+//  {
+// write(1,"2147483648",10);
+// *bytes += 10;
+// return (i);
+//  }
+// ft_putnbr_ext(placeholder, bytes);
+// return (i);
+// }
+// int uns_handlerzero(const char *format, int i, unsigned int value,
+// int *bytes)
+// {
+// int in;
+// char buffer[20];
+// unsigned int placeholder;
+// int spaces;
+//  spaces = 0;
+//  placeholder = value;
+// if (value == 0)
+//  spaces--;
+// while (format[i - 1] != '%')
+//  i--;
+//  in = 0;
+// while (format[i] >= '0' && format[i] <= '9')
+// buffer[in++] = format[i++];
+// buffer[in] = '\0';
+//  spaces += ft_atoi(buffer);
+//  in = 0;
+// while (value > 0)
+//  {
+//  value /= 10;
+//  in++;
+//  }
+// while (spaces-- > in)
+//  {
+// write(1, "0", 1);
+// *bytes += 1;
+//  }
+// ft_putnbr_uns(placeholder, bytes);
+// return (i);
+// }
+// int lowerhex_handlerzero(const char *format, int i, int value, int *bytes)
+// {
+// int in;
+// char buffer[20];
+// long long placeholder;
+// int spaces;
+//  spaces = 0;
+// if (value == 0)
+//  spaces--;
+// else if (value == -2147483648 || value < 0)
+//  spaces -= 8;
+//  placeholder = value;
+// while (format[i-- + 1] <= '%')
+//  ;
+//  in = 0;
+// while (format[i] >= '0' && format[i] <= '9')
+// buffer[in++] = format[i++];
+// buffer[in] = '\0';
+//  spaces += ft_atoi(buffer);
+//  in = 0;
+// while (placeholder > 0)
+//  {
+//  placeholder /= 16;
+//  in++;
+//  }
+//  placeholder = value;
+// while (spaces-- > in)
+//  {
+// write(1, "0", 1);
+// *bytes += 1;
+//  }
+// print_hex(placeholder, 1, bytes);
+// return (i);
+// }
+// int upperhex_handlerzero(const char *format, int i, int value, int *bytes)
+// {
+// int in;
+// char buffer[20];
+// long long placeholder;
+// int spaces;
+//  spaces = 0;
+// if (value == 0)
+//  spaces--;
+// else if (value == -2147483648 || value < 0)
+//  spaces -= 8;
+//  placeholder = value;
+// while (format[i-- + 1] <= '%')
+//  ;
+//  in = 0;
+// while (format[i] >= '0' && format[i] <= '9')
+// buffer[in++] = format[i++];
+// buffer[in] = '\0';
+//  spaces += ft_atoi(buffer);
+//  in = 0;
+// while (placeholder > 0)
+//  {
+//  placeholder /= 16;
+//  in++;
+//  }
+//  placeholder = value;
+// while (spaces-- > in)
+//  {
+// write(1, "0", 1);
+// *bytes += 1;
+//  }
+// print_hex(placeholder, 0, bytes);
+// return (i);
+// }

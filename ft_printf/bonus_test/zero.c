@@ -7,42 +7,44 @@ void int_test1ZERO(void)
 {
 	int i = 0;
 	int j = 0;
-	printf("----------- TEST 1 INT 00 -------------\n");
-	i = ft_printf("%01i",0);
-	printf("\n");
-	j = printf("%01i",0);
-	printf("\nft: %i\nori: %i\n",i,j);
-	printf("\n----------- TEST 1.2 02[10]-------------\n");
-	i = ft_printf("%02i",10);
-	printf("\n");
-	j = printf("%02i",10);
-	printf("\nft: %i\nori: %i\n",i,j);
-	printf("----------- TEST 1.3 0 100 [INT MAX VALUE && MINUS VALUE] -------------\n");
-	i = ft_printf("%0100i",INT_MAX);
-	printf("\n");
-	j = printf("%0100i",INT_MAX);
-	printf("\nft: %i\nori: %i\n",i,j);
-	i = ft_printf("%0100i",INT_MIN);
-	printf("\n");
-	j = printf("%0100i",INT_MIN);
+	// printf("----------- TEST 1 INT 00 -------------\n");
+	// i = ft_printf("%01i",0);
+	// printf("\n");
+	// j = printf("%01i",0);
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// printf("\n----------- TEST 1.2 02[10]-------------\n");
+	// i = ft_printf("%02i",10);
+	// printf("\n");
+	// j = printf("%02i",10);
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// printf("----------- TEST 1.3 0 100 [INT MAX VALUE && MINUS VALUE] -------------\n");
+	// i = ft_printf("%0100i",INT_MAX);
+	// printf("\n");
+	// j = printf("%0100i",INT_MAX);
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// i = ft_printf("%0100i",INT_MIN);
+	// printf("\n");
+	// j = printf("%0100i",INT_MIN);
 	printf("----------- TEST 1.5 FAILED TESTS FRANCI -------------\n");
-	i = ft_printf("%011i", LONG_MAX);
+	i = ft_printf("%012i", LONG_MIN);
 	printf("\n");
-	j = printf("%011i", LONG_MAX);
+	j = printf("%012i", LONG_MIN);
 	printf("\nft: %i\nori: %i\n",i,j);
-	i = ft_printf("%015d", -42);
-	printf("\n");
-	j = printf("%015d", -42);
-	printf("\nft: %i\nori: %i\n",i,j);
-	i = ft_printf("%010d",INT_MIN);
-	printf("\n");
-	j = printf("%010d",INT_MIN);
-	printf("\nft: %i\nori: %i\n",i,j);
-	printf("\n----------- TEST 1.4 024[102332]-------------\n");
-	i = ft_printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	printf("\n");
-	j = printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
-	printf("\nft: %i\nori: %i\n",i,j);
+	// i = ft_printf("%015d", -42);
+	// printf("\n");
+	// j = printf("%015d", -42);
+	// printf("\nft: %i\nori: %i\n",i,j);
+	// i = ft_printf("%010d",INT_MIN);
+	// printf("\n");
+	// j = printf("%010d",INT_MIN);
+	// printf("\nft: %i\nori: %i\n",i,j);
+
+
+	// printf("\n----------- TEST 1.4 024[102332]-------------\n");
+	// i = ft_printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	// printf("\n");
+	// j = printf(" %09d %010d %011d %012d %013d %014d %015d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+	// printf("\nft: %i\nori: %i\n",i,j);
 }
 
 void int_test2ZERO(void)

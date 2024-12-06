@@ -27,3 +27,25 @@ void int_SIGN_test2(void)
 	printf("RESULT: ft: %i \t or: %i\n",i,j);
 }
 
+#include <stdio.h>
+#include <limits.h>
+
+void int_SIGN_test3(void)
+{
+    int i = printf("================TEST 1 [ PLUS SIGN TESTS ]=======================\n\n");
+    i = ft_printf(" %+d ", INT_MIN);
+    printf("\n");
+    int j = printf(" %+d ", INT_MIN);
+    printf("\n");
+    printf("RESULT: ft: %i \t or: %i\n",i,j);
+}
+
+void int_SIGN_test4(void)
+{
+    int i = printf("================TEST 2 [ PLUS SIGN MULTIPLE TESTS ]=======================\n\n");
+    i = ft_printf(" %+d %+d %+d %+d %+d %+d %+d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+    printf("\n");
+    int j = printf(" %+d %+d %+d %+d %+d %+d %+d", INT_MAX, INT_MIN, LONG_MAX, LONG_MIN, ULONG_MAX, 0, -42);
+    printf("\n");
+    printf("RESULT: ft: %i \t or: %i\n",i,j);
+}

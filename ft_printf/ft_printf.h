@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:13:57 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/27 21:17:48 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/06 01:16:58 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,10 @@ void				put_pointer(void *ptr, int *bytes);
 void				print_hex_two(unsigned int hex, int *bytes);
 void				print_hex(unsigned int hex, int signal, int *bytes);
 int					handle_cases_nbr(int i, int *bytes);
-void				ft_putnbr_ext(int i, int *bytes);
+void				ft_putnbr_ext(long i, int *bytes);
 void				ft_putnbr_uns(unsigned int i, int *bytes);
+
+int					handle_format(const char *format, int i, va_list args,
+						int *bytes);
 
 #endif

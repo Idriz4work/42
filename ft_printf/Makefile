@@ -8,12 +8,13 @@ RM = rm -f
 SRCS = ft_printf.c \
        ft_printf_utils.c \
 	   ft_printf_utils2.c \
-       ft_printf_bonus_1.c \
-       ft_printf_bonus_2.c \
+       ft_printf_bonus.c \
        ft_printf_bonus_utils.c \
 	   zero_padder.c \
-	#    mindfield_width.c plus_sign.c alter_forma.c \
-	#    precission.c  left_justificator.c
+	   mindfield_width.c alter_forma.c \
+	   plus_sign.c \
+	   left_justificator.c \
+	#    precission.c  
 
 # Object files
 OBJS = $(SRCS:.c=.o)

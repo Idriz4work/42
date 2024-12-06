@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 11:07:46 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/30 18:52:34 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/05 19:12:55 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	handle_cases_nbr(int i, int *bytes)
 	return (0);
 }
 
-void	ft_putnbr_ext(int i, int *bytes)
+void	ft_putnbr_ext(long i, int *bytes)
 {
 	char	curent;
 	int		written;
