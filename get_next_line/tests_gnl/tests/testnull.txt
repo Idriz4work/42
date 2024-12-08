@@ -1,0 +1,4 @@
+sdjbg
+hello
+'\0'
+cant see that
