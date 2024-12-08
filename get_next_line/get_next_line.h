@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/07 18:32:10 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/07 22:01:31 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/08 19:22:38 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 char	*get_next_line(int fd);
 int		read_file(char **valueholder, int bytes, int fd);
-char	*insert_line(char **valueholder);
+char	*insert_line(char **valueholder, int len);
 void	update_holder(char **valueholder);
 char	*ft_strjoin(char const *s1, char const *s2);
 size_t	ft_strlen(const char *s);

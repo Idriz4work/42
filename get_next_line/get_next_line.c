@@ -6,40 +6,11 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:00:29 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/07 22:10:17 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/08 20:06:28 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-
-int	freeler(char **s1, char **s2, char **s3)
-{
-	int	i;
-
-	i = 0;
-	if (s1 && *s1)
-	{
-		free(*s1);
-		*s1 = NULL;
-	}
-	if (s2 && *s2)
-	{
-		while (s2[i] != NULL)
-		{
-			free(s2[i]);
-			s2[i] = NULL;
-			i++;
-		}
-		s2[i] = NULL;
-	}
-	if (s3 && *s3)
-	{
-		free(*s3);
-		*s3 = NULL;
-	}
-	return (1);
-}
 
 void	update_holder(char **valueholder)
 {
@@ -50,7 +21,7 @@ void	update_holder(char **valueholder)
 	j = 0;
 	if (!valueholder || !*valueholder)
 	{
-		freeler(valueholder, NULL, NULL);
+		free(*valueholder);
 		return ;
 	}
 	newline = ft_strchr(*valueholder, '\n');
@@ -68,7 +39,7 @@ void	update_holder(char **valueholder)
 	(*valueholder)[j] = '\0';
 }
 
-char	*insert_line(char **valueholder)
+char	*insert_line(char **valueholder, int len)
 {
 	int		i;
 	int		j;
@@ -77,10 +48,8 @@ char	*insert_line(char **valueholder)
 
 	i = 0;
 	j = 0;
-	if (!valueholder || !*valueholder)
-		return (NULL);
-	line = (char *)ft_calloc(ft_strlen(*valueholder) + 1, sizeof(char));
-	if (!line)
+	line = (char *)ft_calloc(len + 1, sizeof(char));
+	if (!line || (!valueholder || !*valueholder))
 		return (NULL);
 	indicator = ft_strchr(*valueholder, '\n');
 	if (indicator)
@@ -88,14 +57,14 @@ char	*insert_line(char **valueholder)
 		while ((*valueholder)[i] != '\n' && (*valueholder)[i] != '\0')
 			line[j++] = (*valueholder)[i++];
 		line[j++] = (*valueholder)[i++];
-		line[j] = '\0';
 		update_holder(valueholder);
 		return (line);
 	}
 	while ((*valueholder)[i] != '\0')
 		line[j++] = (*valueholder)[i++];
 	line[j] = '\0';
-	freeler(NULL, valueholder, NULL);
+	free(*valueholder);
+	*valueholder = NULL;
 	return (line);
 }
 
@@ -130,13 +99,21 @@ int	read_file(char **valueholder, int bytes, int fd)
 
 char	*gnl_helper(char **value, int result)
 {
+	int	i;
+
+	i = 0;
 	if (result < 0)
 	{
-		freeler(NULL, value, NULL);
+		free(*value);
+		*value = NULL;
 		return (NULL);
 	}
-	if (value && *value)
-		return (insert_line(value));
+	if ((value && *value) || result == 'c')
+	{
+		while ((*value)[i] != '\0')
+			i++;
+		return (insert_line(value, i));
+	}
 	return (NULL);
 }
 
@@ -150,13 +127,10 @@ char	*get_next_line(const int fd)
 	if (valueholder == NULL)
 		valueholder = (char *)ft_calloc(1, sizeof(char));
 	if (!valueholder || fd < 0 || BUFFER_SIZE <= 0)
-	{
-		freeler(NULL, &valueholder, NULL);
-		return (NULL);
-	}
+		return (gnl_helper(&valueholder, -1));
 	if (ft_strchr(valueholder, '\n'))
 	{
-		line = insert_line(&valueholder);
+		line = gnl_helper(&valueholder, 'c');
 		return (line);
 	}
 	result = read_file(&valueholder, 0, fd);
@@ -164,7 +138,8 @@ char	*get_next_line(const int fd)
 		result = read_file(&valueholder, 0, fd);
 	if ((valueholder && *valueholder) || result < 0)
 		return (gnl_helper(&valueholder, result));
-	freeler(NULL, &valueholder, NULL);
+	free(valueholder);
+	valueholder = NULL;
 	return (NULL);
 }
 
