@@ -1,28 +1,48 @@
+NAME = pipex
+CC = cc
+CFLAGS = -g #-Wall -Wextra -Werror
+AR = ar rcs
+RM = rm -f
 
-cc = cc
-FLAGS = -Wall -Wextra -Werror
-SRCS = $(wildcard *.c)     
-OBJS = $(SRCS:.c=.o)       
-TARGET = pipex 
+# Source files
+SRCS = sources/pipex.c sources/utilities.c
+OBJS = $(SRCS:.c=.o)
 
-# Default target, builds the program
-all: $(TARGET)
+# ft_printf settings (contains its own Libft)
+FTPRINT_DIR = ft_printf/
+FT_PRINTF = $(FTPRINT_DIR)libftprintf.a
 
-# Link object files to create the executable
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(TARGET)
+# Libft settings
+LIBFT_DIR = ft_printf/Libft/
+LIBFT = $(LIBFT_DIR)libft.a
 
-# Compile .c files to .o files
+# Main archive
+$(NAME): $(LIBFT) $(FT_PRINTF) $(OBJS)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FT_PRINTF) $(LIBFT)
+
+# Rule to build ft_printf
+$(FT_PRINTF):
+	$(MAKE) -C $(FTPRINT_DIR)
+
+# Rule to build libft
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
+# Compile source files
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(LIBFT_DIR) -I$(FTPRINT_DIR) 
 
-# Clean only object files
+# Cleaning rules
 clean:
-	rm -f $(OBJS)
+	$(RM) $(OBJS)
+	$(MAKE) -C $(FTPRINT_DIR) clean
+	$(MAKE) -C $(LIBFT_DIR) clean
 
-# Full clean, removes object files and the executable
 fclean: clean
-	rm -f $(TARGET)
+	$(RM) $(NAME)
+	$(MAKE) -C $(FTPRINT_DIR) fclean
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
-# Rebuild the project from scratch
-re: fclean all
+re: fclean $(NAME)
+
+.PHONY: all clean fclean re
