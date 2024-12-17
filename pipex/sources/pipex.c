@@ -6,78 +6,97 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 04:36:20 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/16 16:21:09 by marvin           ###   ########.fr       */
+/*   Updated: 2024/12/17 17:12:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipexe.h"
-
-int handle_piper(char **av, int argc, char **envp, int cmd_counter)
-{
-    int fd[2];
-    pid_t pid1;
-    int output_fd;
-    char *cmd_argv[];
-
-    // First child process
-    pid1 = fork();
-    if (pid1 == -1)
-    {
-        perror("fork");
-        return (1);
-    }
-    if (pid1 == 0)
-    {
-        close(fd[0]); // Close read end of pipe
-        dup2(fd[1], av[cmd_counter]); // Redirect stdout to pipe write end
-        close(fd[1]); // Close pipe write end after duplicating
-        cmd_argv = {"/bin/sh", "-c", av[2], NULL}; // Command arguments
-        execve("/bin/sh", cmd_argv, envp); // Execute command
-        perror("execve"); // Execve failed
-        exit(1);
-    }
-    pipe_connecter();
-    // Parent process
-    close(fd[0]); // Close read end of pipe
-    close(fd[1]); // Close write end of pipe
-    waitpid(pid1, NULL, 0); // Wait for first child to finish
-    waitpid(pid2, NULL, 0); // Wait for second child to finish
-}
 
 int pipe_connecter(char **av, int argc, char **envp, int cmd_counter)
 {
     int fd[2];
     pid_t pid1;
     int output_fd;
-    char *cmd2_argv[];
+    char *cmd_argv[999];
 
     // Second child process
+    output_fd = open(av[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
     pid1 = fork();
     if (pid1 == -1)
     {
         perror("fork");
-        return (1);
+        return (-1);
     }
     if (pid1 == 0) // Child process for argv[2]
     {
         close(fd[1]); // Close write end of pipe
-        dup2(fd[0], av[cmd_counter + 1]); // Redirect stdin to pipe read end
+        dup2(fd[0], STDOUT_FILENO); // Redirect stdin to pipe read end
+        cmd_argv[0] = "/bin/sh";
+        cmd_argv[1] = "-c";
+        cmd_argv[2] = av[cmd_counter];
+        cmd_argv[3] = NULL;
+        execve("/bin/sh", cmd_argv, envp);    
         close(fd[0]); // Close pipe read end after duplicating
     }
     if (pipe(fd) == -1) // Create the pipe
     {
         perror("pipe");
-        return (1);
+        return (-1);
     }
-    // Parent process
-    close(fd[0]); // Close read end of pipe
-    close(fd[1]); // Close write end of pipe
+    else{
+        // Parent process
+        close(fd[0]); // Close read end of pipe
+        close(fd[1]); // Close write end of pipe        
+    }
     return (1);
 }
+
+int handle_piper(char **av, int argc, char **envp, int cmd_counter)
+{
+    int fd[2];
+    pid_t pid1;
+    int output_fd;
+    char *cmd_argv[999];
+
+    // First child process
+    pid1 = fork();
+    if (pid1 == -1)
+    {
+        perror("fork");
+        return (-1);
+    }
+    if (pid1 == 0)
+    {
+        close(fd[0]); // Close read end of pipe
+        dup2(fd[1], STDOUT_FILENO); // Redirect stdout to pipe write end
+        close(fd[1]); // Close pipe write end after duplicating
+        cmd_argv[0] = "/bin/sh";
+        cmd_argv[1] = "-c";
+        cmd_argv[2] = av[cmd_counter];
+        cmd_argv[3] = NULL;
+        execve("/bin/sh", cmd_argv, envp); // Execute command
+        perror("execve"); // Execve failed
+        exit(1);
+    }
+    else
+    {
+        output_fd = open(av[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+        pipe_connecter(av,argc,envp,cmd_counter);
+        // Parent process
+        close(fd[0]); // Close read end of pipe
+        close(fd[1]); // Close write end of pipe
+        waitpid(pid1, NULL, 0); // Wait for first child to finish        
+    }
+    return 1;
+}
+
 
 int handle_commands(int argc, char **av, char **envp)
 {
     int cmd_counter;
+    char *cmd_argv[999];
+    int output_fd;
+    output_fd = open(av[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 
     cmd_counter = 1;
     while (ft_strncmp(av[cmd_counter], av[argc - 1], ft_strlen(av[argc - 1])) != 1)
@@ -85,7 +104,7 @@ int handle_commands(int argc, char **av, char **envp)
         handle_piper(av, argc, envp, cmd_counter);
         cmd_counter++;
     }
-    output_fd = open(av[argc - 1], O_WRONLY | O_CREAT | O_TRUNC, 0644); // Open output file
+    output_fd = open(av[argc - 1], O_WRONLY | O_CREAT, 0644); 
     if (output_fd == -1)
     {
         perror("open");
@@ -93,8 +112,11 @@ int handle_commands(int argc, char **av, char **envp)
     }
     dup2(output_fd, STDOUT_FILENO); // Redirect stdout to output file
     close(output_fd); // Close output file after duplicating
-    cmd2_argv = {"/bin/sh", "-c", av[cmd_counter + 1], NULL}; // Command arguments
-    execve("/bin/sh", cmd2_argv, envp); // Execute command
+    cmd_argv[0] = "/bin/sh";
+    cmd_argv[1] = "-c";
+    cmd_argv[2] = av[cmd_counter];
+    cmd_argv[3] = NULL;
+    execve("/bin/sh", cmd_argv, envp); // Execute command
     perror("execve"); // Execve failed
     exit(1);
     return (1);
