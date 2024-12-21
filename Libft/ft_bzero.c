@@ -6,11 +6,11 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:19:26 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/11 19:20:28 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:09:48 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
+#include "libft.h" 
 
 void	ft_bzero(void *s, size_t n)
 {

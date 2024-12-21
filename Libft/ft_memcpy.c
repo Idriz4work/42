@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:14:58 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/16 22:19:45 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/16 22:28:38 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	dst_char = (unsigned char *)dst;
 	src_char = (const unsigned char *)src;
-	if (n == 0 ||(dst == NULL && src == NULL))
+	if (n == 0)
+		return (dst);
+	if (dst == NULL && src == NULL)
 		return (dst);
 	if (dst == NULL || src == NULL)
 	{

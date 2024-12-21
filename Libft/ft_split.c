@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:13:27 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/11/16 22:20:17 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/11/19 20:32:55 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,30 @@
 int	word_count(char const *s, char c)
 {
 	int	i;
-	int	j;
+	int	inside_word;
+	int	wordcounts;
 
 	i = 0;
-	j = 1;
+	inside_word = 0;
+	wordcounts = 0;
 	while (s[i] != '\0')
 	{
+		if (s[i] != c && inside_word == 0)
+		{
+			inside_word = 1;
+			wordcounts++;
+		}
 		if (s[i] == c)
-			j++;
+			inside_word = 0;
 		i++;
 	}
-	return (j);
+	return (wordcounts);
 }
 
-int	remove_all(char **array, int j)
+int	remove_all(char **array, int identificator)
 {
-	while (j > 0)
-		free(array[--j]);
+	while (identificator > 0)
+		free(array[--identificator]);
 	free(array);
 	return (-1);
 }
@@ -44,7 +51,7 @@ int	copy_one(char **array, int c, int i, char const *s)
 	while (s[i + word_len] != '\0' && s[i + word_len] != c)
 		word_len++;
 	*array = (char *)malloc(sizeof(char) * (word_len + 1));
-	if (!array)
+	if (!(*array))
 		return (-1);
 	return (word_len);
 }
@@ -52,28 +59,28 @@ int	copy_one(char **array, int c, int i, char const *s)
 int	copyarray(char **array, char c, char const *s)
 {
 	int	i;
-	int	j;
+	int	identificator;
 	int	counter_a;
 	int	word_len;
 
 	i = 0;
-	j = 0;
+	identificator = 0;
 	while (s[i] != '\0')
 	{
 		counter_a = 0;
 		if (s[i] != c)
 		{
-			word_len = copy_one(&array[j], c, i, s);
+			word_len = copy_one(&array[identificator], c, i, s);
 			if (word_len == -1)
-				return (remove_all(array, j));
+				return (remove_all(array, identificator));
 			while (counter_a < word_len)
-				array[j][counter_a++] = s[i++];
-			array[j++][counter_a] = '\0';
+				array[identificator][counter_a++] = s[i++];
+			array[identificator++][counter_a] = '\0';
 		}
 		else
 			i++;
 	}
-	array[j] = NULL;
+	array[identificator] = NULL;
 	return (word_len);
 }
 
@@ -87,15 +94,12 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	i = word_count(s, c);
 	array = (char **)malloc(sizeof(char *) * (i + 1));
-	if (!array)
+	if (array == NULL)
 		return (NULL);
 	array[i] = NULL;
 	result = copyarray(array, c, s);
-	if (result == -1)
-	{
-		free(array);
+	if (result == -1 || array == NULL)
 		return (NULL);
-	}
 	return (array);
 }
 // int	test_single_split(void)
@@ -160,14 +164,14 @@ char	**ft_split(char const *s, char c)
 
 // int	main(void)
 // {
+// 	char	**result;
+// 	int		identificator;
+
 // 	// char s[] = "Hello , my name is Ati, Nice to see you !";
 // 	// char c = ',';
-// 	char **result;
-// 	int j;
-
 // 	// result = ft_split(s, c);
-// 	// int j = test_single_split();
-// 	// if (j == 0)
+// 	// int identificator = test_single_split();
+// 	// if (identificator == 0)
 // 	// {
 // 	// 	printf("FAILED at first test\n");
 // 	// 	return (0);
@@ -177,21 +181,21 @@ char	**ft_split(char const *s, char c)
 // 	// 	printf("\n");
 // 	// }
 // 	result = ft_split("hello!", ' ');
-// 	// if (result == NULL)
-// 	// {
-// 	// 	printf("Memory allocation failed\n");
-// 	// 	return (1);
-// 	// }
-// 	while (result[j] != NULL)
+// 	if (result == NULL)
 // 	{
-// 		printf("%s", result[j]);
-// 		j++;
+// 		printf("Memory allocation failed\n");
+// 		return (1);
 // 	}
-// 	j = 0;
-// 	while (result[j] != NULL)
+// 	while (result[identificator] != NULL)
 // 	{
-// 		free(result[j]);
-// 		j++;
+// 		printf("%s", result[identificator]);
+// 		identificator++;
+// 	}
+// 	identificator = 0;
+// 	while (result[identificator] != NULL)
+// 	{
+// 		free(result[identificator]);
+// 		identificator++;
 // 	}
 // 	free(result);
 // 	return (0);
