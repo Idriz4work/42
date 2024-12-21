@@ -61,4 +61,4 @@ Throughout these projects, I've gained experience in:
 
 Feel free to reach out if you have any questions about my projects or 42 School experience!
 
-[Your contact information or links to your professional profiles]
+
