@@ -63,7 +63,7 @@ As of July 2021, the following flags are part of the bonus:
 | Bonus Flag | Description |
 |------------|-------------|
 | #          | Adds "0X" or "0x" to conversions with hexadecimal specifiers (excluding p) for values other than zero |
-| (space)    | A blank space is added provided that no sign is specified |
+| ' '        | A blank space is added provided that no sign is specified |
 | +          | Adds a plus sign in front of positive numbers |
 
 ## Limitations
@@ -91,7 +91,7 @@ Required dependencies:
 
 1. Clone the repository:
 ```bash
-git clone https://gitlab.com/madebypixel02/ft_printf.git
+git clone https://gitlab.com/Idriz4work/42/ft_printf.git
 cd ft_printf
 ```
 
