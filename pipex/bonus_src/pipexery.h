@@ -1,29 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   pipexery.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/13 05:11:11 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/25 04:16:01 by iatilla-         ###   ########.fr       */
+/*   Created: 2024/12/25 04:44:39 by iatilla-          #+#    #+#             */
+/*   Updated: 2024/12/25 05:51:04 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#include "pipex_heredoc.c"
 
-# include "../Libft/get_next_line/get_next_line.h"
-# include "../Libft/libft.h"
-# include "../ft_printf/ft_printf_bonus.h"
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <sys/wait.h>
-# include <unistd.h>
-
-char	*get_specific_bin(char **binaries);
-char	*get_right_path(char **envp);
-void	execute_cmd(char *cmd, char **envp);
-
-#endif // PIPEX_H
+void	handle_bonus(int argc, char **av, char **envp);

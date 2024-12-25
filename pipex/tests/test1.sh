@@ -35,3 +35,5 @@ tac pipex.c > test9
 # Test 10: Display file permissions of pipex.c and write to test10
 ls -l pipex.c | awk '{print $1}' > test10
 
+
+ls -l pipex.c | sleep 4 | echo hello > test11
