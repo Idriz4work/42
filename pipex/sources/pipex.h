@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 05:11:11 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/21 10:32:26 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/25 01:24:56 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@
 #include <fcntl.h>
 #include <sys/wait.h>
 
-int pipex(int argc,char **format);
-int handle_multiple_cmd(char **format);
+void	execute_cmd(char *cmd, char **envp);
+char	*get_right_path(char **envp);
+
+// typedef struct path{
+// 	char *path;
+	
+// } pathy;
 
 #endif

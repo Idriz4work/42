@@ -2,6 +2,9 @@
 
 # Basic Tests
 
+# TEST STANDARD
+cat file1 | grep a1 | wc -w > testSTANDARD
+
 # Test 1: Count lines in pipex.c and write to test1
 cat pipex.c | wc -l > test1
 
