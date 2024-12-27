@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 07:50:43 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/25 08:45:55 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/27 16:10:58 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 // stack struct 
 typedef struct stk
 {
-	t_list	a;
-	t_list	b;
+	t_list	**a;
+	t_list	**b;
 }			stack;
 
 // Function to handle operations for the push_swap project
