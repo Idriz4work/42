@@ -85,3 +85,14 @@ int	main(int argc, char **av, char **envp)
 	close(piper.output_fd);
 	return (0);
 }
+total 56
+-rwxr-xr-x 1 iatilla- 2024_wolfsburg 19560 Dez 27 15:48 a.out
+-rw-r--r-- 1 iatilla- 2024_wolfsburg  2841 Dez 18 16:07 NOTES.md
+drwxr-xr-x 2 iatilla- 2024_wolfsburg  4096 Dez 27 12:03 outputs
+-rw-r--r-- 1 iatilla- 2024_wolfsburg     2 Dez 27 08:07 test1
+-rw-r--r-- 1 iatilla- 2024_wolfsburg  3744 Dez 27 12:03 test1.sh
+-rw-r--r-- 1 iatilla- 2024_wolfsburg     6 Dez 27 08:12 test2
+-rw-r--r-- 1 iatilla- 2024_wolfsburg    24 Dez 27 13:42 test2.out
+-rwxr-xr-x 1 iatilla- 2024_wolfsburg    24 Dez 27 14:03 test3.out
+-rw-r--r-- 1 iatilla- 2024_wolfsburg  2756 Dez 23 07:24 test_bonus.sh
+-rw-r--r-- 1 iatilla- 2024_wolfsburg    24 Dez 27 13:43 testout

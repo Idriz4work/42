@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 05:11:11 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/25 04:16:01 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/27 15:44:50 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,14 @@
 char	*get_specific_bin(char **binaries);
 char	*get_right_path(char **envp);
 void	execute_cmd(char *cmd, char **envp);
+
+typedef struct pipe
+{
+	int pipe[2];
+	int previous;
+	int output_fd;
+	int input_fd;
+	char *cmd[5];
+} pipex ;
 
 #endif // PIPEX_H

@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 04:35:52 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/25 04:12:35 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/27 07:09:18 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,20 @@ char	*get_right_path(char **envp)
 	return (path); // Return NULL if "sh" was not found in any directory
 }
 
-void	execute_cmd(char *cmd, char **envp)
-{
-	char	*path;
-	char	*cmd_argv[4];
+// void	execute_cmd(char *cmd, char **envp)
+// {
+// 	char	*path;
+// 	char	*cmd_argv[4];
 
-	path = get_right_path(envp);
-	if (!path)
-		exit(1);
-	cmd_argv[0] = path;
-	cmd_argv[1] = "-c";
-	cmd_argv[2] = cmd;
-	cmd_argv[3] = NULL;
-	execve(path, cmd_argv, envp);
-	perror("execve failed");
-	free(path);
-	exit(1);
-}
+// 	path = get_right_path(envp);
+// 	if (!path)
+// 		exit(1);
+// 	cmd_argv[0] = path;
+// 	cmd_argv[1] = "-c";
+// 	cmd_argv[2] = cmd;
+// 	cmd_argv[3] = NULL;
+// 	execve(path, cmd_argv, envp);
+// 	perror("execve failed");
+// 	free(path);
+// 	exit(1);
+// }
