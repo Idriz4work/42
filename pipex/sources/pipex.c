@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/13 04:36:20 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/30 04:27:31 by iatilla-         ###   ########.fr       */
+/*   Updated: 2024/12/30 04:59:16 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,13 @@
 
 void	child_process(pipex *piper, char **envp, int cmd_index, int argc)
 {
-	ft_printf("Child process %d executing: %s\n", cmd_index, piper->cmd);
-	close(piper->pipe[0]);
-	if (dup2(piper->previous, STDIN_FILENO) == -1)
-	{
-		perror("dup2 failed on input");
-		exit(1);
-	}
-	if (cmd_index == argc - 2)
-	{
-		if (dup2(piper->output_fd, STDOUT_FILENO) == -1)
-		{
-			perror("dup2 failed on output");
-			exit(1);
-		}
-	}
-	else
-	{
-		if (dup2(piper->pipe[1], STDOUT_FILENO) == -1)
-		{
-			perror("dup2 failed on pipe");
-			exit(1);
-		}
-	}
-	close(piper->previous);
-	close(piper->pipe[1]);
-	if (piper->output_fd > 0)
-		close(piper->output_fd);
+
 	execute_cmd(piper->cmd, envp, piper);
 }
 
 void	parrent_process(pipex *piper)
 {
-	if (piper->previous != piper->input_fd)
-		close(piper->previous);
-	close(piper->pipe[1]);
-	piper->previous = piper->pipe[0];
+
 }
 
 int	piper_process(int argc, char **av, char **envp, pipex *piper)
@@ -127,16 +98,3 @@ int	main(int argc, char **av, char **envp)
 	printf("Successfully written to %s\n", av[argc - 1]);
 	return (0);
 }
-total 40
--rw-r--r-- 1 iatilla- 2024_wolfsburg    0 Dez 30 03:39 heyo
--rw-r--r-- 1 iatilla- 2024_wolfsburg    6 Dez 30 04:51 heyos
--rw-r--r-- 1 iatilla- 2024_wolfsburg 2841 Dez 18 16:07 NOTES.md
--rw-r--r-- 1 iatilla- 2024_wolfsburg    0 Dez 30 03:35 output
-drwxr-xr-x 2 iatilla- 2024_wolfsburg 4096 Dez 27 12:03 outputs
--rw-r--r-- 1 iatilla- 2024_wolfsburg    2 Dez 27 08:07 test1
--rw-r--r-- 1 iatilla- 2024_wolfsburg 3748 Dez 30 04:54 test1.sh
--rw-r--r-- 1 iatilla- 2024_wolfsburg    6 Dez 27 08:12 test2
--rw-r--r-- 1 iatilla- 2024_wolfsburg   24 Dez 27 13:42 test2.out
--rwxr-xr-x 1 iatilla- 2024_wolfsburg   24 Dez 27 14:03 test3.out
--rw-r--r-- 1 iatilla- 2024_wolfsburg 2756 Dez 23 07:24 test_bonus.sh
--rw-r--r-- 1 iatilla- 2024_wolfsburg   24 Dez 27 13:43 testout

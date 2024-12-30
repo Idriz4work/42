@@ -22,7 +22,7 @@ fi
 
 # Test 2: Count lines in ../sources/pipex.c
 cat ../sources/pipex.c | wc -l > outputs/test2
-../sources/a.out ../sources/pipex.c "cat" "wc -l" outputs/test2_pipex
+../sources/a.out "../sources/pipex.c" "cat" "wc -l" "outputs/test2_pipex"
 
 if diff -q outputs/test2 outputs/test2_pipex > /dev/null; then
     echo "Test 2: Passed"
