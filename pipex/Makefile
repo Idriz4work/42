@@ -5,15 +5,15 @@ AR = ar rcs
 RM = rm -f
 
 # Source files
-SRCS = sources/pipex.c sources/pipex_path.c
+SRCS = sources/pipex.c sources/pipex_path.c sources/pipex_comands.c
 OBJS = $(SRCS:.c=.o)
 
 # ft_printf settings (contains its own Libft)
-FTPRINT_DIR = ft_printf/
+FTPRINT_DIR = includes/ft_printf/
 FT_PRINTF = $(FTPRINT_DIR)libftprintf.a
 
 # Libft settings
-LIBFT_DIR = Libft/
+LIBFT_DIR = includes/Libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
 # Main archive
