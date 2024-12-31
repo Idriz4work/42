@@ -21,7 +21,6 @@ Welcome to my 42 School projects repository! This README provides an overview of
 | ft_printf | Code your own printf! | Parsing, variational functions | Solo | ✅ | 114 | 18-11-30 | 18-12-23 |
 | Push_swap | Sort a stack as efficiently as possible | Sorting algorithms, basics of stacks manipulations | Solo | ✅ | 0 | 18-12-27 | 19-02-11 |
 | Lem-in | How long will it take the ants to get out of their maze? | Graph search, max flow problem | Group |  |  | 19-03-06 | 19-04-29 |
-| Corewar | Let the fight begin! | Compilation, simple VM, simplified assembler, visualization | Group |  |  | 19-30-04 | 19-07-15 |
 
 ### 🎮 Graphics Branch
 
