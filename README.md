@@ -34,7 +34,7 @@ Welcome to my 42 School projects repository! This README provides an overview of
 | Project Name | Description | Goals | Type | Status | Grade | Start Date | End Date |
 |--------------|-------------|-------|------|--------|-------|------------|----------|
 | Init | Introduction to systems administration and networks | Unix, systems administration | Solo |  | ? | 18-12-13 | 18-12-22 |
-| Born2beroot | Setting up a own server | Micro services, docker, unix, containers, DevOps | Solo | ✅ | - | - | - |
+| Born2beroot | Setting up a own server | Micro services, docker, unix, containers, DevOps | Solo | ✅ | 123 | - | - |
 | Docker-1 | Think with containers! | Micro services, docker, unix, containers, DevOps | Solo | ⌛ | - | - | - |
 
 ## 📊 Skills Acquired
