@@ -3,6 +3,7 @@
 Pipex is a project that re-creates the shell pipe functionality (`|`) in C. It simulates piping by allowing the output of one command to be passed as input to another, using system calls like `pipe()`, `fork()`, `dup2()`, and `execve()`.
 
 ## Table of Contents
+- [Clone](#Clone-repository)
 - [Usage](#usage)
 - [How It Works](#how-it-works)
   - [Core System Calls](#core-system-calls)
