@@ -15,6 +15,11 @@ Pipex is a project that re-creates the shell pipe functionality (`|`) in C. It s
 - [Debugging Tips](#debugging-tips)
 - [License](#license)
 
+## Clone reposotory
+```bash
+git clone https://github.com/Idriz4work/42/pipex
+```
+
 ## Usage
 
 ### Compilation
