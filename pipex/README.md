@@ -18,7 +18,7 @@ Pipex is a project that re-creates the shell pipe functionality (`|`) in C. It s
 
 ## Clone repository
 ```bash
-git clone https://github.com/Idriz4work/42/pipex
+git clone https://github.com/Idriz4work/42/tree/main/pipex
 ```
 
 ## Usage
