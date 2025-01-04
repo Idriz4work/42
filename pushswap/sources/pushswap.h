@@ -6,26 +6,28 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 07:50:43 by iatilla-          #+#    #+#             */
-/*   Updated: 2024/12/27 16:10:58 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/04 04:25:10 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "Libft/ft_printf/ft_printf.h"
-# include "Libft/get_next_line/get_next_line.h"
-# include "Libft/libft.h"
+#include "../includes/Libft/libft.h"
+# include "../includes/ft_printf/ft_printf_bonus.h"
+# include "../includes/Libft/get_next_line/get_next_line.h"
+#include <limits.h>
 
 // stack struct 
 typedef struct stk
 {
 	t_list	**a;
 	t_list	**b;
+	t_list *next;
 }			stack;
 
 // Function to handle operations for the push_swap project
-void		handle_ops(void);
+// void		handle_ops(void);
 void		rotate_a(void);
 void		rotate_b(void);
 void		rotate_anb(void);
