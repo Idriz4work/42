@@ -6,38 +6,33 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 07:50:46 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/04 05:04:07 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/05 12:34:53 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void	rotate_a(void)
+t_stk_top*	rotate_a(t_stk_top* staks)
 {
 	ft_printf("ra\n");
 }
 
-void	rotate_b(void)
+t_stk_top*	rotate_b(t_stk_top* staks)
 {
 	ft_printf("rb\n");
 }
 
-void	rotate_anb(void)
+t_stk_top*	rotate_anb(t_stk_top* staks)
 {
 	ft_printf("rr\n");
 }
 
-void	reversey_ra(void)
+t_stk_top*	reversey_ra(t_stk_top* staks)
 {
 	ft_printf("rra\n");
 }
 
-void	reversy_rb(void)
+t_stk_top*	reversy_rb(t_stk_top* staks)
 {
 	ft_printf("rrb\n");
-}
-
-void	reversey_rev_ranrb(void)
-{
-	ft_printf("rrr\n");
 }

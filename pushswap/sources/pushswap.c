@@ -6,19 +6,49 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 07:50:40 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/04 05:37:59 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/05 15:53:45 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int handle_sorter(char **values)
+int	initialize_stack(t_stk_top **stak, t_node **nodes)
 {
-	stack stak;
-	int res;
+	*stak = malloc(sizeof(t_stk_top));
+	if (!*stak)
+		return (-1);
+	*nodes = malloc(sizeof(t_node));
+	if (!*nodes)
+	{
+		free(*stak);
+		return (-1);
+	}
+	(*stak)->a = NULL;
+	(*stak)->b = NULL;
+	return (0);
+}
 
+int	handle_sorter(char **values)
+{
+	t_stk_top	*stak;
+	t_node		*nodes;
+	int			res;
+	int			i;
+
+	i = 1;
 	res = 0;
-	return res;
+	if (initialize_stack(&stak, &nodes) == -1)
+	{
+		ft_printf("Error\n");
+		return (-1);
+	}
+	while (values[i] != NULL)
+		stak = push_a(ft_atoi(values[i++]), stak);
+	// stak = pop_a(stak);
+	// stak = pop_a(stak);
+	stak = swap_a(stak);
+	print_stack(stak,1);
+	return (res);
 }
 
 int	handle_ops(char **argv)
