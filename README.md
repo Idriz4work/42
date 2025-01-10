@@ -17,7 +17,6 @@ Welcome to my 42 School projects repository! This README provides an overview of
 |--------------|-------------|-------|------|--------|-------|
 | ft_printf | Code your own printf! | Parsing, variational functions | Solo | ✅ | 114 |
 | Push_swap | Sort a stack as efficiently as possible | Sorting algorithms, basics of stacks manipulations | Solo | ✅ | 0 |
-| Lem-in | How long will it take the ants to get out of their maze? | Graph search, max flow problem | Group |  |  |
 
 ### 🎮 Graphics Branch
 | Project Name | Description | Goals | Type | Status | Grade |
@@ -45,6 +44,7 @@ Throughout these projects, I've gained experience in:
 - Completed the Common Core curriculum
 - Explored multiple branches: Algo, Graphics, Systems Administration, and Web
 - Achieved perfect scores (125) in several challenging projects
+- 
 
 ## 📬 Contact
 Feel free to reach out if you have any questions about my projects or 42 School experience!
