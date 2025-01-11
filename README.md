@@ -39,6 +39,7 @@ Throughout these projects, I've gained experience in:
 - Web development (Full stack)
 - Group project collaboration
 - Problem-solving and optimization
+- Social skills
 
 ## 🏆 Achievements
 - Completed the Common Core curriculum
