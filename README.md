@@ -40,6 +40,7 @@ Throughout these projects, I've gained experience in:
 - Group project collaboration
 - Problem-solving and optimization
 - Social skills
+- Start up club
 
 ## 🏆 Achievements
 - Completed the Common Core curriculum
