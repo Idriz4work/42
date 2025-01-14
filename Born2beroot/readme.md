@@ -193,7 +193,7 @@ sudo crontab -u root -e
 
 ### Creating Signature
 1. Shutdown virtual machine
-2. Generate signature:
+2. Generate signature after shutingdown machine:
 ```bash
 cd sgoinfre/students/<your_intra_username>/VirtualBox\ VMs
 shasum VirtualBox.vdi > signature.txt
