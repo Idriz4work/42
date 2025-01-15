@@ -1,51 +1,58 @@
-NAME=fdf
-CC=cc
-FLAGS=-g -Wall -Werror -Wextra
-RM = rm -f
+NAME = fdf
 
 # Source files
-SRCS = sources/FdF.c sources/FdF_utils.c 
-
+SRCS = sources/FdF.c sources/FdF_utils.c
 OBJS = $(SRCS:.c=.o)
-BONUS_OBJS = $(BONUS:.c=.o)
 
-# ft_printf settings (contains its own Libft)
-FTPRINT_DIR = includes/ft_printf/
-FT_PRINTF = $(FTPRINT_DIR)libftprintf.a
+# Compiler and flags
+CC = cc
+CFLAGS =  -g
 
-# Libft settings
-LIBFT_DIR = includes/Libft/
-LIBFT = $(LIBFT_DIR)libft.a
+# Include paths
+INCLUDES = -I./includes/Libft -I./includes/ft_printf -I./provided_sources/minilibx-linux
 
-# Main archive
+# Libraries paths
+LIBFT_DIR = includes/Libft
+PRINTF_DIR = includes/ft_printf
+MLX_DIR = provided_sources/minilibx-linux
+
+# Libraries
+LIBFT = $(LIBFT_DIR)/libft.a
+PRINTF = $(PRINTF_DIR)/libftprintf.a
+MLX = $(MLX_DIR)/libmlx.a
+
+# Linux-specific flags for MLX
+MLX_FLAGS = -lXext -lX11 -lm -lz
+
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(FT_PRINTF) $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(FT_PRINTF) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT) $(PRINTF) $(MLX)
+	$(CC) $(OBJS) -L$(PRINTF_DIR) -lftprintf -L$(LIBFT_DIR) -lft $(MLX) $(MLX_FLAGS) -o $(NAME)
 
-# Rule to build ft_printf
-$(FT_PRINTF):
-	$(MAKE) -C $(FTPRINT_DIR)
-
-# Rule to build libft
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_DIR)
-
-# Compile source files
 %.o: %.c
-	$(CC) $(CFLAGS) -c -no-pie $< -o $@ -Iincludes -I$(LIBFT_DIR) -I$(FTPRINT_DIR)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-# Cleaning rules
+$(LIBFT):
+	make -C $(LIBFT_DIR)
+
+$(PRINTF):
+	make -C $(PRINTF_DIR)
+
+$(MLX):
+	make -C $(MLX_DIR)
+
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
-	$(MAKE) -C $(FTPRINT_DIR) clean
-	$(MAKE) -C $(LIBFT_DIR) clean
+	make -C $(LIBFT_DIR) clean
+	make -C $(PRINTF_DIR) clean
+	make -C $(MLX_DIR) clean
+	rm -f $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME) $(NAME)_bonus
-	$(MAKE) -C $(FTPRINT_DIR) fclean
-	$(MAKE) -C $(LIBFT_DIR) fclean
+	make -C $(LIBFT_DIR) fclean
+	make -C $(PRINTF_DIR) fclean
+	rm -f $(MLX)
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
