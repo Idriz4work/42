@@ -6,11 +6,56 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 07:50:40 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/05 15:53:45 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/18 20:22:11 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
+
+void process_values(t_stk_top *stak, int start)
+{
+	t_node	*original;
+	int		i;
+
+	original = stak->a; 
+	i = 0;
+	while (stak->a != NULL)
+	{
+		if (i == start)
+			break ;
+		i++;
+		stak->a = stak->a->next;
+	}
+	while (stak->a != NULL && stak->a->next != NULL)
+	{
+		if (stak->a->content > stak->a->next->content)
+			swap_a(stak);
+		else
+			merge_sort(&stak, 0, 0);
+		stak->a = stak->a->next;
+	}
+	stak->a = original; 
+}
+
+int	check_sorted(t_stk_top *stak)
+{
+	int		index;
+	t_node	*current;
+
+	index = 0;
+	current = stak->a; 
+	while (current != NULL && current->next != NULL)
+	{
+		if (current->content < current->next->content)
+		{
+			index++;
+			current = current->next;
+			continue ;
+		}
+		return (index);
+	}
+	exit(1);
+}
 
 int	initialize_stack(t_stk_top **stak, t_node **nodes)
 {
@@ -28,27 +73,25 @@ int	initialize_stack(t_stk_top **stak, t_node **nodes)
 	return (0);
 }
 
-int	handle_sorter(char **values)
+int	fill_stack(char **values)
 {
 	t_stk_top	*stak;
 	t_node		*nodes;
-	int			res;
 	int			i;
+	int			starting_point;
 
 	i = 1;
-	res = 0;
 	if (initialize_stack(&stak, &nodes) == -1)
 	{
 		ft_printf("Error\n");
 		return (-1);
 	}
 	while (values[i] != NULL)
-		stak = push_a(ft_atoi(values[i++]), stak);
-	// stak = pop_a(stak);
-	// stak = pop_a(stak);
-	stak = swap_a(stak);
-	print_stack(stak,1);
-	return (res);
+		push_a(ft_atoi(values[i++]), stak);
+	starting_point = check_sorted(stak);
+	process_values(stak, starting_point);
+	print_stack(stak, 'a');
+	return (0);
 }
 
 int	handle_ops(char **argv)
@@ -70,7 +113,7 @@ int	handle_ops(char **argv)
 				was_already++;
 		if (ft_isdigit(save) == 0 || was_already > 0)
 		{
-			ft_printf("Error\n");
+			ft_printf("Error op\n");
 			return (1);
 		}
 		i++;
@@ -83,8 +126,8 @@ int	main(int argc, char **argv)
 	if (argc < 2)
 		return (-1);
 	if (handle_ops(argv) == -1)
-		return (-1);
-	if (handle_sorter(argv) == -1)
-		return (-1);
+		return (-2);
+	if (fill_stack(argv) == -1)
+		return (-3);
 	return (0);
 }
