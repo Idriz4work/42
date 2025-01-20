@@ -104,6 +104,3 @@ Functions include:
 ## Contact
 For any questions or suggestions regarding this documentation, please contact:
 - 42 Intra: iatilla-
-
----
-*This documentation is a work in progress. Feel free to suggest improvements or report issues.*
