@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 08:28:02 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/18 20:23:11 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/22 23:05:52 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	swap_a(t_stk_top *stak)
 	if (stak->a == NULL || stak->a->next == NULL)
 		return ;
 	first = stak->a;
-	second = first->next;
-	remainder = second->next;
+	second = stak->a->next;
+	remainder = stak->a->next->next;
 
-	stak->a = first;
-	first->next = second;
-	second->next = remainder;
+	stak->a = second;
+	second->next = first;
+	first->next = remainder;
 	ft_printf("sa\n");
 }
 
@@ -39,12 +39,12 @@ void	swap_b(t_stk_top *stak)
 	if (stak->b == NULL || stak->b->next == NULL)
 		return ;
 	first = stak->b;
-	second = first->next;
-	remainder = second->next;
+	second = stak->b->next;
+	remainder = stak->b->next->next;
 
-	stak->b = first;
-	first->next = second;
-	second->next = remainder;
+	stak->b = second;
+	second->next = first;
+	first->next = remainder;
 	ft_printf("sb\n");
 }
 

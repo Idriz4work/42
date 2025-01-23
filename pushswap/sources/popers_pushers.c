@@ -6,7 +6,7 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 12:32:38 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/18 20:25:16 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/22 22:29:47 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,26 @@
 
 void	push_a(int value, t_stk_top *stak)
 {
-	t_list	*newnode;
+	t_node	*newnode;
 
-	newnode = ft_lstnew(malloc(sizeof(int)));
-	if (!newnode || !newnode->content)
-		return ;
-	*(int *)(newnode->content) = value;
-	ft_lstadd_front((t_list **)&stak->a, newnode);
+	newnode = (t_node *)malloc(sizeof(t_node));
+	if (!newnode)
+		exit(EXIT_FAILURE);
+	newnode->contentt = value;
+	newnode->next = stak->a;  
+	stak->a = newnode;        
 }
 
 void	push_b(int value, t_stk_top *stak)
 {
-	t_list	*newnode;
+	t_node	*newnode;
 
-	newnode = ft_lstnew(malloc(sizeof(int)));
-	if (!newnode || !newnode->content)
-		return ;
-	*(int *)(newnode->content) = value;
-	ft_lstadd_front((t_list **)&stak->b, newnode);
+	newnode = (t_node *)malloc(sizeof(t_node));
+	if (!newnode)
+		exit(EXIT_FAILURE);
+	newnode->contentt = value; 
+	newnode->next = stak->b;   
+	stak->b = newnode;         
 }
 
 void	pop_a(t_stk_top *stak)
@@ -42,7 +44,7 @@ void	pop_a(t_stk_top *stak)
 		return ;
 	temp = stak->a;
 	stak->a = temp->next;
-	ft_lstdelone((t_list *)temp, free);
+	free(temp);	
 }
 
 void	pop_b(t_stk_top *stak)
@@ -53,7 +55,7 @@ void	pop_b(t_stk_top *stak)
 		return ;
 	temp = stak->b;
 	stak->b = temp->next;
-	ft_lstdelone((t_list *)temp, free);
+	free(temp);	
 }
 
 void	print_stack(t_stk_top *stak, int a_b)
@@ -65,7 +67,7 @@ void	print_stack(t_stk_top *stak, int a_b)
 		current = stak->a;
 		while (current != NULL)
 		{
-			ft_printf("%d ", *(int *)current->content);
+			ft_printf("%d ", current->contentt);
 			current = current->next;
 		}
 	}
@@ -74,7 +76,7 @@ void	print_stack(t_stk_top *stak, int a_b)
 		current = stak->b;
 		while (current != NULL)
 		{
-			ft_printf("%d ", *(int *)current->content);
+			ft_printf("%d ", current->contentt);
 			current = current->next;
 		}
 	}

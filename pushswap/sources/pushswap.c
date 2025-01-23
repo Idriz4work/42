@@ -6,71 +6,35 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/25 07:50:40 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/18 20:22:11 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/23 00:56:18 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-void process_values(t_stk_top *stak, int start)
+void	process_values(t_stk_top *stak, int start)
 {
-	t_node	*original;
-	int		i;
+	int	i;
 
-	original = stak->a; 
 	i = 0;
-	while (stak->a != NULL)
-	{
-		if (i == start)
-			break ;
-		i++;
-		stak->a = stak->a->next;
-	}
+	// while (stak->a != NULL)
+	// {
+	// 	if (i == start)
+	// 		break ;
+	// 	i++;
+	// 	stak->a = stak->a->next;
+	// }
 	while (stak->a != NULL && stak->a->next != NULL)
 	{
-		if (stak->a->content > stak->a->next->content)
-			swap_a(stak);
+		osman_sort_algorithm(stak);
+		print_stack(stak, 'a');
+		i = check_sorted(stak);
+		if (i == ft_lstsize((t_list *)stak))
+			return ;
 		else
-			merge_sort(&stak, 0, 0);
-		stak->a = stak->a->next;
+			stak->a = stak->a->next;
+		// print_stack(stak, 'b');
 	}
-	stak->a = original; 
-}
-
-int	check_sorted(t_stk_top *stak)
-{
-	int		index;
-	t_node	*current;
-
-	index = 0;
-	current = stak->a; 
-	while (current != NULL && current->next != NULL)
-	{
-		if (current->content < current->next->content)
-		{
-			index++;
-			current = current->next;
-			continue ;
-		}
-		return (index);
-	}
-	exit(1);
-}
-
-int	initialize_stack(t_stk_top **stak, t_node **nodes)
-{
-	*stak = malloc(sizeof(t_stk_top));
-	if (!*stak)
-		return (-1);
-	*nodes = malloc(sizeof(t_node));
-	if (!*nodes)
-	{
-		free(*stak);
-		return (-1);
-	}
-	(*stak)->a = NULL;
-	(*stak)->b = NULL;
-	return (0);
 }
 
 int	fill_stack(char **values)
@@ -90,34 +54,6 @@ int	fill_stack(char **values)
 		push_a(ft_atoi(values[i++]), stak);
 	starting_point = check_sorted(stak);
 	process_values(stak, starting_point);
-	print_stack(stak, 'a');
-	return (0);
-}
-
-int	handle_ops(char **argv)
-{
-	char	save;
-	int		was_already;
-	int		i;
-	int		j;
-
-	j = 0;
-	i = 1;
-	while (argv[i] != NULL)
-	{
-		was_already = 0;
-		save = argv[i][0];
-		j = i + 1;
-		while (argv[j] != NULL)
-			if (save == argv[j++][0])
-				was_already++;
-		if (ft_isdigit(save) == 0 || was_already > 0)
-		{
-			ft_printf("Error op\n");
-			return (1);
-		}
-		i++;
-	}
 	return (0);
 }
 
