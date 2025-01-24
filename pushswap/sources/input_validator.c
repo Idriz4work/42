@@ -6,22 +6,22 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/18 21:55:49 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/22 22:17:09 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/24 03:27:33 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
-int	check_sorted(t_stk_top *stak)
+int	check_sorted(t_stack_top *stak)
 {
 	int		index;
-	t_node	*current;
+	t_list	*current;
 
 	index = 0;
 	current = stak->a;
 	while (current != NULL && current->next != NULL)
 	{
-		if (current->contentt < current->next->contentt)
+		if (current->content < current->next->content)
 		{
 			index++;
 			current = current->next;
@@ -32,12 +32,12 @@ int	check_sorted(t_stk_top *stak)
 	exit(1);
 }
 
-int	initialize_stack(t_stk_top **stak, t_node **nodes)
+int	initialize_stack(t_stack_top **stak, t_list **nodes)
 {
-	*stak = malloc(sizeof(t_stk_top));
+	*stak = malloc(sizeof(t_stack_top));
 	if (!*stak)
 		return (-1);
-	*nodes = malloc(sizeof(t_node));
+	*nodes = malloc(sizeof(t_list));
 	if (!*nodes)
 	{
 		free(*stak);

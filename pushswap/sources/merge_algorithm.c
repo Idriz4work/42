@@ -6,15 +6,15 @@
 /*   By: iatilla- <iatilla-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 19:48:04 by iatilla-          #+#    #+#             */
-/*   Updated: 2025/01/22 20:18:04 by iatilla-         ###   ########.fr       */
+/*   Updated: 2025/01/24 03:28:17 by iatilla-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pushswap.h"
 
 // – For Conquer and Combine
-void	merge(t_stk_top *stak, int left_array[], int right_array[])
-{
+// void	merge(t_stk_top *stak, int left_array[], int right_array[])
+// {
 	// int	left_size;
 	// int	right_size;
 	// int	right;
@@ -47,11 +47,11 @@ void	merge(t_stk_top *stak, int left_array[], int right_array[])
 	// 	push_a(right_array[right], stak);
 	// 	right++;
 	// }
-}
+// }
 
 // – For Divide
-void	merge_sort(t_stk_top *stak)
-{
+// void	merge_sort(t_stk_top *stak)
+// {
 	// int	len;
 	// int	mid;
 	// int	left_array[mid];
@@ -72,4 +72,4 @@ void	merge_sort(t_stk_top *stak)
 	// merge_sort(left_array);
 	// merge_sort(right_array);
 	// merge(left_array, right_array, stak);
-}
+// }
