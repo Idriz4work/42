@@ -46,7 +46,6 @@ Throughout these projects, I've gained experience in:
 - Completed the Common Core curriculum
 - Explored multiple branches: Algo, Graphics, Systems Administration, and Web
 - Achieved perfect scores (125) in several challenging projects
-- 
 
 ## 📬 Contact
 Feel free to reach out if you have any questions about my projects or 42 School experience!
