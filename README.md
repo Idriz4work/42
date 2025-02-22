@@ -16,7 +16,7 @@ Welcome to my 42 School projects repository! This README provides an overview of
 | Project Name | Description | Goals | Type | Status | Grade |
 |--------------|-------------|-------|------|--------|-------|
 | ft_printf | Code your own printf! | Parsing, variational functions | Solo | ✅ | 114 |
-| Push_swap | Sort a stack as efficiently as possible | Sorting algorithms, basics of stacks manipulations | Solo | ✅ | 0 |
+| Push_swap | Sort a stack as efficiently as possible | Sorting algorithms, basics of stacks manipulations | Solo | ✅ | 80+ |
 
 ### 🎮 Graphics Branch
 | Project Name | Description | Goals | Type | Status | Grade |
