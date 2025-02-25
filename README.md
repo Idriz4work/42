@@ -1,4 +1,4 @@
-# 🚀 My 42 School Journey
+# My 42 School Journey
 
 ## 📚 Overview
 Welcome to my 42 School projects repository! This README provides an overview of my journey through the 42 curriculum, showcasing the projects I've completed and those I'm currently working on.
